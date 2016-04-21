@@ -4,7 +4,7 @@ allprojects {
     apply plugin: 'maven-publish'
 
     ext {
-        profile=project.hasProperty('profile')? (project['profile']==""?"aic-dev":project['profile']) : "aic-dev"
+        profile=project.hasProperty('profile')? (project['profile']==""?"dev":project['profile']) : "dev"
         moduleVersion = "1.0-SNAPSHOT"
         optBaseVersion = "1.0-SNAPSHOT"
         builtBy = "gradle 2.2"
@@ -51,8 +51,7 @@ subprojects {
         compile 'org.jboss.resteasy:resteasy-client:3.0.11.Final'
         compile 'org.jboss.resteasy:resteasy-jackson-provider:3.0.11.Final'
         compile 'org.mortbay.jetty:jetty:6.1.26'
-        compile 'javax.validation:validation-api:1.1.0.Final'
-        compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+        compile 'com.ai.opt.validator:opt-validator:1.0'
     }
 }
 
