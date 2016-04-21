@@ -9,8 +9,6 @@ configurations {
 dependencies {
     jaxDoclet 'com.ai.runner.plugin:apicollector:1.4-SNAPSHOT'
     optBaseSource "com.ai.opt:opt-base:1.0-SNAPSHOT:sources"
-    compile "javax.validation:validation-api:1.0.0.GA"
-    compile "org.hibernate:hibernate-validator:4.2.0.Final"
 }
 
 
@@ -110,6 +108,11 @@ publishing {
                                 delegate.groupId("com.ai.slp")
                                 delegate.artifactId("slp-route")
                                 delegate.version(optBaseVersion)
+                            }
+                            delegate.dependency {
+                                delegate.groupId("com.ai.opt.validator")
+                                delegate.artifactId("opt-validator")
+                                delegate.version("1.0")
                             }
                             delegate.dependency {
                                 delegate.groupId("org.jboss.resteasy")
