@@ -1,7 +1,10 @@
 package com.ai.slp.route.api.routequery.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.route.api.routequery.interfaces.IRouteQuerySV;
 import com.ai.slp.route.api.routequery.param.ProSupplyLogQueryVo;
 import com.ai.slp.route.api.routequery.param.ProSupplyLogResult;
@@ -13,10 +16,13 @@ import com.ai.slp.route.api.routequery.param.RouteQueryResult;
 import com.ai.slp.route.api.routequery.param.RouteQueryVo;
 import com.ai.slp.route.api.routequery.param.RouteRuleQueryResult;
 import com.ai.slp.route.api.routequery.param.RouteRuleQueryVo;
+import com.ai.slp.route.service.business.interfaces.IRouteQueryBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service(validation = "true")
 public class RouteQuerySVImpl implements IRouteQuerySV {
+    @Autowired
+    private IRouteQueryBusiSV iRouteQueryBusiSV;
 
     @Override
     public RouteQueryResult routeQuery(RouteQueryVo vo) throws BusinessException, SystemException {
@@ -24,21 +30,21 @@ public class RouteQuerySVImpl implements IRouteQuerySV {
     }
 
     @Override
-    public ProSupplyQueryResult routeProSupplyQuery(ProSupplyQueryVo vo) throws BusinessException,
-            SystemException {
-        return null;
+    public PageInfo<ProSupplyQueryResult> routeProSupplyQuery(ProSupplyQueryVo vo)
+            throws BusinessException, SystemException {
+        return iRouteQueryBusiSV.routeProSupplyQuery(vo);
     }
 
     @Override
     public ProSupplyLogResult proSupplyLogQuery(ProSupplyLogQueryVo vo) throws BusinessException,
             SystemException {
-        return null;
+        return iRouteQueryBusiSV.proSupplyLogQuery(vo);
     }
 
     @Override
-    public RouteRuleQueryResult routeRuleQuery(RouteRuleQueryVo vo) throws BusinessException,
-            SystemException {
-        return null;
+    public PageInfo<RouteRuleQueryResult> routeRuleQuery(RouteRuleQueryVo vo)
+            throws BusinessException, SystemException {
+        return iRouteQueryBusiSV.routeRuleQuery(vo);
     }
 
     @Override

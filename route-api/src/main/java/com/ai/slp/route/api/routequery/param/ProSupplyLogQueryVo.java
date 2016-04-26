@@ -23,85 +23,20 @@ public class ProSupplyLogQueryVo implements Serializable {
      */
     private String supplyName;
 
-    /**
-     * 可用量
-     */
-    private long beforeUsableNum;
-
-    /**
-     * 增加供货数量
-     */
-    private long supplyNum;
-
-    /**
-     * 操作人Id
-     */
-    private long operId;
-
-    /**
-     * 操作人姓名
-     */
-    private String operName;
-
-    /**
-     * 操作时间
-     */
-    private String operTime;
-
     public String getSupplyId() {
         return supplyId;
-    }
-
-    public String getSupplyName() {
-        return supplyName;
-    }
-
-    public long getOperId() {
-        return operId;
-    }
-
-    public String getOperName() {
-        return operName;
-    }
-
-    public String getOperTime() {
-        return operTime;
     }
 
     public void setSupplyId(String supplyId) {
         this.supplyId = supplyId;
     }
 
+    public String getSupplyName() {
+        return supplyName;
+    }
+
     public void setSupplyName(String supplyName) {
         this.supplyName = supplyName;
-    }
-
-    public void setOperId(long operId) {
-        this.operId = operId;
-    }
-
-    public void setOperName(String operName) {
-        this.operName = operName;
-    }
-
-    public void setOperTime(String operTime) {
-        this.operTime = operTime;
-    }
-
-    public long getBeforeUsableNum() {
-        return beforeUsableNum;
-    }
-
-    public long getSupplyNum() {
-        return supplyNum;
-    }
-
-    public void setBeforeUsableNum(long beforeUsableNum) {
-        this.beforeUsableNum = beforeUsableNum;
-    }
-
-    public void setSupplyNum(long supplyNum) {
-        this.supplyNum = supplyNum;
     }
 
 }

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.slp.route.dao.mapper.interfaces.RouteRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.RouteRule" >
+    <id column="ROUTE_RULE_ID" property="routeRuleId" jdbcType="VARCHAR" />
+    <result column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
+    <result column="ROUTE_RULE_TYPE" property="routeRuleType" jdbcType="CHAR" />
+    <result column="ROUTE_RULE_ITEM" property="routeRuleItem" jdbcType="VARCHAR" />
+    <result column="WARNING_VALUE" property="warningValue" jdbcType="DECIMAL" />
+    <result column="TIME_TYPE" property="timeType" jdbcType="CHAR" />
+    <result column="CYCLE_VALUE" property="cycleValue" jdbcType="VARCHAR" />
+    <result column="CYCLE_UNIT" property="cycleUnit" jdbcType="VARCHAR" />
+    <result column="BEGIN_DATE" property="beginDate" jdbcType="DATE" />
+    <result column="END_DATE" property="endDate" jdbcType="DATE" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="OPER_ID" property="operId" jdbcType="DECIMAL" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ROUTE_RULE_ID, ROUTE_ID, ROUTE_RULE_TYPE, ROUTE_RULE_ITEM, WARNING_VALUE, TIME_TYPE, 
+    CYCLE_VALUE, CYCLE_UNIT, BEGIN_DATE, END_DATE, STATE, OPER_ID, OPER_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRuleCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from route_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from route_rule
+    where ROUTE_RULE_ID = #{routeRuleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from route_rule
+    where ROUTE_RULE_ID = #{routeRuleId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRuleCriteria" >
+    delete from route_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRule" >
+    insert into route_rule (ROUTE_RULE_ID, ROUTE_ID, ROUTE_RULE_TYPE, 
+      ROUTE_RULE_ITEM, WARNING_VALUE, TIME_TYPE, 
+      CYCLE_VALUE, CYCLE_UNIT, BEGIN_DATE, 
+      END_DATE, STATE, OPER_ID, 
+      OPER_TIME)
+    values (#{routeRuleId,jdbcType=VARCHAR}, #{routeId,jdbcType=VARCHAR}, #{routeRuleType,jdbcType=CHAR}, 
+      #{routeRuleItem,jdbcType=VARCHAR}, #{warningValue,jdbcType=DECIMAL}, #{timeType,jdbcType=CHAR}, 
+      #{cycleValue,jdbcType=VARCHAR}, #{cycleUnit,jdbcType=VARCHAR}, #{beginDate,jdbcType=DATE}, 
+      #{endDate,jdbcType=DATE}, #{state,jdbcType=VARCHAR}, #{operId,jdbcType=DECIMAL}, 
+      #{operTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRule" >
+    insert into route_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="routeRuleId != null" >
+        ROUTE_RULE_ID,
+      </if>
+      <if test="routeId != null" >
+        ROUTE_ID,
+      </if>
+      <if test="routeRuleType != null" >
+        ROUTE_RULE_TYPE,
+      </if>
+      <if test="routeRuleItem != null" >
+        ROUTE_RULE_ITEM,
+      </if>
+      <if test="warningValue != null" >
+        WARNING_VALUE,
+      </if>
+      <if test="timeType != null" >
+        TIME_TYPE,
+      </if>
+      <if test="cycleValue != null" >
+        CYCLE_VALUE,
+      </if>
+      <if test="cycleUnit != null" >
+        CYCLE_UNIT,
+      </if>
+      <if test="beginDate != null" >
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null" >
+        END_DATE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="operId != null" >
+        OPER_ID,
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="routeRuleId != null" >
+        #{routeRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="routeRuleType != null" >
+        #{routeRuleType,jdbcType=CHAR},
+      </if>
+      <if test="routeRuleItem != null" >
+        #{routeRuleItem,jdbcType=VARCHAR},
+      </if>
+      <if test="warningValue != null" >
+        #{warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="timeType != null" >
+        #{timeType,jdbcType=CHAR},
+      </if>
+      <if test="cycleValue != null" >
+        #{cycleValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleUnit != null" >
+        #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRuleCriteria" resultType="java.lang.Integer" >
+    select count(*) from route_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update route_rule
+    <set >
+      <if test="record.routeRuleId != null" >
+        ROUTE_RULE_ID = #{record.routeRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routeId != null" >
+        ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routeRuleType != null" >
+        ROUTE_RULE_TYPE = #{record.routeRuleType,jdbcType=CHAR},
+      </if>
+      <if test="record.routeRuleItem != null" >
+        ROUTE_RULE_ITEM = #{record.routeRuleItem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warningValue != null" >
+        WARNING_VALUE = #{record.warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.timeType != null" >
+        TIME_TYPE = #{record.timeType,jdbcType=CHAR},
+      </if>
+      <if test="record.cycleValue != null" >
+        CYCLE_VALUE = #{record.cycleValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycleUnit != null" >
+        CYCLE_UNIT = #{record.cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginDate != null" >
+        BEGIN_DATE = #{record.beginDate,jdbcType=DATE},
+      </if>
+      <if test="record.endDate != null" >
+        END_DATE = #{record.endDate,jdbcType=DATE},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operId != null" >
+        OPER_ID = #{record.operId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operTime != null" >
+        OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update route_rule
+    set ROUTE_RULE_ID = #{record.routeRuleId,jdbcType=VARCHAR},
+      ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
+      ROUTE_RULE_TYPE = #{record.routeRuleType,jdbcType=CHAR},
+      ROUTE_RULE_ITEM = #{record.routeRuleItem,jdbcType=VARCHAR},
+      WARNING_VALUE = #{record.warningValue,jdbcType=DECIMAL},
+      TIME_TYPE = #{record.timeType,jdbcType=CHAR},
+      CYCLE_VALUE = #{record.cycleValue,jdbcType=VARCHAR},
+      CYCLE_UNIT = #{record.cycleUnit,jdbcType=VARCHAR},
+      BEGIN_DATE = #{record.beginDate,jdbcType=DATE},
+      END_DATE = #{record.endDate,jdbcType=DATE},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      OPER_ID = #{record.operId,jdbcType=DECIMAL},
+      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRule" >
+    update route_rule
+    <set >
+      <if test="routeId != null" >
+        ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="routeRuleType != null" >
+        ROUTE_RULE_TYPE = #{routeRuleType,jdbcType=CHAR},
+      </if>
+      <if test="routeRuleItem != null" >
+        ROUTE_RULE_ITEM = #{routeRuleItem,jdbcType=VARCHAR},
+      </if>
+      <if test="warningValue != null" >
+        WARNING_VALUE = #{warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="timeType != null" >
+        TIME_TYPE = #{timeType,jdbcType=CHAR},
+      </if>
+      <if test="cycleValue != null" >
+        CYCLE_VALUE = #{cycleValue,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleUnit != null" >
+        CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null" >
+        BEGIN_DATE = #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        END_DATE = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        OPER_ID = #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROUTE_RULE_ID = #{routeRuleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.slp.route.dao.mapper.bo.RouteRule" >
+    update route_rule
+    set ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+      ROUTE_RULE_TYPE = #{routeRuleType,jdbcType=CHAR},
+      ROUTE_RULE_ITEM = #{routeRuleItem,jdbcType=VARCHAR},
+      WARNING_VALUE = #{warningValue,jdbcType=DECIMAL},
+      TIME_TYPE = #{timeType,jdbcType=CHAR},
+      CYCLE_VALUE = #{cycleValue,jdbcType=VARCHAR},
+      CYCLE_UNIT = #{cycleUnit,jdbcType=VARCHAR},
+      BEGIN_DATE = #{beginDate,jdbcType=DATE},
+      END_DATE = #{endDate,jdbcType=DATE},
+      STATE = #{state,jdbcType=VARCHAR},
+      OPER_ID = #{operId,jdbcType=DECIMAL},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP}
+    where ROUTE_RULE_ID = #{routeRuleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

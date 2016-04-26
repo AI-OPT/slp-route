@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.slp.route.dao.mapper.interfaces.ProdSupplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
+    <id column="SUPPLY_ID" property="supplyId" jdbcType="VARCHAR" />
+    <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
+    <result column="SUPPLY_NAME" property="supplyName" jdbcType="VARCHAR" />
+    <result column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="DECIMAL" />
+    <result column="PRODUCT_CAT_ID" property="productCatId" jdbcType="VARCHAR" />
+    <result column="STANDED_PROD_ID" property="standedProdId" jdbcType="VARCHAR" />
+    <result column="COST_PRICE" property="costPrice" jdbcType="DECIMAL" />
+    <result column="TOTAL_NUM" property="totalNum" jdbcType="DECIMAL" />
+    <result column="USABLE_NUM" property="usableNum" jdbcType="DECIMAL" />
+    <result column="USED_NUM" property="usedNum" jdbcType="DECIMAL" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="OPER_ID" property="operId" jdbcType="DECIMAL" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SUPPLY_ID, TENANT_ID, SUPPLY_NAME, ROUTE_ID, SELLER_ID, PRODUCT_CAT_ID, STANDED_PROD_ID, 
+    COST_PRICE, TOTAL_NUM, USABLE_NUM, USED_NUM, STATE, OPER_ID, OPER_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupplyCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from prod_supply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from prod_supply
+    where SUPPLY_ID = #{supplyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from prod_supply
+    where SUPPLY_ID = #{supplyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupplyCriteria" >
+    delete from prod_supply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
+    insert into prod_supply (SUPPLY_ID, TENANT_ID, SUPPLY_NAME, 
+      ROUTE_ID, SELLER_ID, PRODUCT_CAT_ID, 
+      STANDED_PROD_ID, COST_PRICE, TOTAL_NUM, 
+      USABLE_NUM, USED_NUM, STATE, 
+      OPER_ID, OPER_TIME)
+    values (#{supplyId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{supplyName,jdbcType=VARCHAR}, 
+      #{routeId,jdbcType=VARCHAR}, #{sellerId,jdbcType=DECIMAL}, #{productCatId,jdbcType=VARCHAR}, 
+      #{standedProdId,jdbcType=VARCHAR}, #{costPrice,jdbcType=DECIMAL}, #{totalNum,jdbcType=DECIMAL}, 
+      #{usableNum,jdbcType=DECIMAL}, #{usedNum,jdbcType=DECIMAL}, #{state,jdbcType=VARCHAR}, 
+      #{operId,jdbcType=DECIMAL}, #{operTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
+    insert into prod_supply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplyId != null" >
+        SUPPLY_ID,
+      </if>
+      <if test="tenantId != null" >
+        TENANT_ID,
+      </if>
+      <if test="supplyName != null" >
+        SUPPLY_NAME,
+      </if>
+      <if test="routeId != null" >
+        ROUTE_ID,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="productCatId != null" >
+        PRODUCT_CAT_ID,
+      </if>
+      <if test="standedProdId != null" >
+        STANDED_PROD_ID,
+      </if>
+      <if test="costPrice != null" >
+        COST_PRICE,
+      </if>
+      <if test="totalNum != null" >
+        TOTAL_NUM,
+      </if>
+      <if test="usableNum != null" >
+        USABLE_NUM,
+      </if>
+      <if test="usedNum != null" >
+        USED_NUM,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="operId != null" >
+        OPER_ID,
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplyId != null" >
+        #{supplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null" >
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyName != null" >
+        #{supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=DECIMAL},
+      </if>
+      <if test="productCatId != null" >
+        #{productCatId,jdbcType=VARCHAR},
+      </if>
+      <if test="standedProdId != null" >
+        #{standedProdId,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=DECIMAL},
+      </if>
+      <if test="usableNum != null" >
+        #{usableNum,jdbcType=DECIMAL},
+      </if>
+      <if test="usedNum != null" >
+        #{usedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupplyCriteria" resultType="java.lang.Integer" >
+    select count(*) from prod_supply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update prod_supply
+    <set >
+      <if test="record.supplyId != null" >
+        SUPPLY_ID = #{record.supplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenantId != null" >
+        TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplyName != null" >
+        SUPPLY_NAME = #{record.supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routeId != null" >
+        ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerId != null" >
+        SELLER_ID = #{record.sellerId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productCatId != null" >
+        PRODUCT_CAT_ID = #{record.productCatId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standedProdId != null" >
+        STANDED_PROD_ID = #{record.standedProdId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.costPrice != null" >
+        COST_PRICE = #{record.costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalNum != null" >
+        TOTAL_NUM = #{record.totalNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usableNum != null" >
+        USABLE_NUM = #{record.usableNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usedNum != null" >
+        USED_NUM = #{record.usedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operId != null" >
+        OPER_ID = #{record.operId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operTime != null" >
+        OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update prod_supply
+    set SUPPLY_ID = #{record.supplyId,jdbcType=VARCHAR},
+      TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      SUPPLY_NAME = #{record.supplyName,jdbcType=VARCHAR},
+      ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
+      SELLER_ID = #{record.sellerId,jdbcType=DECIMAL},
+      PRODUCT_CAT_ID = #{record.productCatId,jdbcType=VARCHAR},
+      STANDED_PROD_ID = #{record.standedProdId,jdbcType=VARCHAR},
+      COST_PRICE = #{record.costPrice,jdbcType=DECIMAL},
+      TOTAL_NUM = #{record.totalNum,jdbcType=DECIMAL},
+      USABLE_NUM = #{record.usableNum,jdbcType=DECIMAL},
+      USED_NUM = #{record.usedNum,jdbcType=DECIMAL},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      OPER_ID = #{record.operId,jdbcType=DECIMAL},
+      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
+    update prod_supply
+    <set >
+      <if test="tenantId != null" >
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyName != null" >
+        SUPPLY_NAME = #{supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="routeId != null" >
+        ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=DECIMAL},
+      </if>
+      <if test="productCatId != null" >
+        PRODUCT_CAT_ID = #{productCatId,jdbcType=VARCHAR},
+      </if>
+      <if test="standedProdId != null" >
+        STANDED_PROD_ID = #{standedProdId,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        COST_PRICE = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalNum != null" >
+        TOTAL_NUM = #{totalNum,jdbcType=DECIMAL},
+      </if>
+      <if test="usableNum != null" >
+        USABLE_NUM = #{usableNum,jdbcType=DECIMAL},
+      </if>
+      <if test="usedNum != null" >
+        USED_NUM = #{usedNum,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        OPER_ID = #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SUPPLY_ID = #{supplyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
+    update prod_supply
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      SUPPLY_NAME = #{supplyName,jdbcType=VARCHAR},
+      ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+      SELLER_ID = #{sellerId,jdbcType=DECIMAL},
+      PRODUCT_CAT_ID = #{productCatId,jdbcType=VARCHAR},
+      STANDED_PROD_ID = #{standedProdId,jdbcType=VARCHAR},
+      COST_PRICE = #{costPrice,jdbcType=DECIMAL},
+      TOTAL_NUM = #{totalNum,jdbcType=DECIMAL},
+      USABLE_NUM = #{usableNum,jdbcType=DECIMAL},
+      USED_NUM = #{usedNum,jdbcType=DECIMAL},
+      STATE = #{state,jdbcType=VARCHAR},
+      OPER_ID = #{operId,jdbcType=DECIMAL},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP}
+    where SUPPLY_ID = #{supplyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

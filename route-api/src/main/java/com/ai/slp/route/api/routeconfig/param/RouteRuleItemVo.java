@@ -26,7 +26,7 @@ public class RouteRuleItemVo implements Serializable {
     /**
      * 路由类型
      */
-    private String routeType;
+    private String routeRuleType;
 
     /**
      * 时段类型
@@ -69,14 +69,6 @@ public class RouteRuleItemVo implements Serializable {
         this.warningValue = warningValue;
     }
 
-    public String getRouteType() {
-        return routeType;
-    }
-
-    public void setRouteType(String routeType) {
-        this.routeType = routeType;
-    }
-
     public String getTimeType() {
         return timeType;
     }
@@ -115,6 +107,14 @@ public class RouteRuleItemVo implements Serializable {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getRouteRuleType() {
+        return routeRuleType;
+    }
+
+    public void setRouteRuleType(String routeRuleType) {
+        this.routeRuleType = routeRuleType;
     }
 
 }

@@ -1,0 +1,231 @@
+package com.ai.slp.route.service.business.impl;
+
+import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.DateUtil;
+import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.ProSupplyVo;
+import com.ai.slp.route.api.routeconfig.param.RouteMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteRuleItemVo;
+import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
+import com.ai.slp.route.dao.mapper.bo.ProdSupply;
+import com.ai.slp.route.dao.mapper.bo.ProdSupplyAddsLog;
+import com.ai.slp.route.dao.mapper.bo.Route;
+import com.ai.slp.route.dao.mapper.bo.RouteRule;
+import com.ai.slp.route.dao.mapper.interfaces.ProdSupplyMapper;
+import com.ai.slp.route.dao.mapper.interfaces.RouteMapper;
+import com.ai.slp.route.dao.mapper.interfaces.RouteRuleMapper;
+import com.ai.slp.route.service.business.interfaces.IRouteConfigBusiSV;
+
+@Component
+@Transactional
+public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
+    @Autowired
+    private transient RouteMapper routeMapper;
+
+    @Autowired
+    private transient ProdSupplyMapper prodSupplyMapper;
+
+    @Autowired
+    private transient RouteRuleMapper routeRuleMapper;
+
+    @Override
+    public void routeMaintain(RouteMaintainVo vo) {
+        if ("A".equals(vo.getChgFlag())) {
+            // 保存路由主表
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            String routeId = "";
+            Route route = new Route();
+            BeanUtils.copyVO(route, vo);
+            route.setTenantId("");
+            route.setRouteId(routeId);
+            // String userLoginName = vo.getUserLoginName();根据这个得到userId
+            long userId = 0;
+            route.setSellerId(userId);
+            // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
+            String contractId = "";
+            String contractCustId = "";
+            route.setContractId(contractId);
+            route.setContractCustId(contractCustId);
+            route.setState("1");
+            route.setCreateId(operId);
+            route.setCreateTime(sysdate);
+            route.setOperId(operId);
+            route.setOperTime(sysdate);
+            routeMapper.insert(route);
+            // 保存供应商品表
+            Map<String, List<ProSupplyVo>> proSupplyMap = vo.getProSupplyList();
+            Set<String> keySet = proSupplyMap.keySet();
+            Iterator<String> it = keySet.iterator();
+            while (it.hasNext()) {
+                String productCatId = it.next();
+                List<ProSupplyVo> proSupplyList = proSupplyMap.get(productCatId);
+                for (ProSupplyVo proSupplyVo : proSupplyList) {
+                    ProdSupply prodSupply = new ProdSupply();
+                    BeanUtils.copyVO(prodSupply, proSupplyVo);
+                    String supplyId = "";
+                    prodSupply.setTenantId("");
+                    prodSupply.setSupplyId(supplyId);
+                    prodSupply.setSupplyName(proSupplyVo.getStandedProductName());
+                    prodSupply.setRouteId(routeId);
+                    prodSupply.setSellerId(userId);
+                    prodSupply.setProductCatId(productCatId);
+                    prodSupply.setStandedProdId(proSupplyVo.getStandedProdId());
+                    prodSupply.setTotalNum(proSupplyVo.getTotalNum());
+                    prodSupply.setUsableNum(proSupplyVo.getTotalNum());
+                    prodSupply.setUsedNum(0l);
+                    prodSupply.setState("");
+                    prodSupply.setOperId(operId);
+                    prodSupply.setOperTime(sysdate);
+                    prodSupplyMapper.insert(prodSupply);
+                }
+            }
+        } else if ("M".equals(vo.getChgFlag())) {
+            // 保存路由主表
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            String routeId = vo.getRouteId();
+            Route route = new Route();
+            BeanUtils.copyVO(route, vo);
+            // String userLoginName = vo.getUserLoginName();根据这个得到userId
+            long userId = 0;
+            route.setSellerId(userId);
+            // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
+            String contractId = "";
+            String contractCustId = "";
+            route.setContractId(contractId);
+            route.setContractCustId(contractCustId);
+            route.setOperId(operId);
+            route.setOperTime(sysdate);
+            routeMapper.updateByPrimaryKey(route);
+
+        } else if ("B".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            String routeId = vo.getRouteId();
+            // String userId="根据routeId去路由表查到对应的userId"
+            // 保存供应商品表
+            Map<String, List<ProSupplyVo>> proSupplyMap = vo.getProSupplyList();
+            Set<String> keySet = proSupplyMap.keySet();
+            Iterator<String> it = keySet.iterator();
+            while (it.hasNext()) {
+                String productCatId = it.next();
+                List<ProSupplyVo> proSupplyList = proSupplyMap.get(productCatId);
+                for (ProSupplyVo proSupplyVo : proSupplyList) {
+                    ProdSupply prodSupply = new ProdSupply();
+                    BeanUtils.copyVO(prodSupply, proSupplyVo);
+                    prodSupply.setSupplyName(proSupplyVo.getStandedProductName());
+                    prodSupply.setRouteId(routeId);
+                    // prodSupply.setSellerId(userId);
+                    prodSupply.setProductCatId(productCatId);
+                    prodSupply.setStandedProdId(proSupplyVo.getStandedProdId());
+                    prodSupply.setTotalNum(proSupplyVo.getTotalNum());
+                    prodSupply.setUsableNum(proSupplyVo.getTotalNum());
+                    prodSupply.setUsedNum(0l);
+                    prodSupply.setState("");
+                    prodSupply.setOperId(operId);
+                    prodSupply.setOperTime(sysdate);
+                    prodSupplyMapper.insert(prodSupply);
+                }
+            }
+
+        } else if ("D".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            String routeId = vo.getRouteId();
+            Route route = new Route();
+            route.setRouteId(routeId);
+            route.setState(vo.getState());
+            route.setOperId(operId);
+            route.setOperTime(sysdate);
+            routeMapper.updateByPrimaryKey(route);
+        }
+
+    }
+
+    @Override
+    public void proSupplyMaintain(ProSupplyMaintainVo vo) {
+        // 增加供货量
+        if ("A".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            String supplyId = vo.getSupplyId();
+            // 根据supplyId查询出 prodSupply;
+            ProdSupply prodSupply = new ProdSupply();// 这个是查出来的
+            prodSupply.setSupplyId(supplyId);
+            prodSupply.setTotalNum(prodSupply.getTotalNum() + vo.getSupplyNum());
+            prodSupply.setUsableNum(prodSupply.getUsableNum() + vo.getSupplyNum());
+            prodSupply.setOperId(operId);
+            prodSupply.setOperTime(sysdate);
+            prodSupplyMapper.updateByPrimaryKey(prodSupply);
+            // 记录供应量添加日志
+            ProdSupplyAddsLog prodSupplyAddsLog = new ProdSupplyAddsLog();
+            prodSupplyAddsLog.setSupplyAddsLogId("");
+            prodSupplyAddsLog.setSupplyId(supplyId);
+            prodSupplyAddsLog.setSupplyName(prodSupply.getSupplyName());
+            prodSupplyAddsLog.setBeforeUsableNum(prodSupply.getUsableNum());
+            prodSupplyAddsLog.setSupplyNum(vo.getSupplyNum());
+            prodSupplyAddsLog.setSource("");
+            prodSupplyAddsLog.setOperId(vo.getOperId());
+            prodSupplyAddsLog.setOperTime(sysdate);
+            // 供货商品删除
+        } else if ("D".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            ProdSupply prodSupply = new ProdSupply();
+            prodSupply.setSupplyId(vo.getSupplyId());
+            prodSupply.setState("0");
+            prodSupply.setOperId(operId);
+            prodSupply.setOperTime(sysdate);
+            prodSupplyMapper.updateByPrimaryKey(prodSupply);
+        }
+    }
+
+    @Override
+    public void routeRuleMaintain(RouteRuleMaintainVo vo) {
+        // 增加路由规则
+        if ("A".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            String routeId = vo.getRouteId();
+            long operId = vo.getOperId();
+            List<RouteRuleItemVo> proSupplyList = vo.getProSupplyList();
+            for (RouteRuleItemVo routeRuleItemVo : proSupplyList) {
+                String routeRuleId = "";// 取序列
+                RouteRule routeRule = new RouteRule();
+                routeRule.setRouteRuleId(routeRuleId);
+                routeRule.setRouteId(routeId);
+                routeRule.setRouteRuleType(routeRuleItemVo.getRouteRuleType());
+                routeRule.setRouteRuleItem(routeRuleItemVo.getRouteRuleItem());
+                routeRule.setWarningValue(routeRuleItemVo.getWarningValue());
+                if ("S".equals(routeRuleItemVo.getTimeType())) {
+                    routeRule.setCycleValue(routeRuleItemVo.getCycleValue());
+                    routeRule.setCycleUnit(routeRuleItemVo.getCycleUnit());
+                } else if ("U".equals(routeRuleItemVo.getTimeType())) {
+                    routeRule.setBeginDate(DateUtil.getTimestamp(routeRuleItemVo.getBeginDate()));
+                    routeRule.setEndDate(DateUtil.getTimestamp(routeRuleItemVo.getEndDate()));
+                }
+                routeRule.setState("1");
+                routeRule.setOperId(operId);
+                routeRule.setOperTime(sysdate);
+                routeRuleMapper.insertSelective(routeRule);
+            }
+            // 修改路由规则
+        } else if ("M".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            String routeId = vo.getRouteId();
+            routeRuleMapper.insertSelective(null);
+        }
+    }
+
+}

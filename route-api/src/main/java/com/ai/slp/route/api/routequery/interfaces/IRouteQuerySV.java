@@ -2,6 +2,7 @@ package com.ai.slp.route.api.routequery.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.route.api.routequery.param.ProSupplyLogQueryVo;
 import com.ai.slp.route.api.routequery.param.ProSupplyLogResult;
 import com.ai.slp.route.api.routequery.param.ProSupplyQueryResult;
@@ -48,7 +49,7 @@ public interface IRouteQuerySV {
      * @ApiDocMethod
      * @ApiCode ROUTE_0007
      */
-    public ProSupplyQueryResult routeProSupplyQuery(ProSupplyQueryVo vo) throws BusinessException,
+    public PageInfo<ProSupplyQueryResult> routeProSupplyQuery(ProSupplyQueryVo vo) throws BusinessException,
             SystemException;
 
     @interface routeProSupplyQuery {
@@ -82,7 +83,7 @@ public interface IRouteQuerySV {
      * @ApiDocMethod
      * @ApiCode ROUTE_0009
      */
-    public RouteRuleQueryResult routeRuleQuery(RouteRuleQueryVo vo) throws BusinessException,
+    public PageInfo<RouteRuleQueryResult> routeRuleQuery(RouteRuleQueryVo vo) throws BusinessException,
             SystemException;
 
     @interface routeRuleQuery {

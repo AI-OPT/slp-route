@@ -16,7 +16,7 @@ public class RouteMaintainVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 变更标识 A 新增 M 修改 B 商品明细添加  S 状态修改
+     * 变更标识 A 新增 M 修改 B 商品明细添加 S 状态修改
      */
     private String chgFlag;
 
@@ -51,14 +51,14 @@ public class RouteMaintainVo implements Serializable {
     private String splServId;
 
     /**
-     * 供应商ID
+     * 供应商账号
      */
-    private String sellerId;
+    private String userLoginName;
 
     /**
      * 合同编号
      */
-    private String contractId;
+    private String contractCode;
 
     /**
      * 供货开始时间
@@ -74,6 +74,11 @@ public class RouteMaintainVo implements Serializable {
      * 状态
      */
     private String state;
+
+    /**
+     * 操作人
+     */
+    private long operId;
 
     /**
      * 供应商品列表
@@ -106,14 +111,6 @@ public class RouteMaintainVo implements Serializable {
 
     public String getSplServId() {
         return splServId;
-    }
-
-    public String getSellerId() {
-        return sellerId;
-    }
-
-    public String getContractId() {
-        return contractId;
     }
 
     public String getBeginDate() {
@@ -152,14 +149,6 @@ public class RouteMaintainVo implements Serializable {
         this.splServId = splServId;
     }
 
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
-    }
-
-    public void setContractId(String contractId) {
-        this.contractId = contractId;
-    }
-
     public void setBeginDate(String beginDate) {
         this.beginDate = beginDate;
     }
@@ -182,6 +171,30 @@ public class RouteMaintainVo implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getContractCode() {
+        return contractCode;
+    }
+
+    public void setContractCode(String contractCode) {
+        this.contractCode = contractCode;
+    }
+
+    public String getUserLoginName() {
+        return userLoginName;
+    }
+
+    public void setUserLoginName(String userLoginName) {
+        this.userLoginName = userLoginName;
+    }
+
+    public long getOperId() {
+        return operId;
+    }
+
+    public void setOperId(long operId) {
+        this.operId = operId;
     }
 
 }

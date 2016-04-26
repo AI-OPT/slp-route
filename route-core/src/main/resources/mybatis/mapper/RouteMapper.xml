@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.slp.route.dao.mapper.interfaces.RouteMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.Route" >
+    <id column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
+    <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="CONTRACT_CUST_ID" property="contractCustId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_ID" property="contractId" jdbcType="VARCHAR" />
+    <result column="SERV_ID" property="servId" jdbcType="BIGINT" />
+    <result column="ROUTE_NAME" property="routeName" jdbcType="VARCHAR" />
+    <result column="ROUTE_TYPE" property="routeType" jdbcType="CHAR" />
+    <result column="PROV_CODE" property="provCode" jdbcType="BIGINT" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="BIGINT" />
+    <result column="BEGIN_DATE" property="beginDate" jdbcType="DATE" />
+    <result column="END_DATE" property="endDate" jdbcType="DATE" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATE_ID" property="createId" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="OPER_ID" property="operId" jdbcType="BIGINT" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ROUTE_ID, TENANT_ID, SELLER_ID, CONTRACT_CUST_ID, CONTRACT_ID, SERV_ID, ROUTE_NAME, 
+    ROUTE_TYPE, PROV_CODE, CITY_CODE, BEGIN_DATE, END_DATE, STATE, CREATE_ID, CREATE_TIME, 
+    OPER_ID, OPER_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.RouteCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from route
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from route
+    where ROUTE_ID = #{routeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from route
+    where ROUTE_ID = #{routeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteCriteria" >
+    delete from route
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.Route" >
+    insert into route (ROUTE_ID, TENANT_ID, SELLER_ID, 
+      CONTRACT_CUST_ID, CONTRACT_ID, SERV_ID, 
+      ROUTE_NAME, ROUTE_TYPE, PROV_CODE, 
+      CITY_CODE, BEGIN_DATE, END_DATE, 
+      STATE, CREATE_ID, CREATE_TIME, 
+      OPER_ID, OPER_TIME)
+    values (#{routeId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{sellerId,jdbcType=BIGINT}, 
+      #{contractCustId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{servId,jdbcType=BIGINT}, 
+      #{routeName,jdbcType=VARCHAR}, #{routeType,jdbcType=CHAR}, #{provCode,jdbcType=BIGINT}, 
+      #{cityCode,jdbcType=BIGINT}, #{beginDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{state,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{operId,jdbcType=BIGINT}, #{operTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.Route" >
+    insert into route
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="routeId != null" >
+        ROUTE_ID,
+      </if>
+      <if test="tenantId != null" >
+        TENANT_ID,
+      </if>
+      SELLER_ID,
+      <if test="contractCustId != null" >
+        CONTRACT_CUST_ID,
+      </if>
+      <if test="contractId != null" >
+        CONTRACT_ID,
+      </if>
+      SERV_ID,
+      <if test="routeName != null" >
+        ROUTE_NAME,
+      </if>
+      <if test="routeType != null" >
+        ROUTE_TYPE,
+      </if>
+      PROV_CODE,
+      CITY_CODE,
+      <if test="beginDate != null" >
+        BEGIN_DATE,
+      </if>
+      <if test="endDate != null" >
+        END_DATE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      CREATE_ID,
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      OPER_ID,
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="routeId != null" >
+        #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null" >
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      #{sellerId,jdbcType=BIGINT},
+      <if test="contractCustId != null" >
+        #{contractCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      #{servId,jdbcType=BIGINT},
+      <if test="routeName != null" >
+        #{routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="routeType != null" >
+        #{routeType,jdbcType=CHAR},
+      </if>
+      #{provCode,jdbcType=BIGINT},
+      #{cityCode,jdbcType=BIGINT},
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      #{createId,jdbcType=BIGINT},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      #{operId,jdbcType=BIGINT},
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteCriteria" resultType="java.lang.Integer" >
+    select count(*) from route
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update route
+    <set >
+      <if test="record.routeId != null" >
+        ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenantId != null" >
+        TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerId != null" >
+        SELLER_ID = #{record.sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.contractCustId != null" >
+        CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractId != null" >
+        CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servId != null" >
+        SERV_ID = #{record.servId,jdbcType=BIGINT},
+      </if>
+      <if test="record.routeName != null" >
+        ROUTE_NAME = #{record.routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routeType != null" >
+        ROUTE_TYPE = #{record.routeType,jdbcType=CHAR},
+      </if>
+      <if test="record.provCode != null" >
+        PROV_CODE = #{record.provCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityCode != null" >
+        CITY_CODE = #{record.cityCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.beginDate != null" >
+        BEGIN_DATE = #{record.beginDate,jdbcType=DATE},
+      </if>
+      <if test="record.endDate != null" >
+        END_DATE = #{record.endDate,jdbcType=DATE},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createId != null" >
+        CREATE_ID = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operId != null" >
+        OPER_ID = #{record.operId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operTime != null" >
+        OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update route
+    set ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
+      TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      SELLER_ID = #{record.sellerId,jdbcType=BIGINT},
+      CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      SERV_ID = #{record.servId,jdbcType=BIGINT},
+      ROUTE_NAME = #{record.routeName,jdbcType=VARCHAR},
+      ROUTE_TYPE = #{record.routeType,jdbcType=CHAR},
+      PROV_CODE = #{record.provCode,jdbcType=BIGINT},
+      CITY_CODE = #{record.cityCode,jdbcType=BIGINT},
+      BEGIN_DATE = #{record.beginDate,jdbcType=DATE},
+      END_DATE = #{record.endDate,jdbcType=DATE},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      CREATE_ID = #{record.createId,jdbcType=BIGINT},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      OPER_ID = #{record.operId,jdbcType=BIGINT},
+      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.route.dao.mapper.bo.Route" >
+    update route
+    <set >
+      <if test="tenantId != null" >
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="contractCustId != null" >
+        CONTRACT_CUST_ID = #{contractCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="servId != null" >
+        SERV_ID = #{servId,jdbcType=BIGINT},
+      </if>
+      <if test="routeName != null" >
+        ROUTE_NAME = #{routeName,jdbcType=VARCHAR},
+      </if>
+      <if test="routeType != null" >
+        ROUTE_TYPE = #{routeType,jdbcType=CHAR},
+      </if>
+      <if test="provCode != null" >
+        PROV_CODE = #{provCode,jdbcType=BIGINT},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=BIGINT},
+      </if>
+      <if test="beginDate != null" >
+        BEGIN_DATE = #{beginDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        END_DATE = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null" >
+        CREATE_ID = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operId != null" >
+        OPER_ID = #{operId,jdbcType=BIGINT},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROUTE_ID = #{routeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.slp.route.dao.mapper.bo.Route" >
+    update route
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      CONTRACT_CUST_ID = #{contractCustId,jdbcType=VARCHAR},
+      CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
+      SERV_ID = #{servId,jdbcType=BIGINT},
+      ROUTE_NAME = #{routeName,jdbcType=VARCHAR},
+      ROUTE_TYPE = #{routeType,jdbcType=CHAR},
+      PROV_CODE = #{provCode,jdbcType=BIGINT},
+      CITY_CODE = #{cityCode,jdbcType=BIGINT},
+      BEGIN_DATE = #{beginDate,jdbcType=DATE},
+      END_DATE = #{endDate,jdbcType=DATE},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      OPER_ID = #{operId,jdbcType=BIGINT},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP}
+    where ROUTE_ID = #{routeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

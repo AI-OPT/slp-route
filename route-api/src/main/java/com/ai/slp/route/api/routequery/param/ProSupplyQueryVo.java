@@ -3,6 +3,8 @@ package com.ai.slp.route.api.routequery.param;
 import java.io.Serializable;
 import java.util.List;
 
+import com.ai.opt.base.vo.PageInfo;
+
 /**
  * 路由下商品查询请求参数 <br>
  * Date: 2016年4月18日 <br>
@@ -29,6 +31,11 @@ public class ProSupplyQueryVo implements Serializable {
      */
     private String supplyName;
 
+    /**
+     * 分页信息,分页查询时必填
+     */
+    private PageInfo<ProSupplyQueryResult> pageInfo;
+
     public String getSupplyId() {
         return supplyId;
     }
@@ -53,4 +60,11 @@ public class ProSupplyQueryVo implements Serializable {
         this.routeIdList = routeIdList;
     }
 
+    public PageInfo<ProSupplyQueryResult> getPageInfo() {
+        return pageInfo;
+    }
+
+    public void setPageInfo(PageInfo<ProSupplyQueryResult> pageInfo) {
+        this.pageInfo = pageInfo;
+    }
 }

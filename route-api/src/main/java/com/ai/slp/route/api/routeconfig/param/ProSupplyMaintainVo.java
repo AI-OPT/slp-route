@@ -14,7 +14,7 @@ public class ProSupplyMaintainVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 变更标识 A 增加供货量   D 删除
+     * 变更标识 A 增加供货量 D 删除
      */
     private String chgFlag;
 
@@ -27,6 +27,11 @@ public class ProSupplyMaintainVo implements Serializable {
      * 新增供货量
      */
     private long supplyNum;
+
+    /**
+     * 操作人
+     */
+    private long operId;
 
     public String getChgFlag() {
         return chgFlag;
@@ -50,6 +55,14 @@ public class ProSupplyMaintainVo implements Serializable {
 
     public void setSupplyNum(long supplyNum) {
         this.supplyNum = supplyNum;
+    }
+
+    public long getOperId() {
+        return operId;
+    }
+
+    public void setOperId(long operId) {
+        this.operId = operId;
     }
 
 }

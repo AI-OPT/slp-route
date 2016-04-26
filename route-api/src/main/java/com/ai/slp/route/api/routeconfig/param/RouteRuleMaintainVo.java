@@ -13,9 +13,9 @@ import java.util.List;
 public class RouteRuleMaintainVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     /**
-     * 变更标识 A 新增 M 修改  S 状态变更
+     * 变更标识 A 新增 M 修改 S 状态变更
      */
     private String chgFlag;
 
@@ -23,11 +23,16 @@ public class RouteRuleMaintainVo implements Serializable {
      * 路由Id
      */
     private String routeId;
-    
+
     /**
      * 状态
      */
     private String state;
+
+    /**
+     * 操作人
+     */
+    private long operId;
 
     /**
      * 路由规则项列表
@@ -64,6 +69,14 @@ public class RouteRuleMaintainVo implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public long getOperId() {
+        return operId;
+    }
+
+    public void setOperId(long operId) {
+        this.operId = operId;
     }
 
 }
