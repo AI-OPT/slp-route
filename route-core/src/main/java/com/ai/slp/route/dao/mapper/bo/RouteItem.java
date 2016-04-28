@@ -7,7 +7,7 @@ public class RouteItem {
 
     private String routeId;
 
-    private Long routeGroupId;
+    private String routeGroupId;
 
     private Short priorityNumber;
 
@@ -35,12 +35,12 @@ public class RouteItem {
         this.routeId = routeId == null ? null : routeId.trim();
     }
 
-    public Long getRouteGroupId() {
+    public String getRouteGroupId() {
         return routeGroupId;
     }
 
-    public void setRouteGroupId(Long routeGroupId) {
-        this.routeGroupId = routeGroupId;
+    public void setRouteGroupId(String routeGroupId) {
+        this.routeGroupId = routeGroupId == null ? null : routeGroupId.trim();
     }
 
     public Short getPriorityNumber() {

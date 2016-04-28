@@ -33,6 +33,11 @@ public class RouteItemMaintainVo implements Serializable {
      */
     private String state;
 
+    /**
+     * 操作人
+     */
+    private long operId;
+
     public String getChgFlag() {
         return chgFlag;
     }
@@ -63,6 +68,14 @@ public class RouteItemMaintainVo implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public long getOperId() {
+        return operId;
+    }
+
+    public void setOperId(long operId) {
+        this.operId = operId;
     }
 
 }

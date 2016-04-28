@@ -2,7 +2,6 @@ package com.ai.slp.route.api.routeconfig.param;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 路由组维护请求参数 <br>
@@ -23,7 +22,7 @@ public class RouteGroupMaintainVo implements Serializable {
     /**
      * 路由组Id
      */
-    private long routeGroupId;
+    private String routeGroupId;
 
     /**
      * 路由组名称
@@ -36,45 +35,30 @@ public class RouteGroupMaintainVo implements Serializable {
     private String state;
 
     /**
-     * 库存组列表
+     * 库存组标识
      */
-    private List<Long> storageGroupList;
+    private long storageGroupId;
 
     /**
      * 路由列表优先级
      */
-    private Map<String, List<String>> routeList;
+    private List<RouteItemVo> routeItemVoList;
+
+    /**
+     * 操作人
+     */
+    private long operId;
 
     public String getRouteGroupName() {
         return routeGroupName;
-    }
-
-    public List<Long> getStorageGroupList() {
-        return storageGroupList;
-    }
-
-    public Map<String, List<String>> getRouteList() {
-        return routeList;
     }
 
     public void setRouteGroupName(String routeGroupName) {
         this.routeGroupName = routeGroupName;
     }
 
-    public void setStorageGroupList(List<Long> storageGroupList) {
-        this.storageGroupList = storageGroupList;
-    }
-
-    public void setRouteList(Map<String, List<String>> routeList) {
-        this.routeList = routeList;
-    }
-
     public String getChgFlag() {
         return chgFlag;
-    }
-
-    public long getRouteGroupId() {
-        return routeGroupId;
     }
 
     public String getState() {
@@ -85,12 +69,40 @@ public class RouteGroupMaintainVo implements Serializable {
         this.chgFlag = chgFlag;
     }
 
-    public void setRouteGroupId(long routeGroupId) {
-        this.routeGroupId = routeGroupId;
-    }
-
     public void setState(String state) {
         this.state = state;
+    }
+
+    public long getStorageGroupId() {
+        return storageGroupId;
+    }
+
+    public void setStorageGroupId(long storageGroupId) {
+        this.storageGroupId = storageGroupId;
+    }
+
+    public long getOperId() {
+        return operId;
+    }
+
+    public void setOperId(long operId) {
+        this.operId = operId;
+    }
+
+    public List<RouteItemVo> getRouteItemVoList() {
+        return routeItemVoList;
+    }
+
+    public void setRouteItemVoList(List<RouteItemVo> routeItemVoList) {
+        this.routeItemVoList = routeItemVoList;
+    }
+
+    public String getRouteGroupId() {
+        return routeGroupId;
+    }
+
+    public void setRouteGroupId(String routeGroupId) {
+        this.routeGroupId = routeGroupId;
     }
 
 }

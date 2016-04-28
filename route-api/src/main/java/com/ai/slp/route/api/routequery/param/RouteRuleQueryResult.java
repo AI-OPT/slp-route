@@ -51,7 +51,7 @@ public class RouteRuleQueryResult extends BaseResponse {
     /**
      * 行业类型
      */
-    private String industryType;
+    private String cateGoryType;
 
     /**
      * 路由状态
@@ -111,10 +111,6 @@ public class RouteRuleQueryResult extends BaseResponse {
         return sellerName;
     }
 
-    public String getIndustryType() {
-        return industryType;
-    }
-
     public String getState() {
         return state;
     }
@@ -167,10 +163,6 @@ public class RouteRuleQueryResult extends BaseResponse {
         this.sellerName = sellerName;
     }
 
-    public void setIndustryType(String industryType) {
-        this.industryType = industryType;
-    }
-
     public void setState(String state) {
         this.state = state;
     }
@@ -193,6 +185,14 @@ public class RouteRuleQueryResult extends BaseResponse {
 
     public void setAmountCycleValue(String amountCycleValue) {
         this.amountCycleValue = amountCycleValue;
+    }
+
+    public String getCateGoryType() {
+        return cateGoryType;
+    }
+
+    public void setCateGoryType(String cateGoryType) {
+        this.cateGoryType = cateGoryType;
     }
 
 }

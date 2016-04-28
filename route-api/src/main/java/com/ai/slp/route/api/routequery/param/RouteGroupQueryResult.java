@@ -36,14 +36,14 @@ public class RouteGroupQueryResult extends BaseResponse {
     private int priorityNum;
 
     /**
-     * 路由个数
+     * 库存组标识
      */
-    private String routeNum;
+    private String storageGroupId;
 
     /**
      * 库存组标识
      */
-    private String storageGroupId;
+    private String storageGroupName;
 
     /**
      * 子库存列表
@@ -71,10 +71,6 @@ public class RouteGroupQueryResult extends BaseResponse {
         return priorityNum;
     }
 
-    public String getRouteNum() {
-        return routeNum;
-    }
-
     public void setRouteGroupId(String routeGroupId) {
         this.routeGroupId = routeGroupId;
     }
@@ -89,10 +85,6 @@ public class RouteGroupQueryResult extends BaseResponse {
 
     public void setPriorityNum(int priorityNum) {
         this.priorityNum = priorityNum;
-    }
-
-    public void setRouteNum(String routeNum) {
-        this.routeNum = routeNum;
     }
 
     public String getStorageGroupId() {
@@ -117,6 +109,14 @@ public class RouteGroupQueryResult extends BaseResponse {
 
     public void setRouteList(List<RouteItemVo> routeList) {
         this.routeList = routeList;
+    }
+
+    public String getStorageGroupName() {
+        return storageGroupName;
+    }
+
+    public void setStorageGroupName(String storageGroupName) {
+        this.storageGroupName = storageGroupName;
     }
 
 }

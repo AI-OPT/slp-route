@@ -1,19 +1,27 @@
 package com.ai.slp.route.api.routequery.param;
 
-import java.util.List;
-
-import com.ai.opt.base.vo.BaseResponse;
+import java.io.Serializable;
 
 /**
- * 路由下商品查询返回参数<br>
+ * 路由组下商品查询返回参数<br>
  * Date: 2016年4月18日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangxw
  */
-public class ProSupplyQueryResult extends BaseResponse {
+public class RouteGroupProSupplyQueryVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 路由组ID
+     */
+    private String routeId;
+
+    /**
+     * 路由组名称
+     */
+    private String routeName;
 
     /**
      * 供应商品ID
@@ -35,11 +43,6 @@ public class ProSupplyQueryResult extends BaseResponse {
      */
     private long usableNum;
 
-    /**
-     * 属性列表
-     */
-    private List<ProAttrDefVo> proAttrDefList;
-
     public long getTotalNum() {
         return totalNum;
     }
@@ -48,20 +51,12 @@ public class ProSupplyQueryResult extends BaseResponse {
         return usableNum;
     }
 
-    public List<ProAttrDefVo> getProAttrDefList() {
-        return proAttrDefList;
-    }
-
     public void setTotalNum(long totalNum) {
         this.totalNum = totalNum;
     }
 
     public void setUsableNum(long usableNum) {
         this.usableNum = usableNum;
-    }
-
-    public void setProAttrDefList(List<ProAttrDefVo> proAttrDefList) {
-        this.proAttrDefList = proAttrDefList;
     }
 
     public String getSupplyId() {
@@ -78,6 +73,22 @@ public class ProSupplyQueryResult extends BaseResponse {
 
     public void setSupplyName(String supplyName) {
         this.supplyName = supplyName;
+    }
+
+    public String getRouteId() {
+        return routeId;
+    }
+
+    public String getRouteName() {
+        return routeName;
+    }
+
+    public void setRouteId(String routeId) {
+        this.routeId = routeId;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
     }
 
 }

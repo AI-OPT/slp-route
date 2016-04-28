@@ -1,5 +1,7 @@
 package com.ai.slp.route.api.routequery.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ai.opt.base.exception.BusinessException;
@@ -10,6 +12,7 @@ import com.ai.slp.route.api.routequery.param.ProSupplyLogQueryVo;
 import com.ai.slp.route.api.routequery.param.ProSupplyLogResult;
 import com.ai.slp.route.api.routequery.param.ProSupplyQueryResult;
 import com.ai.slp.route.api.routequery.param.ProSupplyQueryVo;
+import com.ai.slp.route.api.routequery.param.RouteGroupProSupplyQueryResult;
 import com.ai.slp.route.api.routequery.param.RouteGroupQueryResult;
 import com.ai.slp.route.api.routequery.param.RouteGroupQueryVo;
 import com.ai.slp.route.api.routequery.param.RouteQueryResult;
@@ -25,8 +28,15 @@ public class RouteQuerySVImpl implements IRouteQuerySV {
     private IRouteQueryBusiSV iRouteQueryBusiSV;
 
     @Override
-    public RouteQueryResult routeQuery(RouteQueryVo vo) throws BusinessException, SystemException {
-        return null;
+    public PageInfo<RouteQueryResult> routeQuery(RouteQueryVo vo) throws BusinessException,
+            SystemException {
+        return iRouteQueryBusiSV.routeQuery(vo);
+    }
+
+    @Override
+    public RouteQueryResult routeDetailQuery(String routeId) throws BusinessException,
+            SystemException {
+        return iRouteQueryBusiSV.routeDetailQuery(routeId);
     }
 
     @Override
@@ -48,9 +58,26 @@ public class RouteQuerySVImpl implements IRouteQuerySV {
     }
 
     @Override
-    public RouteGroupQueryResult routeGroupQuery(RouteGroupQueryVo vo) throws BusinessException,
+    public RouteRuleQueryResult routeRuleDetailQuery(String routeId) throws BusinessException,
             SystemException {
-        return null;
+        return iRouteQueryBusiSV.routeRuleDetailQuery(routeId);
+    }
+
+    @Override
+    public PageInfo<RouteGroupQueryResult> routeGroupQuery(RouteGroupQueryVo vo)
+            throws BusinessException, SystemException {
+        return iRouteQueryBusiSV.routeGroupQuery(vo);
+    }
+
+    @Override
+    public RouteGroupQueryResult routeGroupDetailQuery(String routeGroupId)
+            throws BusinessException, SystemException {
+        return iRouteQueryBusiSV.routeGroupDetailQuery(routeGroupId);
+    }
+
+    public RouteGroupProSupplyQueryResult routeGroupProSupplyQuery(List<String> routeIdList)
+            throws BusinessException, SystemException {
+        return iRouteQueryBusiSV.routeGroupProSupplyQuery(routeIdList);
     }
 
 }

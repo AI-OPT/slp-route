@@ -11,17 +11,28 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyVo;
+import com.ai.slp.route.api.routeconfig.param.RouteGroupMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteItemMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteItemVo;
 import com.ai.slp.route.api.routeconfig.param.RouteMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleItemVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
+import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.ProdSupply;
 import com.ai.slp.route.dao.mapper.bo.ProdSupplyAddsLog;
 import com.ai.slp.route.dao.mapper.bo.Route;
+import com.ai.slp.route.dao.mapper.bo.RouteGroup;
+import com.ai.slp.route.dao.mapper.bo.RouteItem;
+import com.ai.slp.route.dao.mapper.bo.RouteItemCriteria;
 import com.ai.slp.route.dao.mapper.bo.RouteRule;
 import com.ai.slp.route.dao.mapper.interfaces.ProdSupplyMapper;
+import com.ai.slp.route.dao.mapper.interfaces.RouteGroupMapper;
+import com.ai.slp.route.dao.mapper.interfaces.RouteItemMapper;
 import com.ai.slp.route.dao.mapper.interfaces.RouteMapper;
 import com.ai.slp.route.dao.mapper.interfaces.RouteRuleMapper;
 import com.ai.slp.route.service.business.interfaces.IRouteConfigBusiSV;
@@ -38,9 +49,15 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
     @Autowired
     private transient RouteRuleMapper routeRuleMapper;
 
+    @Autowired
+    private transient RouteGroupMapper routeGroupMapper;
+
+    @Autowired
+    private transient RouteItemMapper routeItemMapper;
+
     @Override
     public void routeMaintain(RouteMaintainVo vo) {
-        if ("A".equals(vo.getChgFlag())) {
+        if (RouteConstant.A.equals(vo.getChgFlag())) {
             // 保存路由主表
             Timestamp sysdate = DateUtil.getSysDate();
             long operId = vo.getOperId();
@@ -84,13 +101,13 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
                     prodSupply.setTotalNum(proSupplyVo.getTotalNum());
                     prodSupply.setUsableNum(proSupplyVo.getTotalNum());
                     prodSupply.setUsedNum(0l);
-                    prodSupply.setState("");
+                    prodSupply.setState("1");
                     prodSupply.setOperId(operId);
                     prodSupply.setOperTime(sysdate);
                     prodSupplyMapper.insert(prodSupply);
                 }
             }
-        } else if ("M".equals(vo.getChgFlag())) {
+        } else if (RouteConstant.M.equals(vo.getChgFlag())) {
             // 保存路由主表
             Timestamp sysdate = DateUtil.getSysDate();
             long operId = vo.getOperId();
@@ -109,7 +126,7 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
             route.setOperTime(sysdate);
             routeMapper.updateByPrimaryKey(route);
 
-        } else if ("B".equals(vo.getChgFlag())) {
+        } else if (RouteConstant.B.equals(vo.getChgFlag())) {
             Timestamp sysdate = DateUtil.getSysDate();
             long operId = vo.getOperId();
             String routeId = vo.getRouteId();
@@ -132,14 +149,14 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
                     prodSupply.setTotalNum(proSupplyVo.getTotalNum());
                     prodSupply.setUsableNum(proSupplyVo.getTotalNum());
                     prodSupply.setUsedNum(0l);
-                    prodSupply.setState("");
+                    prodSupply.setState("1");
                     prodSupply.setOperId(operId);
                     prodSupply.setOperTime(sysdate);
                     prodSupplyMapper.insert(prodSupply);
                 }
             }
 
-        } else if ("D".equals(vo.getChgFlag())) {
+        } else if (RouteConstant.S.equals(vo.getChgFlag())) {
             Timestamp sysdate = DateUtil.getSysDate();
             long operId = vo.getOperId();
             String routeId = vo.getRouteId();
@@ -222,9 +239,95 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
             // 修改路由规则
         } else if ("M".equals(vo.getChgFlag())) {
             Timestamp sysdate = DateUtil.getSysDate();
-            long operId = vo.getOperId();
             String routeId = vo.getRouteId();
-            routeRuleMapper.insertSelective(null);
+            long operId = vo.getOperId();
+            List<RouteRuleItemVo> proSupplyList = vo.getProSupplyList();
+            for (RouteRuleItemVo routeRuleItemVo : proSupplyList) {
+                String routeRuleId = "";// 取序列
+                RouteRule routeRule = new RouteRule();
+                routeRule.setRouteRuleId(routeRuleId);
+                routeRule.setRouteId(routeId);
+                routeRule.setRouteRuleType(routeRuleItemVo.getRouteRuleType());
+                routeRule.setRouteRuleItem(routeRuleItemVo.getRouteRuleItem());
+                routeRule.setWarningValue(routeRuleItemVo.getWarningValue());
+                if ("S".equals(routeRuleItemVo.getTimeType())) {
+                    routeRule.setCycleValue(routeRuleItemVo.getCycleValue());
+                    routeRule.setCycleUnit(routeRuleItemVo.getCycleUnit());
+                } else if ("U".equals(routeRuleItemVo.getTimeType())) {
+                    routeRule.setBeginDate(DateUtil.getTimestamp(routeRuleItemVo.getBeginDate()));
+                    routeRule.setEndDate(DateUtil.getTimestamp(routeRuleItemVo.getEndDate()));
+                }
+                routeRule.setState("1");
+                routeRule.setOperId(operId);
+                routeRule.setOperTime(sysdate);
+                routeRuleMapper.insertSelective(routeRule);
+            }
+        
+        }
+    }
+
+    @Override
+    public void routeGroupMaintain(RouteGroupMaintainVo vo) {
+        // 增加路由组
+        if ("A".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            String routeGroupId = "";
+            long operId = vo.getOperId();
+            RouteGroup routeGroup = new RouteGroup();
+            routeGroup.setRouteGroupId(routeGroupId);
+            routeGroup.setRouteGroupName(vo.getRouteGroupName());
+            routeGroup.setState("1");
+            routeGroup.setOperId(vo.getOperId());
+            routeGroup.setOperTime(sysdate);
+            routeGroupMapper.insert(routeGroup);
+            // 增加路由组组成
+            List<RouteItemVo> routeItemVoList = vo.getRouteItemVoList();
+            for (RouteItemVo routeItemVo : routeItemVoList) {
+                RouteItem routeItem = new RouteItem();
+                String routeItemId = "";
+                routeItem.setRouteItemId(routeItemId);
+                routeItem.setRouteId(routeItemVo.getRouteId());
+                // routeItem.setRouteGroupId(routeGroupId);
+                routeItem.setPriorityNumber((short) routeItemVo.getPriorityNum());
+                routeItem.setSerialNumber((short) 0);
+                routeItem.setState("1");
+                routeItem.setOperId(operId);
+                routeItem.setOperTime(sysdate);
+                routeItemMapper.insertSelective(routeItem);
+            }
+        }else if ("S".equals(vo.getChgFlag())) {
+            Timestamp sysdate = DateUtil.getSysDate();
+            long operId = vo.getOperId();
+            RouteGroup routeGroup = new RouteGroup();
+            routeGroup.setRouteGroupId(vo.getRouteGroupId());
+            routeGroup.setState(vo.getState());
+            routeGroup.setOperId(operId);
+            routeGroup.setOperTime(sysdate);
+            routeGroupMapper.updateByPrimaryKeySelective(routeGroup);
+        }
+
+    }
+
+    @Override
+    public void routeItemMaintain(RouteItemMaintainVo vo) {
+        Timestamp sysdate = DateUtil.getSysDate();
+        long operId = vo.getOperId();
+        RouteItemCriteria routeItemCriteria = new RouteItemCriteria();
+        RouteItemCriteria.Criteria criteria = routeItemCriteria.createCriteria();
+        // if (!StringUtil.isBlank(vo.getRouteGroupId())) {
+        // criteria.andRouteGroupIdEqualTo(vo.getRouteGroupId());
+        // }
+        if (!StringUtil.isBlank(vo.getRouteId())) {
+            criteria.andRouteIdEqualTo(vo.getRouteId());
+        }
+        criteria.andStateEqualTo("1");
+        List<RouteItem> routeItems = routeItemMapper.selectByExample(routeItemCriteria);
+        if (!CollectionUtil.isEmpty(routeItems)) {
+            RouteItem routeItem = routeItems.get(0);
+            routeItem.setState(vo.getState());
+            routeItem.setOperId(operId);
+            routeItem.setOperTime(sysdate);
+            routeItemMapper.updateByPrimaryKey(routeItem);
         }
     }
 

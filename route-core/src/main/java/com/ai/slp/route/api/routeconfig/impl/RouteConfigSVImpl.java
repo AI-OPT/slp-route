@@ -61,13 +61,23 @@ public class RouteConfigSVImpl implements IRouteConfigSV {
     @Override
     public RouteGroupMaintainResult routeGroupMaintain(RouteGroupMaintainVo vo)
             throws BusinessException, SystemException {
-        return null;
+        iRouteConfigBusiSV.routeGroupMaintain(vo);
+
+        ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
+        RouteGroupMaintainResult result = new RouteGroupMaintainResult();
+        result.setResponseHeader(responseHeader);
+        return result;
     }
 
     @Override
     public RouteItemMaintainResult routeItemMaintain(RouteItemMaintainVo vo)
             throws BusinessException, SystemException {
-        return null;
+        iRouteConfigBusiSV.routeItemMaintain(vo);
+
+        ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
+        RouteItemMaintainResult result = new RouteItemMaintainResult();
+        result.setResponseHeader(responseHeader);
+        return result;
     }
 
 }
