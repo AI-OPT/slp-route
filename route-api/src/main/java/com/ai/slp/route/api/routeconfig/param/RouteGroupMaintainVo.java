@@ -3,6 +3,8 @@ package com.ai.slp.route.api.routeconfig.param;
 import java.io.Serializable;
 import java.util.List;
 
+import com.ai.opt.base.vo.BaseInfo;
+
 /**
  * 路由组维护请求参数 <br>
  * Date: 2016年4月18日 <br>
@@ -10,7 +12,7 @@ import java.util.List;
  * 
  * @author zhangxw
  */
-public class RouteGroupMaintainVo implements Serializable {
+public class RouteGroupMaintainVo extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 

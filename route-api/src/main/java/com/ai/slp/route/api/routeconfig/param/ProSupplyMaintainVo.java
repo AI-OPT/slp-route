@@ -2,6 +2,8 @@ package com.ai.slp.route.api.routeconfig.param;
 
 import java.io.Serializable;
 
+import com.ai.opt.base.vo.BaseInfo;
+
 /**
  * 供应商品维护请求参数 <br>
  * Date: 2016年4月18日 <br>
@@ -9,7 +11,7 @@ import java.io.Serializable;
  * 
  * @author zhangxw
  */
-public class ProSupplyMaintainVo implements Serializable {
+public class ProSupplyMaintainVo extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 

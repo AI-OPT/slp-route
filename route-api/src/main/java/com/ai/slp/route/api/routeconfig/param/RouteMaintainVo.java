@@ -1,8 +1,9 @@
 package com.ai.slp.route.api.routeconfig.param;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+
+import com.ai.opt.base.vo.BaseInfo;
 
 /**
  * 路由维护请求参数 <br>
@@ -11,7 +12,7 @@ import java.util.Map;
  * 
  * @author zhangxw
  */
-public class RouteMaintainVo implements Serializable {
+public class RouteMaintainVo extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
