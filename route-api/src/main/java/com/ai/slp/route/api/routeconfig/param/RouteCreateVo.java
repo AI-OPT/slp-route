@@ -1,30 +1,17 @@
 package com.ai.slp.route.api.routeconfig.param;
 
-import java.util.List;
-import java.util.Map;
-
 import com.ai.opt.base.vo.BaseInfo;
 
 /**
- * 路由维护请求参数 <br>
+ * 路由创建请求参数 <br>
  * Date: 2016年4月18日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangxw
  */
-public class RouteMaintainVo extends BaseInfo {
+public class RouteCreateVo extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 变更标识 A 新增 M 修改 B 商品明细添加 S 状态修改
-     */
-    private String chgFlag;
-
-    /**
-     * 路由Id
-     */
-    private String routeId;
 
     /**
      * 路由名称
@@ -72,27 +59,9 @@ public class RouteMaintainVo extends BaseInfo {
     private String endDate;
 
     /**
-     * 状态
-     */
-    private String state;
-
-    /**
      * 操作人
      */
     private long operId;
-
-    /**
-     * 供应商品列表
-     */
-    private Map<String, List<ProSupplyVo>> proSupplyList;
-
-    public String getChgFlag() {
-        return chgFlag;
-    }
-
-    public String getRouteId() {
-        return routeId;
-    }
 
     public String getRouteName() {
         return routeName;
@@ -122,14 +91,6 @@ public class RouteMaintainVo extends BaseInfo {
         return endDate;
     }
 
-    public void setChgFlag(String chgFlag) {
-        this.chgFlag = chgFlag;
-    }
-
-    public void setRouteId(String routeId) {
-        this.routeId = routeId;
-    }
-
     public void setRouteName(String routeName) {
         this.routeName = routeName;
     }
@@ -156,22 +117,6 @@ public class RouteMaintainVo extends BaseInfo {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
-    }
-
-    public Map<String, List<ProSupplyVo>> getProSupplyList() {
-        return proSupplyList;
-    }
-
-    public void setProSupplyList(Map<String, List<ProSupplyVo>> proSupplyList) {
-        this.proSupplyList = proSupplyList;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public String getContractCode() {

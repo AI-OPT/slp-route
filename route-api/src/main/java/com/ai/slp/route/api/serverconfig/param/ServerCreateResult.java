@@ -9,7 +9,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * 
  * @author zhangxw
  */
-public class ServerMaintainResult extends BaseResponse {
+public class ServerCreateResult extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 

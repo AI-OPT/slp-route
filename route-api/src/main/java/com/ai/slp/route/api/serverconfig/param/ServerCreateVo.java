@@ -1,22 +1,17 @@
 package com.ai.slp.route.api.serverconfig.param;
 
-import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.BaseInfo;
 
 /**
- * 服务配置查询返回参数<br>
+ * 服务信息创建请求参数 <br>
  * Date: 2016年4月18日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangxw
  */
-public class ServerQueryResult extends BaseResponse {
+public class ServerCreateVo extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 服务ID
-     */
-    private String splServId;
 
     /**
      * 服务名称
@@ -48,9 +43,10 @@ public class ServerQueryResult extends BaseResponse {
      */
     private String returnParam;
 
-    public String getSplServId() {
-        return splServId;
-    }
+    /**
+     * 操作人
+     */
+    private long operId;
 
     public String getServName() {
         return servName;
@@ -64,8 +60,12 @@ public class ServerQueryResult extends BaseResponse {
         return url;
     }
 
-    public void setSplServId(String splServId) {
-        this.splServId = splServId;
+    public String getRequestParam() {
+        return requestParam;
+    }
+
+    public String getReturnParam() {
+        return returnParam;
     }
 
     public void setServName(String servName) {
@@ -80,28 +80,28 @@ public class ServerQueryResult extends BaseResponse {
         this.url = url;
     }
 
-    public String getServContent() {
-        return servContent;
-    }
-
-    public String getRequestParam() {
-        return requestParam;
-    }
-
-    public String getReturnParam() {
-        return returnParam;
-    }
-
-    public void setServContent(String servContent) {
-        this.servContent = servContent;
-    }
-
     public void setRequestParam(String requestParam) {
         this.requestParam = requestParam;
     }
 
     public void setReturnParam(String returnParam) {
         this.returnParam = returnParam;
+    }
+
+    public String getServContent() {
+        return servContent;
+    }
+
+    public void setServContent(String servContent) {
+        this.servContent = servContent;
+    }
+
+    public long getOperId() {
+        return operId;
+    }
+
+    public void setOperId(long operId) {
+        this.operId = operId;
     }
 
 }

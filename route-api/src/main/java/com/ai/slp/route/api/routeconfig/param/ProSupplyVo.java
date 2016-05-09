@@ -14,9 +14,9 @@ public class ProSupplyVo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 供应品标识
+     * 商品类目标识
      */
-    private String supplyId;
+    private String productCatId;
 
     /**
      * 标准品标识
@@ -57,12 +57,12 @@ public class ProSupplyVo implements Serializable {
         this.standedProductName = standedProductName;
     }
 
-    public String getSupplyId() {
-        return supplyId;
+    public String getProductCatId() {
+        return productCatId;
     }
 
-    public void setSupplyId(String supplyId) {
-        this.supplyId = supplyId;
+    public void setProductCatId(String productCatId) {
+        this.productCatId = productCatId;
     }
 
 }

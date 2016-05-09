@@ -2,8 +2,11 @@ package com.ai.slp.route.api.serverconfig.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.slp.route.api.serverconfig.param.ServerMaintainResult;
-import com.ai.slp.route.api.serverconfig.param.ServerMaintainVo;
+import com.ai.opt.base.vo.PageInfo;
+import com.ai.slp.route.api.serverconfig.param.ServerCreateResult;
+import com.ai.slp.route.api.serverconfig.param.ServerCreateVo;
+import com.ai.slp.route.api.serverconfig.param.ServerModifyResult;
+import com.ai.slp.route.api.serverconfig.param.ServerModifyVo;
 import com.ai.slp.route.api.serverconfig.param.ServerQueryResult;
 import com.ai.slp.route.api.serverconfig.param.ServerQueryVo;
 
@@ -16,7 +19,7 @@ import com.ai.slp.route.api.serverconfig.param.ServerQueryVo;
  */
 public interface IServerConfigSV {
     /**
-     * 服务信息维护
+     * 服务信息新增
      * 
      * @param vo
      *            服务基本信息
@@ -26,14 +29,31 @@ public interface IServerConfigSV {
      * @author zhangxw
      * @ApiCode ROUTE_0011
      */
-    public ServerMaintainResult ServMaintain(ServerMaintainVo vo) throws BusinessException,
+    public ServerCreateResult servCreate(ServerCreateVo vo) throws BusinessException,
             SystemException;
 
-    @interface ServMaintain {
+    @interface servCreate {
     }
 
     /**
-     * 服务信息查询
+     * 服务信息修改
+     * 
+     * @param vo
+     *            服务基本信息
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangxw
+     * @ApiCode ROUTE_0011
+     */
+    public ServerModifyResult servModify(ServerModifyVo vo) throws BusinessException,
+            SystemException;
+
+    @interface servModify {
+    }
+
+    /**
+     * 服务信息分页查询
      * 
      * @param vo
      *            服务基本信息
@@ -43,10 +63,27 @@ public interface IServerConfigSV {
      * @author zhangxw
      * @ApiCode ROUTE_0012
      */
-    public ServerQueryResult serverQuery(ServerQueryVo vo) throws BusinessException,
+    public PageInfo<ServerQueryResult> serverQuery(ServerQueryVo vo) throws BusinessException,
             SystemException;
 
     @interface serverQuery {
+    }
+
+    /**
+     * 服务信息详情查询
+     * 
+     * @param vo
+     *            服务基本信息
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangxw
+     * @ApiCode ROUTE_0012
+     */
+    public ServerQueryResult serverDetailQuery(ServerQueryVo vo) throws BusinessException,
+            SystemException;
+
+    @interface serverDetailQuery {
     }
 
 }

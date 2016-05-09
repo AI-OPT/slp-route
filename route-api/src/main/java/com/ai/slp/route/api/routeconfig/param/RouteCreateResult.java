@@ -3,13 +3,13 @@ package com.ai.slp.route.api.routeconfig.param;
 import com.ai.opt.base.vo.BaseResponse;
 
 /**
- * 路由维护返回参数<br>
+ * 路由创建返回参数<br>
  * Date: 2016年4月18日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangxw
  */
-public class RouteMaintainResult extends BaseResponse {
+public class RouteCreateResult extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 

@@ -4,14 +4,20 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteCreateResult;
+import com.ai.slp.route.api.routeconfig.param.RouteCreateVo;
 import com.ai.slp.route.api.routeconfig.param.RouteGroupMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.RouteGroupMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.RouteItemMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.RouteItemMaintainVo;
-import com.ai.slp.route.api.routeconfig.param.RouteMaintainResult;
-import com.ai.slp.route.api.routeconfig.param.RouteMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteModifyResult;
+import com.ai.slp.route.api.routeconfig.param.RouteModifyVo;
+import com.ai.slp.route.api.routeconfig.param.RouteProSupplyAddResult;
+import com.ai.slp.route.api.routeconfig.param.RouteProSupplyAddVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteStateChgResult;
+import com.ai.slp.route.api.routeconfig.param.RouteStateChgVo;
 
 /**
  * 路由配置<br>
@@ -22,7 +28,7 @@ import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
  */
 public interface IRouteConfigSV {
     /**
-     * 路由新增 、修改、商品明细添加 、状态修改
+     * 路由新增
      * 
      * @param vo
      *            路由基本信息和标准品信息
@@ -32,10 +38,61 @@ public interface IRouteConfigSV {
      * @author zhangxw
      * @ApiCode ROUTE_0001
      */
-    public RouteMaintainResult routeMaintain(RouteMaintainVo vo) throws BusinessException,
+    public RouteCreateResult routeCreate(RouteCreateVo vo) throws BusinessException,
             SystemException;
 
-    @interface routeMaintain {
+    @interface routeCreate {
+    }
+
+    /**
+     * 路由修改
+     * 
+     * @param vo
+     *            路由基本信息和标准品信息
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangxw
+     * @ApiCode ROUTE_0001
+     */
+    public RouteModifyResult routeModify(RouteModifyVo vo) throws BusinessException,
+            SystemException;
+
+    @interface routeModify {
+    }
+
+    /**
+     * 路由商品明细添加
+     * 
+     * @param vo
+     *            路由基本信息和标准品信息
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangxw
+     * @ApiCode ROUTE_0001
+     */
+    public RouteProSupplyAddResult routeProSupplyAdd(RouteProSupplyAddVo vo)
+            throws BusinessException, SystemException;
+
+    @interface routeProSupplyAdd {
+    }
+
+    /**
+     * 路由状态修改
+     * 
+     * @param vo
+     *            路由基本信息和标准品信息
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangxw
+     * @ApiCode ROUTE_0001
+     */
+    public RouteStateChgResult routeStateChg(RouteStateChgVo vo) throws BusinessException,
+            SystemException;
+
+    @interface routeStateChg {
     }
 
     /**
