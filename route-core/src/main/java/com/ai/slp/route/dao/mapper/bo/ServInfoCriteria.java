@@ -535,6 +535,356 @@ public class ServInfoCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andUrlIsNull() {
+            addCriterion("URL is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIsNotNull() {
+            addCriterion("URL is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlEqualTo(String value) {
+            addCriterion("URL =", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotEqualTo(String value) {
+            addCriterion("URL <>", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlGreaterThan(String value) {
+            addCriterion("URL >", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("URL >=", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLessThan(String value) {
+            addCriterion("URL <", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLessThanOrEqualTo(String value) {
+            addCriterion("URL <=", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLike(String value) {
+            addCriterion("URL like", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotLike(String value) {
+            addCriterion("URL not like", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIn(List<String> values) {
+            addCriterion("URL in", values, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotIn(List<String> values) {
+            addCriterion("URL not in", values, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlBetween(String value1, String value2) {
+            addCriterion("URL between", value1, value2, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotBetween(String value1, String value2) {
+            addCriterion("URL not between", value1, value2, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamIsNull() {
+            addCriterion("REQUEST_PARAM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamIsNotNull() {
+            addCriterion("REQUEST_PARAM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamEqualTo(String value) {
+            addCriterion("REQUEST_PARAM =", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamNotEqualTo(String value) {
+            addCriterion("REQUEST_PARAM <>", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamGreaterThan(String value) {
+            addCriterion("REQUEST_PARAM >", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamGreaterThanOrEqualTo(String value) {
+            addCriterion("REQUEST_PARAM >=", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamLessThan(String value) {
+            addCriterion("REQUEST_PARAM <", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamLessThanOrEqualTo(String value) {
+            addCriterion("REQUEST_PARAM <=", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamLike(String value) {
+            addCriterion("REQUEST_PARAM like", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamNotLike(String value) {
+            addCriterion("REQUEST_PARAM not like", value, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamIn(List<String> values) {
+            addCriterion("REQUEST_PARAM in", values, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamNotIn(List<String> values) {
+            addCriterion("REQUEST_PARAM not in", values, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamBetween(String value1, String value2) {
+            addCriterion("REQUEST_PARAM between", value1, value2, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andRequestParamNotBetween(String value1, String value2) {
+            addCriterion("REQUEST_PARAM not between", value1, value2, "requestParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamIsNull() {
+            addCriterion("RETURN_PARAM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamIsNotNull() {
+            addCriterion("RETURN_PARAM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamEqualTo(String value) {
+            addCriterion("RETURN_PARAM =", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamNotEqualTo(String value) {
+            addCriterion("RETURN_PARAM <>", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamGreaterThan(String value) {
+            addCriterion("RETURN_PARAM >", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamGreaterThanOrEqualTo(String value) {
+            addCriterion("RETURN_PARAM >=", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamLessThan(String value) {
+            addCriterion("RETURN_PARAM <", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamLessThanOrEqualTo(String value) {
+            addCriterion("RETURN_PARAM <=", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamLike(String value) {
+            addCriterion("RETURN_PARAM like", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamNotLike(String value) {
+            addCriterion("RETURN_PARAM not like", value, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamIn(List<String> values) {
+            addCriterion("RETURN_PARAM in", values, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamNotIn(List<String> values) {
+            addCriterion("RETURN_PARAM not in", values, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamBetween(String value1, String value2) {
+            addCriterion("RETURN_PARAM between", value1, value2, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andReturnParamNotBetween(String value1, String value2) {
+            addCriterion("RETURN_PARAM not between", value1, value2, "returnParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlIsNull() {
+            addCriterion("CALLBACK_URL is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlIsNotNull() {
+            addCriterion("CALLBACK_URL is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlEqualTo(String value) {
+            addCriterion("CALLBACK_URL =", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlNotEqualTo(String value) {
+            addCriterion("CALLBACK_URL <>", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlGreaterThan(String value) {
+            addCriterion("CALLBACK_URL >", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("CALLBACK_URL >=", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlLessThan(String value) {
+            addCriterion("CALLBACK_URL <", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlLessThanOrEqualTo(String value) {
+            addCriterion("CALLBACK_URL <=", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlLike(String value) {
+            addCriterion("CALLBACK_URL like", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlNotLike(String value) {
+            addCriterion("CALLBACK_URL not like", value, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlIn(List<String> values) {
+            addCriterion("CALLBACK_URL in", values, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlNotIn(List<String> values) {
+            addCriterion("CALLBACK_URL not in", values, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlBetween(String value1, String value2) {
+            addCriterion("CALLBACK_URL between", value1, value2, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackUrlNotBetween(String value1, String value2) {
+            addCriterion("CALLBACK_URL not between", value1, value2, "callbackUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamIsNull() {
+            addCriterion("CALLBACK_PARAM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamIsNotNull() {
+            addCriterion("CALLBACK_PARAM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamEqualTo(String value) {
+            addCriterion("CALLBACK_PARAM =", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamNotEqualTo(String value) {
+            addCriterion("CALLBACK_PARAM <>", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamGreaterThan(String value) {
+            addCriterion("CALLBACK_PARAM >", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamGreaterThanOrEqualTo(String value) {
+            addCriterion("CALLBACK_PARAM >=", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamLessThan(String value) {
+            addCriterion("CALLBACK_PARAM <", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamLessThanOrEqualTo(String value) {
+            addCriterion("CALLBACK_PARAM <=", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamLike(String value) {
+            addCriterion("CALLBACK_PARAM like", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamNotLike(String value) {
+            addCriterion("CALLBACK_PARAM not like", value, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamIn(List<String> values) {
+            addCriterion("CALLBACK_PARAM in", values, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamNotIn(List<String> values) {
+            addCriterion("CALLBACK_PARAM not in", values, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamBetween(String value1, String value2) {
+            addCriterion("CALLBACK_PARAM between", value1, value2, "callbackParam");
+            return (Criteria) this;
+        }
+
+        public Criteria andCallbackParamNotBetween(String value1, String value2) {
+            addCriterion("CALLBACK_PARAM not between", value1, value2, "callbackParam");
+            return (Criteria) this;
+        }
+
         public Criteria andStateIsNull() {
             addCriterion("STATE is null");
             return (Criteria) this;

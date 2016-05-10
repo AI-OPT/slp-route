@@ -8,14 +8,20 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.route.api.routeconfig.interfaces.IRouteConfigSV;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteCreateResult;
+import com.ai.slp.route.api.routeconfig.param.RouteCreateVo;
 import com.ai.slp.route.api.routeconfig.param.RouteGroupMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.RouteGroupMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.RouteItemMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.RouteItemMaintainVo;
-import com.ai.slp.route.api.routeconfig.param.RouteMaintainResult;
-import com.ai.slp.route.api.routeconfig.param.RouteMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteModifyResult;
+import com.ai.slp.route.api.routeconfig.param.RouteModifyVo;
+import com.ai.slp.route.api.routeconfig.param.RouteProSupplyAddResult;
+import com.ai.slp.route.api.routeconfig.param.RouteProSupplyAddVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainResult;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteStateChgResult;
+import com.ai.slp.route.api.routeconfig.param.RouteStateChgVo;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteConfigBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -26,12 +32,45 @@ public class RouteConfigSVImpl implements IRouteConfigSV {
     private transient IRouteConfigBusiSV iRouteConfigBusiSV;
 
     @Override
-    public RouteMaintainResult routeMaintain(RouteMaintainVo vo) throws BusinessException,
+    public RouteCreateResult routeCreate(RouteCreateVo vo) throws BusinessException,
             SystemException {
-        iRouteConfigBusiSV.routeMaintain(vo);
+        iRouteConfigBusiSV.routeCreate(vo);
 
         ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
-        RouteMaintainResult result = new RouteMaintainResult();
+        RouteCreateResult result = new RouteCreateResult();
+        result.setResponseHeader(responseHeader);
+        return result;
+    }
+
+    @Override
+    public RouteModifyResult routeModify(RouteModifyVo vo) throws BusinessException,
+            SystemException {
+        iRouteConfigBusiSV.routeModify(vo);
+
+        ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
+        RouteModifyResult result = new RouteModifyResult();
+        result.setResponseHeader(responseHeader);
+        return result;
+    }
+
+    @Override
+    public RouteProSupplyAddResult routeProSupplyAdd(RouteProSupplyAddVo vo)
+            throws BusinessException, SystemException {
+        iRouteConfigBusiSV.routeProSupplyAdd(vo);
+
+        ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
+        RouteProSupplyAddResult result = new RouteProSupplyAddResult();
+        result.setResponseHeader(responseHeader);
+        return result;
+    }
+
+    @Override
+    public RouteStateChgResult routeStateChg(RouteStateChgVo vo) throws BusinessException,
+            SystemException {
+        iRouteConfigBusiSV.routeStateChg(vo);
+
+        ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
+        RouteStateChgResult result = new RouteStateChgResult();
         result.setResponseHeader(responseHeader);
         return result;
     }

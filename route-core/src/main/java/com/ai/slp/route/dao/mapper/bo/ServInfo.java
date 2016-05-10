@@ -15,6 +15,16 @@ public class ServInfo {
 
     private String servContent;
 
+    private String url;
+
+    private String requestParam;
+
+    private String returnParam;
+
+    private String callbackUrl;
+
+    private String callbackParam;
+
     private String state;
 
     private Long operId;
@@ -67,6 +77,46 @@ public class ServInfo {
 
     public void setServContent(String servContent) {
         this.servContent = servContent == null ? null : servContent.trim();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
+    }
+
+    public String getRequestParam() {
+        return requestParam;
+    }
+
+    public void setRequestParam(String requestParam) {
+        this.requestParam = requestParam == null ? null : requestParam.trim();
+    }
+
+    public String getReturnParam() {
+        return returnParam;
+    }
+
+    public void setReturnParam(String returnParam) {
+        this.returnParam = returnParam == null ? null : returnParam.trim();
+    }
+
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl == null ? null : callbackUrl.trim();
+    }
+
+    public String getCallbackParam() {
+        return callbackParam;
+    }
+
+    public void setCallbackParam(String callbackParam) {
+        this.callbackParam = callbackParam == null ? null : callbackParam.trim();
     }
 
     public String getState() {

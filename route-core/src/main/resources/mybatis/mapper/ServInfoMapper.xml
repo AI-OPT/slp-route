@@ -8,6 +8,11 @@
     <result column="VISIT_TYPE" property="visitType" jdbcType="CHAR" />
     <result column="SERV_TYPE" property="servType" jdbcType="CHAR" />
     <result column="SERV_CONTENT" property="servContent" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="REQUEST_PARAM" property="requestParam" jdbcType="VARCHAR" />
+    <result column="RETURN_PARAM" property="returnParam" jdbcType="VARCHAR" />
+    <result column="CALLBACK_URL" property="callbackUrl" jdbcType="VARCHAR" />
+    <result column="CALLBACK_PARAM" property="callbackParam" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
     <result column="OPER_ID" property="operId" jdbcType="DECIMAL" />
     <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
@@ -71,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SERV_ID, TENANT_ID, SERV_NAME, VISIT_TYPE, SERV_TYPE, SERV_CONTENT, STATE, OPER_ID, 
-    OPER_TIME
+    SERV_ID, TENANT_ID, SERV_NAME, VISIT_TYPE, SERV_TYPE, SERV_CONTENT, URL, REQUEST_PARAM, 
+    RETURN_PARAM, CALLBACK_URL, CALLBACK_PARAM, STATE, OPER_ID, OPER_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.ServInfoCriteria" >
     select
@@ -111,12 +116,14 @@
   <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.ServInfo" >
     insert into serv_info (SERV_ID, TENANT_ID, SERV_NAME, 
       VISIT_TYPE, SERV_TYPE, SERV_CONTENT, 
-      STATE, OPER_ID, OPER_TIME
-      )
+      URL, REQUEST_PARAM, RETURN_PARAM, 
+      CALLBACK_URL, CALLBACK_PARAM, STATE, 
+      OPER_ID, OPER_TIME)
     values (#{servId,jdbcType=DECIMAL}, #{tenantId,jdbcType=VARCHAR}, #{servName,jdbcType=VARCHAR}, 
       #{visitType,jdbcType=CHAR}, #{servType,jdbcType=CHAR}, #{servContent,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{operId,jdbcType=DECIMAL}, #{operTime,jdbcType=TIMESTAMP}
-      )
+      #{url,jdbcType=VARCHAR}, #{requestParam,jdbcType=VARCHAR}, #{returnParam,jdbcType=VARCHAR}, 
+      #{callbackUrl,jdbcType=VARCHAR}, #{callbackParam,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{operId,jdbcType=DECIMAL}, #{operTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.ServInfo" >
     insert into serv_info
@@ -138,6 +145,21 @@
       </if>
       <if test="servContent != null" >
         SERV_CONTENT,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="requestParam != null" >
+        REQUEST_PARAM,
+      </if>
+      <if test="returnParam != null" >
+        RETURN_PARAM,
+      </if>
+      <if test="callbackUrl != null" >
+        CALLBACK_URL,
+      </if>
+      <if test="callbackParam != null" >
+        CALLBACK_PARAM,
       </if>
       <if test="state != null" >
         STATE,
@@ -167,6 +189,21 @@
       </if>
       <if test="servContent != null" >
         #{servContent,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParam != null" >
+        #{requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="returnParam != null" >
+        #{returnParam,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackUrl != null" >
+        #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackParam != null" >
+        #{callbackParam,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
@@ -206,6 +243,21 @@
       <if test="record.servContent != null" >
         SERV_CONTENT = #{record.servContent,jdbcType=VARCHAR},
       </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestParam != null" >
+        REQUEST_PARAM = #{record.requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnParam != null" >
+        RETURN_PARAM = #{record.returnParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callbackUrl != null" >
+        CALLBACK_URL = #{record.callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callbackParam != null" >
+        CALLBACK_PARAM = #{record.callbackParam,jdbcType=VARCHAR},
+      </if>
       <if test="record.state != null" >
         STATE = #{record.state,jdbcType=VARCHAR},
       </if>
@@ -228,6 +280,11 @@
       VISIT_TYPE = #{record.visitType,jdbcType=CHAR},
       SERV_TYPE = #{record.servType,jdbcType=CHAR},
       SERV_CONTENT = #{record.servContent,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      REQUEST_PARAM = #{record.requestParam,jdbcType=VARCHAR},
+      RETURN_PARAM = #{record.returnParam,jdbcType=VARCHAR},
+      CALLBACK_URL = #{record.callbackUrl,jdbcType=VARCHAR},
+      CALLBACK_PARAM = #{record.callbackParam,jdbcType=VARCHAR},
       STATE = #{record.state,jdbcType=VARCHAR},
       OPER_ID = #{record.operId,jdbcType=DECIMAL},
       OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
@@ -253,6 +310,21 @@
       <if test="servContent != null" >
         SERV_CONTENT = #{servContent,jdbcType=VARCHAR},
       </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParam != null" >
+        REQUEST_PARAM = #{requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="returnParam != null" >
+        RETURN_PARAM = #{returnParam,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackUrl != null" >
+        CALLBACK_URL = #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackParam != null" >
+        CALLBACK_PARAM = #{callbackParam,jdbcType=VARCHAR},
+      </if>
       <if test="state != null" >
         STATE = #{state,jdbcType=VARCHAR},
       </if>
@@ -272,6 +344,11 @@
       VISIT_TYPE = #{visitType,jdbcType=CHAR},
       SERV_TYPE = #{servType,jdbcType=CHAR},
       SERV_CONTENT = #{servContent,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      REQUEST_PARAM = #{requestParam,jdbcType=VARCHAR},
+      RETURN_PARAM = #{returnParam,jdbcType=VARCHAR},
+      CALLBACK_URL = #{callbackUrl,jdbcType=VARCHAR},
+      CALLBACK_PARAM = #{callbackParam,jdbcType=VARCHAR},
       STATE = #{state,jdbcType=VARCHAR},
       OPER_ID = #{operId,jdbcType=DECIMAL},
       OPER_TIME = #{operTime,jdbcType=TIMESTAMP}

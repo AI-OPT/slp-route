@@ -1,10 +1,7 @@
 package com.ai.slp.route.service.business.impl;
 
 import java.sql.Timestamp;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,13 +13,15 @@ import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.ProSupplyVo;
+import com.ai.slp.route.api.routeconfig.param.RouteCreateVo;
 import com.ai.slp.route.api.routeconfig.param.RouteGroupMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.RouteItemMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.RouteItemVo;
-import com.ai.slp.route.api.routeconfig.param.RouteMaintainVo;
+import com.ai.slp.route.api.routeconfig.param.RouteModifyVo;
+import com.ai.slp.route.api.routeconfig.param.RouteProSupplyAddVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleItemVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
-import com.ai.slp.route.constants.RouteConstant;
+import com.ai.slp.route.api.routeconfig.param.RouteStateChgVo;
 import com.ai.slp.route.dao.mapper.bo.ProdSupply;
 import com.ai.slp.route.dao.mapper.bo.ProdSupplyAddsLog;
 import com.ai.slp.route.dao.mapper.bo.Route;
@@ -56,118 +55,92 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
     private transient RouteItemMapper routeItemMapper;
 
     @Override
-    public void routeMaintain(RouteMaintainVo vo) {
-        if (RouteConstant.A.equals(vo.getChgFlag())) {
-            // 保存路由主表
-            Timestamp sysdate = DateUtil.getSysDate();
-            long operId = vo.getOperId();
-            String routeId = "";
-            Route route = new Route();
-            BeanUtils.copyVO(route, vo);
-            route.setTenantId("");
-            route.setRouteId(routeId);
-            // String userLoginName = vo.getUserLoginName();根据这个得到userId
-            long userId = 0;
-            route.setSellerId(userId);
-            // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
-            String contractId = "";
-            String contractCustId = "";
-            route.setContractId(contractId);
-            route.setContractCustId(contractCustId);
-            route.setState("1");
-            route.setCreateId(operId);
-            route.setCreateTime(sysdate);
-            route.setOperId(operId);
-            route.setOperTime(sysdate);
-            routeMapper.insert(route);
-            // 保存供应商品表
-            Map<String, List<ProSupplyVo>> proSupplyMap = vo.getProSupplyList();
-            Set<String> keySet = proSupplyMap.keySet();
-            Iterator<String> it = keySet.iterator();
-            while (it.hasNext()) {
-                String productCatId = it.next();
-                List<ProSupplyVo> proSupplyList = proSupplyMap.get(productCatId);
-                for (ProSupplyVo proSupplyVo : proSupplyList) {
-                    ProdSupply prodSupply = new ProdSupply();
-                    BeanUtils.copyVO(prodSupply, proSupplyVo);
-                    String supplyId = "";
-                    prodSupply.setTenantId("");
-                    prodSupply.setSupplyId(supplyId);
-                    prodSupply.setSupplyName(proSupplyVo.getStandedProductName());
-                    prodSupply.setRouteId(routeId);
-                    prodSupply.setSellerId(userId);
-                    prodSupply.setProductCatId(productCatId);
-                    prodSupply.setStandedProdId(proSupplyVo.getStandedProdId());
-                    prodSupply.setTotalNum(proSupplyVo.getTotalNum());
-                    prodSupply.setUsableNum(proSupplyVo.getTotalNum());
-                    prodSupply.setUsedNum(0l);
-                    prodSupply.setState("1");
-                    prodSupply.setOperId(operId);
-                    prodSupply.setOperTime(sysdate);
-                    prodSupplyMapper.insert(prodSupply);
-                }
-            }
-        } else if (RouteConstant.M.equals(vo.getChgFlag())) {
-            // 保存路由主表
-            Timestamp sysdate = DateUtil.getSysDate();
-            long operId = vo.getOperId();
-            String routeId = vo.getRouteId();
-            Route route = new Route();
-            BeanUtils.copyVO(route, vo);
-            // String userLoginName = vo.getUserLoginName();根据这个得到userId
-            long userId = 0;
-            route.setSellerId(userId);
-            // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
-            String contractId = "";
-            String contractCustId = "";
-            route.setContractId(contractId);
-            route.setContractCustId(contractCustId);
-            route.setOperId(operId);
-            route.setOperTime(sysdate);
-            routeMapper.updateByPrimaryKey(route);
+    public void routeCreate(RouteCreateVo vo) {
+        // 保存路由主表
+        Timestamp sysdate = DateUtil.getSysDate();
+        long operId = vo.getOperId();
+        String routeId = "";
+        Route route = new Route();
+        BeanUtils.copyVO(route, vo);
+        route.setTenantId("");
+        route.setRouteId(routeId);
+        // String userLoginName = vo.getUserLoginName();根据这个得到userId
+        long userId = 0;
+        route.setSellerId(userId);
+        // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
+        String contractId = "";
+        String contractCustId = "";
+        route.setContractId(contractId);
+        route.setContractCustId(contractCustId);
+        route.setState("1");
+        route.setCreateId(operId);
+        route.setCreateTime(sysdate);
+        route.setOperId(operId);
+        route.setOperTime(sysdate);
+        routeMapper.insert(route);
 
-        } else if (RouteConstant.B.equals(vo.getChgFlag())) {
-            Timestamp sysdate = DateUtil.getSysDate();
-            long operId = vo.getOperId();
-            String routeId = vo.getRouteId();
-            // String userId="根据routeId去路由表查到对应的userId"
-            // 保存供应商品表
-            Map<String, List<ProSupplyVo>> proSupplyMap = vo.getProSupplyList();
-            Set<String> keySet = proSupplyMap.keySet();
-            Iterator<String> it = keySet.iterator();
-            while (it.hasNext()) {
-                String productCatId = it.next();
-                List<ProSupplyVo> proSupplyList = proSupplyMap.get(productCatId);
-                for (ProSupplyVo proSupplyVo : proSupplyList) {
-                    ProdSupply prodSupply = new ProdSupply();
-                    BeanUtils.copyVO(prodSupply, proSupplyVo);
-                    prodSupply.setSupplyName(proSupplyVo.getStandedProductName());
-                    prodSupply.setRouteId(routeId);
-                    // prodSupply.setSellerId(userId);
-                    prodSupply.setProductCatId(productCatId);
-                    prodSupply.setStandedProdId(proSupplyVo.getStandedProdId());
-                    prodSupply.setTotalNum(proSupplyVo.getTotalNum());
-                    prodSupply.setUsableNum(proSupplyVo.getTotalNum());
-                    prodSupply.setUsedNum(0l);
-                    prodSupply.setState("1");
-                    prodSupply.setOperId(operId);
-                    prodSupply.setOperTime(sysdate);
-                    prodSupplyMapper.insert(prodSupply);
-                }
-            }
+    }
 
-        } else if (RouteConstant.S.equals(vo.getChgFlag())) {
-            Timestamp sysdate = DateUtil.getSysDate();
-            long operId = vo.getOperId();
-            String routeId = vo.getRouteId();
-            Route route = new Route();
-            route.setRouteId(routeId);
-            route.setState(vo.getState());
-            route.setOperId(operId);
-            route.setOperTime(sysdate);
-            routeMapper.updateByPrimaryKey(route);
+    @Override
+    public void routeModify(RouteModifyVo vo) {
+        // 保存路由主表
+        Timestamp sysdate = DateUtil.getSysDate();
+        long operId = vo.getOperId();
+        Route route = new Route();
+        BeanUtils.copyVO(route, vo);
+        // String userLoginName = vo.getUserLoginName();根据这个得到userId
+        long userId = 0;
+        route.setSellerId(userId);
+        // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
+        String contractId = "";
+        String contractCustId = "";
+        route.setContractId(contractId);
+        route.setContractCustId(contractCustId);
+        route.setOperId(operId);
+        route.setOperTime(sysdate);
+        routeMapper.updateByPrimaryKey(route);
+    }
+
+    @Override
+    public void routeProSupplyAdd(RouteProSupplyAddVo vo) {
+
+        Timestamp sysdate = DateUtil.getSysDate();
+        long operId = vo.getOperId();
+        String routeId = vo.getRouteId();
+        // String userId="根据routeId去路由表查到对应的userId"
+        // 保存供应商品表
+        List<ProSupplyVo> proSupplyList = vo.getProSupplyList();
+        for (ProSupplyVo proSupplyVo : proSupplyList) {
+            String supplyId = "";
+            ProdSupply prodSupply = new ProdSupply();
+            prodSupply.setSupplyId(supplyId);
+            prodSupply.setSupplyName(proSupplyVo.getStandedProductName());
+            prodSupply.setRouteId(routeId);
+            // prodSupply.setSellerId(userId);
+            prodSupply.setProductCatId(proSupplyVo.getProductCatId());
+            prodSupply.setStandedProdId(proSupplyVo.getStandedProdId());
+            prodSupply.setTotalNum(proSupplyVo.getTotalNum());
+            prodSupply.setUsableNum(proSupplyVo.getTotalNum());
+            prodSupply.setUsedNum(0l);
+            prodSupply.setState("1");
+            prodSupply.setOperId(operId);
+            prodSupply.setOperTime(sysdate);
+            prodSupplyMapper.insert(prodSupply);
         }
 
+    }
+
+    @Override
+    public void routeStateChg(RouteStateChgVo vo) {
+        Timestamp sysdate = DateUtil.getSysDate();
+        long operId = vo.getOperId();
+        String routeId = vo.getRouteId();
+        Route route = new Route();
+        route.setRouteId(routeId);
+        route.setState(vo.getState());
+        route.setOperId(operId);
+        route.setOperTime(sysdate);
+        routeMapper.updateByPrimaryKey(route);
     }
 
     @Override
@@ -262,7 +235,7 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
                 routeRule.setOperTime(sysdate);
                 routeRuleMapper.insertSelective(routeRule);
             }
-        
+
         }
     }
 
@@ -295,7 +268,7 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
                 routeItem.setOperTime(sysdate);
                 routeItemMapper.insertSelective(routeItem);
             }
-        }else if ("S".equals(vo.getChgFlag())) {
+        } else if ("S".equals(vo.getChgFlag())) {
             Timestamp sysdate = DateUtil.getSysDate();
             long operId = vo.getOperId();
             RouteGroup routeGroup = new RouteGroup();
