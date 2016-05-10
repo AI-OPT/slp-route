@@ -78,7 +78,7 @@
     <if test="distinct" >
       distinct
     </if>
-    'true' as QUERYID,
+    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from prod_supply_adds_log
     <if test="_parameter != null" >

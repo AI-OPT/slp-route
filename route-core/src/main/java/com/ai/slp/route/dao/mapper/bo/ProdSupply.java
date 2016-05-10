@@ -13,6 +13,8 @@ public class ProdSupply {
 
     private Long sellerId;
 
+    private String contractCustId;
+
     private String productCatId;
 
     private String standedProdId;
@@ -69,6 +71,14 @@ public class ProdSupply {
 
     public void setSellerId(Long sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public String getContractCustId() {
+        return contractCustId;
+    }
+
+    public void setContractCustId(String contractCustId) {
+        this.contractCustId = contractCustId == null ? null : contractCustId.trim();
     }
 
     public String getProductCatId() {

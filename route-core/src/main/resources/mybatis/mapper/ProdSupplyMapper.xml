@@ -7,6 +7,7 @@
     <result column="SUPPLY_NAME" property="supplyName" jdbcType="VARCHAR" />
     <result column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
     <result column="SELLER_ID" property="sellerId" jdbcType="DECIMAL" />
+    <result column="CONTRACT_CUST_ID" property="contractCustId" jdbcType="VARCHAR" />
     <result column="PRODUCT_CAT_ID" property="productCatId" jdbcType="VARCHAR" />
     <result column="STANDED_PROD_ID" property="standedProdId" jdbcType="VARCHAR" />
     <result column="COST_PRICE" property="costPrice" jdbcType="DECIMAL" />
@@ -76,15 +77,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    SUPPLY_ID, TENANT_ID, SUPPLY_NAME, ROUTE_ID, SELLER_ID, PRODUCT_CAT_ID, STANDED_PROD_ID, 
-    COST_PRICE, TOTAL_NUM, USABLE_NUM, USED_NUM, STATE, OPER_ID, OPER_TIME
+    SUPPLY_ID, TENANT_ID, SUPPLY_NAME, ROUTE_ID, SELLER_ID, CONTRACT_CUST_ID, PRODUCT_CAT_ID, 
+    STANDED_PROD_ID, COST_PRICE, TOTAL_NUM, USABLE_NUM, USED_NUM, STATE, OPER_ID, OPER_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupplyCriteria" >
     select
     <if test="distinct" >
       distinct
     </if>
-    'true' as QUERYID,
+    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from prod_supply
     <if test="_parameter != null" >
@@ -115,15 +116,17 @@
   </delete>
   <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
     insert into prod_supply (SUPPLY_ID, TENANT_ID, SUPPLY_NAME, 
-      ROUTE_ID, SELLER_ID, PRODUCT_CAT_ID, 
-      STANDED_PROD_ID, COST_PRICE, TOTAL_NUM, 
-      USABLE_NUM, USED_NUM, STATE, 
-      OPER_ID, OPER_TIME)
+      ROUTE_ID, SELLER_ID, CONTRACT_CUST_ID, 
+      PRODUCT_CAT_ID, STANDED_PROD_ID, COST_PRICE, 
+      TOTAL_NUM, USABLE_NUM, USED_NUM, 
+      STATE, OPER_ID, OPER_TIME
+      )
     values (#{supplyId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{supplyName,jdbcType=VARCHAR}, 
-      #{routeId,jdbcType=VARCHAR}, #{sellerId,jdbcType=DECIMAL}, #{productCatId,jdbcType=VARCHAR}, 
-      #{standedProdId,jdbcType=VARCHAR}, #{costPrice,jdbcType=DECIMAL}, #{totalNum,jdbcType=DECIMAL}, 
-      #{usableNum,jdbcType=DECIMAL}, #{usedNum,jdbcType=DECIMAL}, #{state,jdbcType=VARCHAR}, 
-      #{operId,jdbcType=DECIMAL}, #{operTime,jdbcType=TIMESTAMP})
+      #{routeId,jdbcType=VARCHAR}, #{sellerId,jdbcType=DECIMAL}, #{contractCustId,jdbcType=VARCHAR}, 
+      #{productCatId,jdbcType=VARCHAR}, #{standedProdId,jdbcType=VARCHAR}, #{costPrice,jdbcType=DECIMAL}, 
+      #{totalNum,jdbcType=DECIMAL}, #{usableNum,jdbcType=DECIMAL}, #{usedNum,jdbcType=DECIMAL}, 
+      #{state,jdbcType=VARCHAR}, #{operId,jdbcType=DECIMAL}, #{operTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.ProdSupply" >
     insert into prod_supply
@@ -142,6 +145,9 @@
       </if>
       <if test="sellerId != null" >
         SELLER_ID,
+      </if>
+      <if test="contractCustId != null" >
+        CONTRACT_CUST_ID,
       </if>
       <if test="productCatId != null" >
         PRODUCT_CAT_ID,
@@ -186,6 +192,9 @@
       </if>
       <if test="sellerId != null" >
         #{sellerId,jdbcType=DECIMAL},
+      </if>
+      <if test="contractCustId != null" >
+        #{contractCustId,jdbcType=VARCHAR},
       </if>
       <if test="productCatId != null" >
         #{productCatId,jdbcType=VARCHAR},
@@ -240,6 +249,9 @@
       <if test="record.sellerId != null" >
         SELLER_ID = #{record.sellerId,jdbcType=DECIMAL},
       </if>
+      <if test="record.contractCustId != null" >
+        CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
+      </if>
       <if test="record.productCatId != null" >
         PRODUCT_CAT_ID = #{record.productCatId,jdbcType=VARCHAR},
       </if>
@@ -279,6 +291,7 @@
       SUPPLY_NAME = #{record.supplyName,jdbcType=VARCHAR},
       ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
       SELLER_ID = #{record.sellerId,jdbcType=DECIMAL},
+      CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
       PRODUCT_CAT_ID = #{record.productCatId,jdbcType=VARCHAR},
       STANDED_PROD_ID = #{record.standedProdId,jdbcType=VARCHAR},
       COST_PRICE = #{record.costPrice,jdbcType=DECIMAL},
@@ -306,6 +319,9 @@
       </if>
       <if test="sellerId != null" >
         SELLER_ID = #{sellerId,jdbcType=DECIMAL},
+      </if>
+      <if test="contractCustId != null" >
+        CONTRACT_CUST_ID = #{contractCustId,jdbcType=VARCHAR},
       </if>
       <if test="productCatId != null" >
         PRODUCT_CAT_ID = #{productCatId,jdbcType=VARCHAR},
@@ -343,6 +359,7 @@
       SUPPLY_NAME = #{supplyName,jdbcType=VARCHAR},
       ROUTE_ID = #{routeId,jdbcType=VARCHAR},
       SELLER_ID = #{sellerId,jdbcType=DECIMAL},
+      CONTRACT_CUST_ID = #{contractCustId,jdbcType=VARCHAR},
       PRODUCT_CAT_ID = #{productCatId,jdbcType=VARCHAR},
       STANDED_PROD_ID = #{standedProdId,jdbcType=VARCHAR},
       COST_PRICE = #{costPrice,jdbcType=DECIMAL},

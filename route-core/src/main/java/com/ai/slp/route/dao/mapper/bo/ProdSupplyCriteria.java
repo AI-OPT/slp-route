@@ -465,6 +465,76 @@ public class ProdSupplyCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andContractCustIdIsNull() {
+            addCriterion("CONTRACT_CUST_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdIsNotNull() {
+            addCriterion("CONTRACT_CUST_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID =", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdNotEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID <>", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdGreaterThan(String value) {
+            addCriterion("CONTRACT_CUST_ID >", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdGreaterThanOrEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID >=", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdLessThan(String value) {
+            addCriterion("CONTRACT_CUST_ID <", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdLessThanOrEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID <=", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdLike(String value) {
+            addCriterion("CONTRACT_CUST_ID like", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdNotLike(String value) {
+            addCriterion("CONTRACT_CUST_ID not like", value, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdIn(List<String> values) {
+            addCriterion("CONTRACT_CUST_ID in", values, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdNotIn(List<String> values) {
+            addCriterion("CONTRACT_CUST_ID not in", values, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdBetween(String value1, String value2) {
+            addCriterion("CONTRACT_CUST_ID between", value1, value2, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractCustIdNotBetween(String value1, String value2) {
+            addCriterion("CONTRACT_CUST_ID not between", value1, value2, "contractCustId");
+            return (Criteria) this;
+        }
+
         public Criteria andProductCatIdIsNull() {
             addCriterion("PRODUCT_CAT_ID is null");
             return (Criteria) this;

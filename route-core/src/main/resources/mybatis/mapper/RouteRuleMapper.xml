@@ -83,7 +83,7 @@
     <if test="distinct" >
       distinct
     </if>
-    'true' as QUERYID,
+    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from route_rule
     <if test="_parameter != null" >
