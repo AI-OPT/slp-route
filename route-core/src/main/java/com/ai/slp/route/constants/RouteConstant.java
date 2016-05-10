@@ -1,6 +1,6 @@
 package com.ai.slp.route.constants;
 
-public static final class RouteConstant {
+public final class RouteConstant {
     /**
      * 新增
      */
