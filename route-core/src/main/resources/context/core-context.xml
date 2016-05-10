@@ -27,11 +27,11 @@
     
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.ai.opt.sdk.datasource.OptHikariDataSource">
-		 <constructor-arg name="dataSourceName" value="slp-product-db"/>
+		 <constructor-arg name="dataSourceName" value="slp-route-db"/>
 	</bean>
 
 	<bean id="seqDataSourceLoader"
-		class="com.ai.opt.sdk.sequence.datasource.SeqDataSourceLoader"
+		class="com.ai.opt.sdk.components.sequence.datasource.SeqDataSourceLoader"
 		init-method="init">
 		<property name="ds" ref="dataSource" />
 	</bean>
@@ -39,11 +39,11 @@
 	<!-- 配置myBatis的sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath*:mybatis/mapper/amc/*.xml"/>
+        <property name="mapperLocations" value="classpath*:mybatis/mapper/*.xml"/>
     </bean>
     
     <!-- 扫描Mapper,需要添加mybatis前缀绑定 -->
-	<mybatis:scan base-package="com.ai.baas.amc.dao.mapper.attach" />    
+	<mybatis:scan base-package="com.ai.slp.route.dao.mapper" />    
     
     <!-- 配置SqlSessionTemplate -->
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
@@ -74,6 +74,6 @@
     <!-- 启动注解扫描 -->
     <context:annotation-config/>
     <!-- 设定注解扫描基础包 -->
-    <context:component-scan base-package="com.ai.slp.product"/>
+    <context:component-scan base-package="com.ai.slp.route"/>
     
 </beans>
