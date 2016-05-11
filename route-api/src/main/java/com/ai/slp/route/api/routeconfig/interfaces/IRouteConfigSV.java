@@ -41,7 +41,7 @@ public interface IRouteConfigSV {
     public RouteCreateResult routeCreate(RouteCreateVo vo) throws BusinessException,
             SystemException;
 
-    @interface routeCreate {
+    @interface RouteCreate {
     }
 
     /**
