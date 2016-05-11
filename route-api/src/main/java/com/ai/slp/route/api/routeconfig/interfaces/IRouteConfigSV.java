@@ -31,7 +31,7 @@ public interface IRouteConfigSV {
      * 路由新增
      * 
      * @param vo
-     *            路由基本信息和标准品信息
+     *            路由基本信息
      * @return
      * @throws BusinessException
      * @throws SystemException
