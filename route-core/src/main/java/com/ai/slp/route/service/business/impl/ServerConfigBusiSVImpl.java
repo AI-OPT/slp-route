@@ -13,15 +13,15 @@ import com.ai.slp.route.api.serverconfig.param.ServerCreateVo;
 import com.ai.slp.route.api.serverconfig.param.ServerModifyVo;
 import com.ai.slp.route.api.serverconfig.param.ServerQueryResult;
 import com.ai.slp.route.api.serverconfig.param.ServerQueryVo;
-import com.ai.slp.route.dao.mapper.bo.ServInfo;
-import com.ai.slp.route.dao.mapper.interfaces.ServInfoMapper;
+import com.ai.slp.route.dao.mapper.bo.RouteServInfo;
+import com.ai.slp.route.dao.mapper.interfaces.RouteServInfoMapper;
 import com.ai.slp.route.service.business.interfaces.IServerConfigBusiSV;
 
 @Component
 @Transactional
 public class ServerConfigBusiSVImpl implements IServerConfigBusiSV {
     @Autowired
-    private transient ServInfoMapper servInfoMapper;
+    private transient RouteServInfoMapper servInfoMapper;
 
     @Override
     public void servCreate(ServerCreateVo vo) {
@@ -29,7 +29,7 @@ public class ServerConfigBusiSVImpl implements IServerConfigBusiSV {
         Timestamp sysdate = DateUtil.getSysDate();
         long operId = vo.getOperId();
         int servId = 1;
-        ServInfo servInfo = new ServInfo();
+        RouteServInfo servInfo = new RouteServInfo();
         BeanUtils.copyVO(servInfo, vo);
         servInfo.setTenantId(vo.getTenantId());
         servInfo.setServId(servId);
@@ -45,7 +45,7 @@ public class ServerConfigBusiSVImpl implements IServerConfigBusiSV {
         // 保存服务表
         Timestamp sysdate = DateUtil.getSysDate();
         long operId = vo.getOperId();
-        ServInfo servInfo = new ServInfo();
+        RouteServInfo servInfo = new RouteServInfo();
         BeanUtils.copyVO(servInfo, vo);
         servInfo.setServId(vo.getServId());
         servInfo.setTenantId(vo.getTenantId());
@@ -54,7 +54,6 @@ public class ServerConfigBusiSVImpl implements IServerConfigBusiSV {
         servInfo.setOperTime(sysdate);
         servInfoMapper.updateByPrimaryKeySelective(servInfo);
 
-    
     }
 
     @Override

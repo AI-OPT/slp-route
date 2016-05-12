@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServInfoCriteria {
+public class RouteServInfoCriteria {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class ServInfoCriteria {
 
     protected Integer limitEnd;
 
-    public ServInfoCriteria() {
+    public RouteServInfoCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.slp.route.dao.mapper.interfaces.RouteServInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.RouteServInfo" >
+    <id column="SERV_ID" property="servId" jdbcType="DECIMAL" />
+    <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
+    <result column="SERV_NAME" property="servName" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE" property="visitType" jdbcType="CHAR" />
+    <result column="SERV_TYPE" property="servType" jdbcType="CHAR" />
+    <result column="SERV_CONTENT" property="servContent" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="REQUEST_PARAM" property="requestParam" jdbcType="VARCHAR" />
+    <result column="RETURN_PARAM" property="returnParam" jdbcType="VARCHAR" />
+    <result column="CALLBACK_URL" property="callbackUrl" jdbcType="VARCHAR" />
+    <result column="CALLBACK_PARAM" property="callbackParam" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="OPER_ID" property="operId" jdbcType="DECIMAL" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SERV_ID, TENANT_ID, SERV_NAME, VISIT_TYPE, SERV_TYPE, SERV_CONTENT, URL, REQUEST_PARAM, 
+    RETURN_PARAM, CALLBACK_URL, CALLBACK_PARAM, STATE, OPER_ID, OPER_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from route_serv_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from route_serv_info
+    where SERV_ID = #{servId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from route_serv_info
+    where SERV_ID = #{servId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfoCriteria" >
+    delete from route_serv_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfo" >
+    insert into route_serv_info (SERV_ID, TENANT_ID, SERV_NAME, 
+      VISIT_TYPE, SERV_TYPE, SERV_CONTENT, 
+      URL, REQUEST_PARAM, RETURN_PARAM, 
+      CALLBACK_URL, CALLBACK_PARAM, STATE, 
+      OPER_ID, OPER_TIME)
+    values (#{servId,jdbcType=DECIMAL}, #{tenantId,jdbcType=VARCHAR}, #{servName,jdbcType=VARCHAR}, 
+      #{visitType,jdbcType=CHAR}, #{servType,jdbcType=CHAR}, #{servContent,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{requestParam,jdbcType=VARCHAR}, #{returnParam,jdbcType=VARCHAR}, 
+      #{callbackUrl,jdbcType=VARCHAR}, #{callbackParam,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{operId,jdbcType=DECIMAL}, #{operTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfo" >
+    insert into route_serv_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="servId != null" >
+        SERV_ID,
+      </if>
+      <if test="tenantId != null" >
+        TENANT_ID,
+      </if>
+      <if test="servName != null" >
+        SERV_NAME,
+      </if>
+      <if test="visitType != null" >
+        VISIT_TYPE,
+      </if>
+      <if test="servType != null" >
+        SERV_TYPE,
+      </if>
+      <if test="servContent != null" >
+        SERV_CONTENT,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="requestParam != null" >
+        REQUEST_PARAM,
+      </if>
+      <if test="returnParam != null" >
+        RETURN_PARAM,
+      </if>
+      <if test="callbackUrl != null" >
+        CALLBACK_URL,
+      </if>
+      <if test="callbackParam != null" >
+        CALLBACK_PARAM,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="operId != null" >
+        OPER_ID,
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="servId != null" >
+        #{servId,jdbcType=DECIMAL},
+      </if>
+      <if test="tenantId != null" >
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="servName != null" >
+        #{servName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        #{visitType,jdbcType=CHAR},
+      </if>
+      <if test="servType != null" >
+        #{servType,jdbcType=CHAR},
+      </if>
+      <if test="servContent != null" >
+        #{servContent,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParam != null" >
+        #{requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="returnParam != null" >
+        #{returnParam,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackUrl != null" >
+        #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackParam != null" >
+        #{callbackParam,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfoCriteria" resultType="java.lang.Integer" >
+    select count(*) from route_serv_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update route_serv_info
+    <set >
+      <if test="record.servId != null" >
+        SERV_ID = #{record.servId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tenantId != null" >
+        TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servName != null" >
+        SERV_NAME = #{record.servName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitType != null" >
+        VISIT_TYPE = #{record.visitType,jdbcType=CHAR},
+      </if>
+      <if test="record.servType != null" >
+        SERV_TYPE = #{record.servType,jdbcType=CHAR},
+      </if>
+      <if test="record.servContent != null" >
+        SERV_CONTENT = #{record.servContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestParam != null" >
+        REQUEST_PARAM = #{record.requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnParam != null" >
+        RETURN_PARAM = #{record.returnParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callbackUrl != null" >
+        CALLBACK_URL = #{record.callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callbackParam != null" >
+        CALLBACK_PARAM = #{record.callbackParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operId != null" >
+        OPER_ID = #{record.operId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operTime != null" >
+        OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update route_serv_info
+    set SERV_ID = #{record.servId,jdbcType=DECIMAL},
+      TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      SERV_NAME = #{record.servName,jdbcType=VARCHAR},
+      VISIT_TYPE = #{record.visitType,jdbcType=CHAR},
+      SERV_TYPE = #{record.servType,jdbcType=CHAR},
+      SERV_CONTENT = #{record.servContent,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      REQUEST_PARAM = #{record.requestParam,jdbcType=VARCHAR},
+      RETURN_PARAM = #{record.returnParam,jdbcType=VARCHAR},
+      CALLBACK_URL = #{record.callbackUrl,jdbcType=VARCHAR},
+      CALLBACK_PARAM = #{record.callbackParam,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      OPER_ID = #{record.operId,jdbcType=DECIMAL},
+      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfo" >
+    update route_serv_info
+    <set >
+      <if test="tenantId != null" >
+        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="servName != null" >
+        SERV_NAME = #{servName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        VISIT_TYPE = #{visitType,jdbcType=CHAR},
+      </if>
+      <if test="servType != null" >
+        SERV_TYPE = #{servType,jdbcType=CHAR},
+      </if>
+      <if test="servContent != null" >
+        SERV_CONTENT = #{servContent,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParam != null" >
+        REQUEST_PARAM = #{requestParam,jdbcType=VARCHAR},
+      </if>
+      <if test="returnParam != null" >
+        RETURN_PARAM = #{returnParam,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackUrl != null" >
+        CALLBACK_URL = #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackParam != null" >
+        CALLBACK_PARAM = #{callbackParam,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        OPER_ID = #{operId,jdbcType=DECIMAL},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SERV_ID = #{servId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.slp.route.dao.mapper.bo.RouteServInfo" >
+    update route_serv_info
+    set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
+      SERV_NAME = #{servName,jdbcType=VARCHAR},
+      VISIT_TYPE = #{visitType,jdbcType=CHAR},
+      SERV_TYPE = #{servType,jdbcType=CHAR},
+      SERV_CONTENT = #{servContent,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      REQUEST_PARAM = #{requestParam,jdbcType=VARCHAR},
+      RETURN_PARAM = #{returnParam,jdbcType=VARCHAR},
+      CALLBACK_URL = #{callbackUrl,jdbcType=VARCHAR},
+      CALLBACK_PARAM = #{callbackParam,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      OPER_ID = #{operId,jdbcType=DECIMAL},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP}
+    where SERV_ID = #{servId,jdbcType=DECIMAL}
+  </update>
+</mapper>

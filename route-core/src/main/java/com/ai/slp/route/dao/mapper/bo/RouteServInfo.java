@@ -2,7 +2,7 @@ package com.ai.slp.route.dao.mapper.bo;
 
 import java.sql.Timestamp;
 
-public class ServInfo {
+public class RouteServInfo {
     private Integer servId;
 
     private String tenantId;
