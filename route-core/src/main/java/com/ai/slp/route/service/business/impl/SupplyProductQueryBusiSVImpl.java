@@ -32,13 +32,13 @@ public class SupplyProductQueryBusiSVImpl implements ISupplyProductQueryBusiSV {
             throw new BusinessException("999999", "TenantId : " + supplyProductQueryVo.getTenantId()
                     + " RouteId: " + supplyProductQueryVo.getRouteId()
                     + " StandProductId : " + supplyProductQueryVo.getStandardProductId()
-                    + " 不能找到相关的供应商");
+                    + " 不能找到相关的供应商, 查询供应商结果：" +  (routeProdSupplies != null ?  routeProdSupplies.size(): 0));
         }
         // 更新
         RouteProdSupply routeProdSupply = routeProdSupplies.get(0);
         // 任娟说的
         routeProdSupply.setUsableNum(routeProdSupply.getUsableNum() - supplyProductQueryVo.getSaleCount());
-        routeProdSupply.setUsedNum(routeProdSupply.getUsedNum() - supplyProductQueryVo.getSaleCount());
+        routeProdSupply.setUsedNum(routeProdSupply.getUsedNum() + supplyProductQueryVo.getSaleCount());
 
         routeProdSupplyMapper.updateByExampleSelective(routeProdSupply, criteria);
         //返回
