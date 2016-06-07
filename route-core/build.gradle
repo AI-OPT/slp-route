@@ -12,4 +12,5 @@ dependencies {
             "org.springframework:spring-test:4.1.7.RELEASE",
             "junit:junit:4.12"
     )
+    compile 'com.ai.slp.common:cache:1.0-SNAPSHOT'
 }
