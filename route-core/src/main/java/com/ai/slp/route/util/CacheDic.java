@@ -12,7 +12,7 @@ public class CacheDic {
 
     private static ICacheSV iCacheSV;
 
-    //@Autowired
+    @Autowired
     private ICacheSV iCacheSVTmp;
 
     @PostConstruct
@@ -22,9 +22,9 @@ public class CacheDic {
 
 
     public static String getAppKey(String tenantId, String typeCode, String paramCode) {
-        //SysParam sysParam = iCacheSV.getSysParam(tenantId, typeCode, paramCode, "APPKEY");
-        //return sysParam.getColumnDesc();
-        return "9db313541196135c37025f7a8021c4df";
+        SysParam sysParam = iCacheSV.getSysParam(tenantId, typeCode, paramCode, "APPKEY");
+        return sysParam.getColumnDesc();
+        //return "9db313541196135c37025f7a8021c4df";
     }
 
 }
