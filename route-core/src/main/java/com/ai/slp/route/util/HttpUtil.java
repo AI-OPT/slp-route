@@ -23,8 +23,7 @@ public class HttpUtil {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpPost httpPost = new HttpPost(requestUrl);
-            StringEntity entity = new StringEntity(requestValue, "UTF-8");
-            entity.setContentType(ContentType.APPLICATION_JSON.toString());
+            StringEntity entity = new StringEntity(requestValue, ContentType.APPLICATION_JSON);
             httpPost.setEntity(entity);
             logger.info("Executing request " + httpPost.getRequestLine());
 
