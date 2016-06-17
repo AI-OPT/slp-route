@@ -10,6 +10,9 @@ public class SupplyProduct extends BaseResponse {
     private String supplyId;
     private long costPrice;
 
+    public SupplyProduct() {
+    }
+
     public SupplyProduct(String sellerId, String supplyId, long costPrice) {
         this.sellerId = sellerId;
         this.supplyId = supplyId;
