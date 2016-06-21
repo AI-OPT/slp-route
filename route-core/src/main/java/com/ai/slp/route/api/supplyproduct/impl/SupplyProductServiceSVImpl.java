@@ -24,7 +24,7 @@ public class SupplyProductServiceSVImpl implements ISupplyProductServiceSV {
                 StringUtil.isBlank(supplyProductQueryVo.getRouteId()) |
                 StringUtil.isBlank(supplyProductQueryVo.getStandardProductId())) {
             SupplyProduct supplyProduct = new SupplyProduct();
-            responseHeader = new ResponseHeader(true, ExceptCodeConstant.PARAM_IS_NULL, "失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstant.PARAM_IS_NULL, "失败");
             supplyProduct.setResponseHeader(responseHeader);
             return supplyProduct;
         }
