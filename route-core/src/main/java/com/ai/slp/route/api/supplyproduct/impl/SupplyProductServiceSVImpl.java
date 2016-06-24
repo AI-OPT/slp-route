@@ -20,6 +20,7 @@ public class SupplyProductServiceSVImpl implements ISupplyProductServiceSV {
     @Override
     public SupplyProduct updateSupplyProductSaleCount(SupplyProductQueryVo supplyProductQueryVo) {
         ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
+        //检查入参完整
         if (StringUtil.isBlank(supplyProductQueryVo.getTenantId()) |
                 StringUtil.isBlank(supplyProductQueryVo.getRouteId()) |
                 StringUtil.isBlank(supplyProductQueryVo.getStandardProductId())) {

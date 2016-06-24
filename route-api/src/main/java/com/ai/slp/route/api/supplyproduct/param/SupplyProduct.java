@@ -6,8 +6,17 @@ import com.ai.opt.base.vo.BaseResponse;
  * Created by xin on 16-5-30.
  */
 public class SupplyProduct extends BaseResponse {
+    /**
+     *
+     */
     private String sellerId;
+    /**
+     *
+     */
     private String supplyId;
+    /**
+     *
+     */
     private long costPrice;
 
     public SupplyProduct() {

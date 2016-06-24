@@ -3,6 +3,7 @@ package com.ai.slp.route.action;
 import com.ai.slp.route.dao.mapper.bo.RouteServInfo;
 
 public enum ServerType {
+    //http模式  重定向模式:返回重定向地址
     HTTP, REDIRECT;
 
     public static ServerType convert(String value) {
