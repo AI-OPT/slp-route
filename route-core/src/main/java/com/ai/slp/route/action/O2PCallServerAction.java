@@ -45,9 +45,9 @@ public class O2PCallServerAction implements ICallServerAction {
         logger.info("Request Data : {} ", requestData);
         logger.info("Request Value : {} ", requestValue);
         String responseData = HttpUtil.doPostRequest(requestUrl, requestValue);
+        logger.info("Request Data : {} ", responseData);
         String responseValue = ProtocolConvert.convert(responseTemplate, responseData);
         logger.info("Request Template : {} ", responseTemplate);
-        logger.info("Request Data : {} ", responseData);
         logger.info("Request Value : {} ", responseValue);
         return responseData;
     }
