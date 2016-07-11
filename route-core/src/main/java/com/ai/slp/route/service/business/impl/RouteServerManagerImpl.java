@@ -9,6 +9,8 @@ import com.ai.slp.route.dao.mapper.bo.RouteServInfo;
 import com.ai.slp.route.dao.mapper.interfaces.RouteMapper;
 import com.ai.slp.route.dao.mapper.interfaces.RouteServInfoMapper;
 import com.ai.slp.route.service.business.interfaces.IRouteServerManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ import java.sql.SQLException;
 @Service
 public class RouteServerManagerImpl implements IRouteServerManager {
 
-
+    private static Logger logger = LoggerFactory.getLogger(RouteServerManagerImpl.class);
     @Autowired
     private RouteServInfoMapper routeServInfoMapper;
 
@@ -37,6 +39,7 @@ public class RouteServerManagerImpl implements IRouteServerManager {
             ICallServerAction action = ServerType.convert(routeServInfo.getServType()).chooseCallServerAction(routeServInfo, request.getRequestData());
             routeServerResponse.setResponseData(action.doCall());
         } catch (Exception e) {
+            logger.error("call server action fail.",e);
             routeServerResponse.setResponseCode("999999");
         }
 
