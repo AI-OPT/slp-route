@@ -2,11 +2,14 @@ package com.ai.slp.route.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routequery.interfaces.IRouteQuerySV;
 import com.ai.slp.route.api.routequery.param.RouteQueryResult;
+import com.ai.slp.route.api.server.interfaces.IRouteServer;
+import com.ai.slp.route.api.server.params.IRouteServerRequest;
 import com.ai.slp.route.util.SequenceUtil;
 import com.alibaba.fastjson.JSON;
 
@@ -16,6 +19,9 @@ public class TestABC {
 
     // @Autowired
     IRouteQuerySV routeQuerySV;
+    
+   @Autowired
+   IRouteServer routeServer;
 
     @Test
     public void testRegister() {
@@ -29,6 +35,24 @@ public class TestABC {
             String seq = SequenceUtil.createRouteId();
             System.out.println(seq); 
         }
+    }
+    
+    @Test
+    public void callRoute() {
+    	 IRouteServerRequest request = new IRouteServerRequest();
+         request.setTenantId("slp");
+         request.setRouteId("100000003");
+         RouteServReqVo routeServReqVo = new RouteServReqVo();
+         routeServReqVo.setOrderId("2000000339271929");
+         routeServReqVo.setBizType("10000010020000");
+         routeServReqVo.setAccountVal("13552491314");
+         routeServReqVo.setBuyNum(1);
+         routeServReqVo.setNotifyUrl("http://10.1.245.9:10887/slp-order/o2pservice/callback");
+         routeServReqVo.setProId("1000000000000055");
+         routeServReqVo.setUnitPrice(300);
+         routeServReqVo.setCoSysId("123123");
+         request.setRequestData(JSON.toJSONString(routeServReqVo));
+    	routeServer.callServerByRouteId(request);
     }
 
 }
