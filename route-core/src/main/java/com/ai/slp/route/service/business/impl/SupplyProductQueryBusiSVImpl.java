@@ -3,6 +3,7 @@ package com.ai.slp.route.service.business.impl;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.slp.route.api.supplyproduct.param.SupplyProduct;
 import com.ai.slp.route.api.supplyproduct.param.SupplyProductQueryVo;
+import com.ai.slp.route.constants.CommonSatesConstants;
 import com.ai.slp.route.dao.mapper.bo.RouteProdSupply;
 import com.ai.slp.route.dao.mapper.bo.RouteProdSupplyCriteria;
 import com.ai.slp.route.dao.mapper.interfaces.RouteProdSupplyMapper;
@@ -26,7 +27,8 @@ public class SupplyProductQueryBusiSVImpl implements ISupplyProductQueryBusiSV {
         RouteProdSupplyCriteria criteria = new RouteProdSupplyCriteria();
         criteria.createCriteria().andTenantIdEqualTo(supplyProductQueryVo.getTenantId())
                 .andRouteIdEqualTo(supplyProductQueryVo.getRouteId())
-                .andStandedProdIdEqualTo(supplyProductQueryVo.getStandardProductId());
+                .andStandedProdIdEqualTo(supplyProductQueryVo.getStandardProductId())
+                .andStateEqualTo(CommonSatesConstants.STATE_ACTIVE);
         List<RouteProdSupply> routeProdSupplies = routeProdSupplyMapper.selectByExample(criteria);
         if (routeProdSupplies == null || routeProdSupplies.size() != 1) {
             throw new BusinessException("999999", "TenantId : " + supplyProductQueryVo.getTenantId()
