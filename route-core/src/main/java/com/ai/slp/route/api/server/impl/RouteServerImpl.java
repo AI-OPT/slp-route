@@ -5,11 +5,14 @@ import com.ai.slp.route.api.server.params.IRouteServerRequest;
 import com.ai.slp.route.api.server.params.RouteServerResponse;
 import com.ai.slp.route.service.business.interfaces.IRouteServerManager;
 import com.alibaba.dubbo.config.annotation.Service;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Service
+@Component
 public class RouteServerImpl implements IRouteServer {
 
     private Logger logger = LogManager.getLogger(RouteServerImpl.class);
@@ -20,16 +23,15 @@ public class RouteServerImpl implements IRouteServer {
     @Override
     public RouteServerResponse callServerByRouteId(IRouteServerRequest request) {
 
-        if (request.getTenantId() == null || request.getTenantId().length() == 0) {
+        if (StringUtils.isBlank(request.getTenantId())) {
             throw new RuntimeException("TenantId can not be null");
         }
 
-        if (request.getRouteId() == null || request.getRouteId().length() == 0) {
+        if (StringUtils.isBlank(request.getRouteId())) {
             throw new RuntimeException("routeID can not be null");
         }
 
         try {
-
             return routeServerManager.callServerByRouteId(request);
         } catch (Exception e) {
             logger.error("Failed to call server by route Id", e);
@@ -40,7 +42,7 @@ public class RouteServerImpl implements IRouteServer {
 
     @Override
     public RouteServerResponse callServerByServerId(IRouteServerRequest request) {
-        if (request.getTenantId() == null || request.getTenantId().length() == 0) {
+        if (StringUtils.isBlank(request.getTenantId())) {
             throw new RuntimeException("TenantId can not be null");
         }
 
