@@ -45,8 +45,17 @@ public class RouteServReqVo {
     
     private String coSysId;
     
+    private String operatorId;
+    
+    public String getOperatorId() {
+		return operatorId;
+	}
 
-    public String getCoSysId() {
+	public void setOperatorId(String operatorId) {
+		this.operatorId = operatorId;
+	}
+
+	public String getCoSysId() {
 		return coSysId;
 	}
 
