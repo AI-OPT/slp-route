@@ -9,9 +9,11 @@ import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.ISupplyProductQueryBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 @Service
+@Component
 public class SupplyProductServiceSVImpl implements ISupplyProductServiceSV {
 
     @Autowired
