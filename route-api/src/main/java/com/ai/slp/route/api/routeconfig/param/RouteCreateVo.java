@@ -21,26 +21,26 @@ public class RouteCreateVo extends BaseInfo {
     /**
      * 路由名称
      */
-    @NotBlank(message = "路由名称不能为空", groups = { IRouteConfigSV.RouteCreate.class })
+    //@NotBlank(message = "路由名称不能为空", groups = { IRouteConfigSV.RouteCreate.class })
     private String routeName;
 
     /**
      * 路由类型
      */
-    @NotBlank(message = "路由类型不能为空", groups = { IRouteConfigSV.RouteCreate.class })
-    @StringEnum(enumClazz = RouteType.class, message = "路由类型只能是O,S,L,P", groups = { IRouteConfigSV.RouteCreate.class })
+    //@NotBlank(message = "路由类型不能为空", groups = { IRouteConfigSV.RouteCreate.class })
+    //@StringEnum(enumClazz = RouteType.class, message = "路由类型只能是O,S,L,P", groups = { IRouteConfigSV.RouteCreate.class })
     private String routeType;
 
     /**
      * 所在省
      */
-    @NotBlank(message = "路由省份不能为空", groups = { IRouteConfigSV.RouteCreate.class })
+    //@NotBlank(message = "路由省份不能为空", groups = { IRouteConfigSV.RouteCreate.class })
     private String provCode;
 
     /**
      * 所在市
      */
-    @NotBlank(message = "路由地市不能为空", groups = { IRouteConfigSV.RouteCreate.class })
+    //@NotBlank(message = "路由地市不能为空", groups = { IRouteConfigSV.RouteCreate.class })
     private String cityCode;
 
     /**

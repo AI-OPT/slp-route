@@ -2,6 +2,12 @@ package com.ai.slp.route.api.routequery.interfaces;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
@@ -24,6 +30,9 @@ import com.ai.slp.route.api.routequery.param.RouteRuleQueryVo;
  * 
  * @author zhangxw
  */
+@Path("/RouteQuery")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IRouteQuerySV {
     /**
      * 路由信息查询
@@ -34,13 +43,15 @@ public interface IRouteQuerySV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangxw
-     * @ApiCode ROUTE_0006
+     * @ApiDocMethod
+     * @ApiCode RouteQuery-001
+     * @RestRelativeURL RouteQuery/routeQuery
      */
+	@POST
+	@Path("/routeQuery")
     public PageInfo<RouteQueryResult> routeQuery(RouteQueryVo vo) throws BusinessException,
             SystemException;
 
-    @interface routeQuery {
-    }
 
     /**
      * 路由详情查询
@@ -51,13 +62,15 @@ public interface IRouteQuerySV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangxw
-     * @ApiCode ROUTE_0006
+     * @ApiDocMethod
+     * @ApiCode RouteQuery-002
+     * @RestRelativeURL RouteQuery/routeDetailQuery
      */
+	@POST
+	@Path("/routeDetailQuery")
     public RouteQueryResult routeDetailQuery(String routeId) throws BusinessException,
             SystemException;
 
-    @interface routeDetailQuery {
-    }
 
     /**
      * 路由下商品查询
@@ -68,13 +81,14 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
-     * @ApiCode ROUTE_0007
+     * @ApiCode RouteQuery-003
+     * @RestRelativeURL RouteQuery/routeProSupplyQuery
      */
+	@POST
+	@Path("/routeProSupplyQuery")
     public PageInfo<ProSupplyQueryResult> routeProSupplyQuery(ProSupplyQueryVo vo)
             throws BusinessException, SystemException;
 
-    @interface routeProSupplyQuery {
-    }
 
     /**
      * 查询供货记录
@@ -85,13 +99,14 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
-     * @ApiCode ROUTE_0008
+     * @ApiCode RouteQuery-004
+     * @RestRelativeURL RouteQuery/proSupplyLogQuery
      */
+	@POST
+	@Path("/proSupplyLogQuery")
     public ProSupplyLogResult proSupplyLogQuery(ProSupplyLogQueryVo vo) throws BusinessException,
             SystemException;
 
-    @interface proSupplyLogQuery {
-    }
 
     /**
      * 路由规则查询
@@ -102,13 +117,14 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
-     * @ApiCode ROUTE_0009
+     * @ApiCode RouteQuery-005
+     * @RestRelativeURL RouteQuery/routeRuleQuery
      */
+	@POST
+	@Path("/routeRuleQuery")
     public PageInfo<RouteRuleQueryResult> routeRuleQuery(RouteRuleQueryVo vo)
             throws BusinessException, SystemException;
 
-    @interface routeRuleQuery {
-    }
 
     /**
      * 路由规则详情查询
@@ -119,13 +135,14 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
-     * @ApiCode ROUTE_0009
+     * @ApiCode RouteQuery-006
+     * @RestRelativeURL RouteQuery/routeRuleDetailQuery
      */
+	@POST
+	@Path("/routeRuleDetailQuery")
     public RouteRuleQueryResult routeRuleDetailQuery(String routeId) throws BusinessException,
             SystemException;
 
-    @interface routeRuleDetailQuery {
-    }
 
     /**
      * 路由组查询
@@ -136,13 +153,14 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
-     * @ApiCode ROUTE_0010
+     * @ApiCode RouteQuery-007
+     * @RestRelativeURL RouteQuery/routeGroupQuery
      */
+	@POST
+	@Path("/routeGroupQuery")
     public PageInfo<RouteGroupQueryResult> routeGroupQuery(RouteGroupQueryVo vo)
             throws BusinessException, SystemException;
 
-    @interface routeGroupQuery {
-    }
 
     /**
      * 路由组详情查询
@@ -153,13 +171,14 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
-     * @ApiCode ROUTE_0010
+     * @ApiCode RouteQuery-008
+     * @RestRelativeURL RouteQuery/routeGroupDetailQuery
      */
+	@POST
+	@Path("/routeGroupDetailQuery")
     public RouteGroupQueryResult routeGroupDetailQuery(String routeGroupId)
             throws BusinessException, SystemException;
 
-    @interface routeGroupDetailQuery {
-    }
 
     /**
      * 路由组下商品查询
@@ -170,11 +189,13 @@ public interface IRouteQuerySV {
      * @throws SystemException
      * @author zhangxw
      * @ApiDocMethod
+     * @ApiCode RouteQuery-009
+     * @RestRelativeURL RouteQuery/routeGroupProSupplyQuery
      */
+	@POST
+	@Path("/routeGroupProSupplyQuery")
     public RouteGroupProSupplyQueryResult routeGroupProSupplyQuery(List<String> routeIdList)
             throws BusinessException, SystemException;
 
-    @interface routeGroupProSupplyQuery {
-    }
-
+   
 }

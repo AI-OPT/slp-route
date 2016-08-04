@@ -1,5 +1,11 @@
 package com.ai.slp.route.api.supplyproduct.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.supplyproduct.param.SupplyProduct;
@@ -12,6 +18,9 @@ import com.ai.slp.route.api.supplyproduct.param.SupplyProductQueryVo;
  *
  * @author zhangxin10
  */
+@Path("/SupplyProductService")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface ISupplyProductServiceSV {
     /**
      * 供应品查询
@@ -22,8 +31,12 @@ public interface ISupplyProductServiceSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangxin10
-     * @ApiCode ROUTE_SUPPLY_PRODUCT_001
+     * @ApiDocMethod
+     * @ApiCode SupplyProductService-001
+     * @RestRelativeURL SupplyProductService/updateSupplyProductSaleCount
      */
+	@POST
+	@Path("/updateSupplyProductSaleCount")
     SupplyProduct updateSupplyProductSaleCount(SupplyProductQueryVo supplyProductQueryVo);
 
 }

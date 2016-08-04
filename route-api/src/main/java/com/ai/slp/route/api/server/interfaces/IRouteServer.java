@@ -1,5 +1,11 @@
 package com.ai.slp.route.api.server.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.server.params.IRouteServerRequest;
@@ -13,6 +19,9 @@ import com.ai.slp.route.api.server.params.RouteServerResponse;
  *
  * @author zhangxin10
  */
+@Path("/RouteServer")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IRouteServer {
     /**
      * 通过路由ID调用路由服务. <br>
@@ -23,8 +32,11 @@ public interface IRouteServer {
      * @throws SystemException
      * @author zhangxin10
      * @ApiDocMethod
-     * @ApiCode ROUTE_CORE_SERVICE_0001
+     * @ApiCode RouteServer-001
+     * @RestRelativeURL RouteServer/callServerByRouteId
      */
+	@POST
+	@Path("/callServerByRouteId")
     RouteServerResponse callServerByRouteId(IRouteServerRequest request);
 
     /**
@@ -36,7 +48,10 @@ public interface IRouteServer {
      * @throws SystemException
      * @author zhangxin10
      * @ApiDocMethod
-     * @ApiCode ROUTE_CORE_SERVICE_0002
+     * @ApiCode RouteServer-002
+     * @RestRelativeURL RouteServer/callServerByServerId
      */
+	@POST
+	@Path("/callServerByServerId")
     RouteServerResponse callServerByServerId(IRouteServerRequest request);
 }
