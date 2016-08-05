@@ -55,6 +55,7 @@ public class RouteManageSVImpl implements IRouteManageSV {
 		//
 		RoutePageSearchResponse response = new RoutePageSearchResponse();
 		ResponseHeader responseHeader =new ResponseHeader();
+		response.getPageInfo().setPageCount(0);
 		//
 		if(null == request){
 			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
