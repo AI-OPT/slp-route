@@ -71,7 +71,7 @@ public class RouteManageSVImpl implements IRouteManageSV {
 		//
 		try{
 			response = this.routeBusiSV.queryPageSearch(request);
-		}catch(BusinessException e){
+		}catch(BusinessException |SystemException e){
 			
 			responseHeader.setResultCode(e.getErrorCode());
 			responseHeader.setResultMessage(e.getErrorMessage());
