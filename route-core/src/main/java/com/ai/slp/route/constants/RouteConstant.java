@@ -47,6 +47,19 @@ public final class RouteConstant {
             public static final String ABANDONED = "6";
 
         }
+        public static final class RouteType{
+        	
+//        	O自有类、
+        	public static final String SELF = "O";
+//        	S采购类、
+        	public static final String PURCHASE = "S";
+//        	L物流类、
+        	public static final String LOGISTICS = "L";
+//        	P支付类
+        	public static final String PAY = "P";
+//        	C仓库类
+        	public static final String STORAGE = "C";
+        }
     }
 
 }

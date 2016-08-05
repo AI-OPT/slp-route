@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.slp.route.dao.mapper.interfaces.RouteSupplyAddsLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog" >
+    <id column="SUPPLY_ADDS_LOG_ID" property="supplyAddsLogId" jdbcType="VARCHAR" />
+    <result column="SUPPLY_ID" property="supplyId" jdbcType="VARCHAR" />
+    <result column="SUPPLY_NAME" property="supplyName" jdbcType="VARCHAR" />
+    <result column="BEFORE_USABLE__NUM" property="beforeUsableNum" jdbcType="BIGINT" />
+    <result column="SUPPLY_NUM" property="supplyNum" jdbcType="BIGINT" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="OPER_ID" property="operId" jdbcType="BIGINT" />
+    <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SUPPLY_ADDS_LOG_ID, SUPPLY_ID, SUPPLY_NAME, BEFORE_USABLE__NUM, SUPPLY_NUM, SOURCE, 
+    OPER_ID, OPER_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from route_supply_adds_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from route_supply_adds_log
+    where SUPPLY_ADDS_LOG_ID = #{supplyAddsLogId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from route_supply_adds_log
+    where SUPPLY_ADDS_LOG_ID = #{supplyAddsLogId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLogCriteria" >
+    delete from route_supply_adds_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog" >
+    insert into route_supply_adds_log (SUPPLY_ADDS_LOG_ID, SUPPLY_ID, SUPPLY_NAME, 
+      BEFORE_USABLE__NUM, SUPPLY_NUM, SOURCE, 
+      OPER_ID, OPER_TIME)
+    values (#{supplyAddsLogId,jdbcType=VARCHAR}, #{supplyId,jdbcType=VARCHAR}, #{supplyName,jdbcType=VARCHAR}, 
+      #{beforeUsableNum,jdbcType=BIGINT}, #{supplyNum,jdbcType=BIGINT}, #{source,jdbcType=VARCHAR}, 
+      #{operId,jdbcType=BIGINT}, #{operTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog" >
+    insert into route_supply_adds_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplyAddsLogId != null" >
+        SUPPLY_ADDS_LOG_ID,
+      </if>
+      <if test="supplyId != null" >
+        SUPPLY_ID,
+      </if>
+      <if test="supplyName != null" >
+        SUPPLY_NAME,
+      </if>
+      <if test="beforeUsableNum != null" >
+        BEFORE_USABLE__NUM,
+      </if>
+      <if test="supplyNum != null" >
+        SUPPLY_NUM,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="operId != null" >
+        OPER_ID,
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplyAddsLogId != null" >
+        #{supplyAddsLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyId != null" >
+        #{supplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyName != null" >
+        #{supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeUsableNum != null" >
+        #{beforeUsableNum,jdbcType=BIGINT},
+      </if>
+      <if test="supplyNum != null" >
+        #{supplyNum,jdbcType=BIGINT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        #{operId,jdbcType=BIGINT},
+      </if>
+      <if test="operTime != null" >
+        #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from route_supply_adds_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update route_supply_adds_log
+    <set >
+      <if test="record.supplyAddsLogId != null" >
+        SUPPLY_ADDS_LOG_ID = #{record.supplyAddsLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplyId != null" >
+        SUPPLY_ID = #{record.supplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplyName != null" >
+        SUPPLY_NAME = #{record.supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforeUsableNum != null" >
+        BEFORE_USABLE__NUM = #{record.beforeUsableNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplyNum != null" >
+        SUPPLY_NUM = #{record.supplyNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operId != null" >
+        OPER_ID = #{record.operId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operTime != null" >
+        OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update route_supply_adds_log
+    set SUPPLY_ADDS_LOG_ID = #{record.supplyAddsLogId,jdbcType=VARCHAR},
+      SUPPLY_ID = #{record.supplyId,jdbcType=VARCHAR},
+      SUPPLY_NAME = #{record.supplyName,jdbcType=VARCHAR},
+      BEFORE_USABLE__NUM = #{record.beforeUsableNum,jdbcType=BIGINT},
+      SUPPLY_NUM = #{record.supplyNum,jdbcType=BIGINT},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      OPER_ID = #{record.operId,jdbcType=BIGINT},
+      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog" >
+    update route_supply_adds_log
+    <set >
+      <if test="supplyId != null" >
+        SUPPLY_ID = #{supplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyName != null" >
+        SUPPLY_NAME = #{supplyName,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeUsableNum != null" >
+        BEFORE_USABLE__NUM = #{beforeUsableNum,jdbcType=BIGINT},
+      </if>
+      <if test="supplyNum != null" >
+        SUPPLY_NUM = #{supplyNum,jdbcType=BIGINT},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="operId != null" >
+        OPER_ID = #{operId,jdbcType=BIGINT},
+      </if>
+      <if test="operTime != null" >
+        OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SUPPLY_ADDS_LOG_ID = #{supplyAddsLogId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog" >
+    update route_supply_adds_log
+    set SUPPLY_ID = #{supplyId,jdbcType=VARCHAR},
+      SUPPLY_NAME = #{supplyName,jdbcType=VARCHAR},
+      BEFORE_USABLE__NUM = #{beforeUsableNum,jdbcType=BIGINT},
+      SUPPLY_NUM = #{supplyNum,jdbcType=BIGINT},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      OPER_ID = #{operId,jdbcType=BIGINT},
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP}
+    where SUPPLY_ADDS_LOG_ID = #{supplyAddsLogId,jdbcType=VARCHAR}
+  </update>
+</mapper>

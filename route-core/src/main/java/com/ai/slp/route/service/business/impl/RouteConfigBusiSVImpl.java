@@ -66,7 +66,7 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
         route.setRouteId(routeId);
         // String userLoginName = vo.getUserLoginName();根据这个得到userId
         long userId = 0;
-        route.setSellerId(userId);
+        route.setSellerId(String.valueOf(userId));
         // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
         String contractId = "";
         String contractCustId = "";
@@ -90,7 +90,7 @@ public class RouteConfigBusiSVImpl implements IRouteConfigBusiSV {
         BeanUtils.copyVO(route, vo);
         // String userLoginName = vo.getUserLoginName();根据这个得到userId
         long userId = 0;
-        route.setSellerId(userId);
+        route.setSellerId(String.valueOf(userId));
         // String contractCode = vo.getContractCode();根据供货商得到合同编号,得到合同客户ID和合同ID
         String contractId = "";
         String contractCustId = "";

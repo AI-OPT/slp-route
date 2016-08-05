@@ -275,52 +275,62 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdEqualTo(long value) {
+        public Criteria andSellerIdEqualTo(String value) {
             addCriterion("SELLER_ID =", value, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdNotEqualTo(long value) {
+        public Criteria andSellerIdNotEqualTo(String value) {
             addCriterion("SELLER_ID <>", value, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdGreaterThan(long value) {
+        public Criteria andSellerIdGreaterThan(String value) {
             addCriterion("SELLER_ID >", value, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdGreaterThanOrEqualTo(long value) {
+        public Criteria andSellerIdGreaterThanOrEqualTo(String value) {
             addCriterion("SELLER_ID >=", value, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdLessThan(long value) {
+        public Criteria andSellerIdLessThan(String value) {
             addCriterion("SELLER_ID <", value, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdLessThanOrEqualTo(long value) {
+        public Criteria andSellerIdLessThanOrEqualTo(String value) {
             addCriterion("SELLER_ID <=", value, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdIn(List<Long> values) {
+        public Criteria andSellerIdLike(String value) {
+            addCriterion("SELLER_ID like", value, "sellerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIdNotLike(String value) {
+            addCriterion("SELLER_ID not like", value, "sellerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIdIn(List<String> values) {
             addCriterion("SELLER_ID in", values, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdNotIn(List<Long> values) {
+        public Criteria andSellerIdNotIn(List<String> values) {
             addCriterion("SELLER_ID not in", values, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdBetween(long value1, long value2) {
+        public Criteria andSellerIdBetween(String value1, String value2) {
             addCriterion("SELLER_ID between", value1, value2, "sellerId");
             return (Criteria) this;
         }
 
-        public Criteria andSellerIdNotBetween(long value1, long value2) {
+        public Criteria andSellerIdNotBetween(String value1, String value2) {
             addCriterion("SELLER_ID not between", value1, value2, "sellerId");
             return (Criteria) this;
         }
@@ -475,52 +485,52 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andServIdEqualTo(long value) {
+        public Criteria andServIdEqualTo(Integer value) {
             addCriterion("SERV_ID =", value, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdNotEqualTo(long value) {
+        public Criteria andServIdNotEqualTo(Integer value) {
             addCriterion("SERV_ID <>", value, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdGreaterThan(long value) {
+        public Criteria andServIdGreaterThan(Integer value) {
             addCriterion("SERV_ID >", value, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdGreaterThanOrEqualTo(long value) {
+        public Criteria andServIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("SERV_ID >=", value, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdLessThan(long value) {
+        public Criteria andServIdLessThan(Integer value) {
             addCriterion("SERV_ID <", value, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdLessThanOrEqualTo(long value) {
+        public Criteria andServIdLessThanOrEqualTo(Integer value) {
             addCriterion("SERV_ID <=", value, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdIn(List<Long> values) {
+        public Criteria andServIdIn(List<Integer> values) {
             addCriterion("SERV_ID in", values, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdNotIn(List<Long> values) {
+        public Criteria andServIdNotIn(List<Integer> values) {
             addCriterion("SERV_ID not in", values, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdBetween(long value1, long value2) {
+        public Criteria andServIdBetween(Integer value1, Integer value2) {
             addCriterion("SERV_ID between", value1, value2, "servId");
             return (Criteria) this;
         }
 
-        public Criteria andServIdNotBetween(long value1, long value2) {
+        public Criteria andServIdNotBetween(Integer value1, Integer value2) {
             addCriterion("SERV_ID not between", value1, value2, "servId");
             return (Criteria) this;
         }
@@ -675,32 +685,32 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeEqualTo(long value) {
+        public Criteria andProvCodeEqualTo(Long value) {
             addCriterion("PROV_CODE =", value, "provCode");
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeNotEqualTo(long value) {
+        public Criteria andProvCodeNotEqualTo(Long value) {
             addCriterion("PROV_CODE <>", value, "provCode");
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeGreaterThan(long value) {
+        public Criteria andProvCodeGreaterThan(Long value) {
             addCriterion("PROV_CODE >", value, "provCode");
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeGreaterThanOrEqualTo(long value) {
+        public Criteria andProvCodeGreaterThanOrEqualTo(Long value) {
             addCriterion("PROV_CODE >=", value, "provCode");
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeLessThan(long value) {
+        public Criteria andProvCodeLessThan(Long value) {
             addCriterion("PROV_CODE <", value, "provCode");
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeLessThanOrEqualTo(long value) {
+        public Criteria andProvCodeLessThanOrEqualTo(Long value) {
             addCriterion("PROV_CODE <=", value, "provCode");
             return (Criteria) this;
         }
@@ -715,12 +725,12 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeBetween(long value1, long value2) {
+        public Criteria andProvCodeBetween(Long value1, Long value2) {
             addCriterion("PROV_CODE between", value1, value2, "provCode");
             return (Criteria) this;
         }
 
-        public Criteria andProvCodeNotBetween(long value1, long value2) {
+        public Criteria andProvCodeNotBetween(Long value1, Long value2) {
             addCriterion("PROV_CODE not between", value1, value2, "provCode");
             return (Criteria) this;
         }
@@ -735,32 +745,32 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeEqualTo(long value) {
+        public Criteria andCityCodeEqualTo(Long value) {
             addCriterion("CITY_CODE =", value, "cityCode");
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeNotEqualTo(long value) {
+        public Criteria andCityCodeNotEqualTo(Long value) {
             addCriterion("CITY_CODE <>", value, "cityCode");
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeGreaterThan(long value) {
+        public Criteria andCityCodeGreaterThan(Long value) {
             addCriterion("CITY_CODE >", value, "cityCode");
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeGreaterThanOrEqualTo(long value) {
+        public Criteria andCityCodeGreaterThanOrEqualTo(Long value) {
             addCriterion("CITY_CODE >=", value, "cityCode");
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeLessThan(long value) {
+        public Criteria andCityCodeLessThan(Long value) {
             addCriterion("CITY_CODE <", value, "cityCode");
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeLessThanOrEqualTo(long value) {
+        public Criteria andCityCodeLessThanOrEqualTo(Long value) {
             addCriterion("CITY_CODE <=", value, "cityCode");
             return (Criteria) this;
         }
@@ -775,12 +785,12 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeBetween(long value1, long value2) {
+        public Criteria andCityCodeBetween(Long value1, Long value2) {
             addCriterion("CITY_CODE between", value1, value2, "cityCode");
             return (Criteria) this;
         }
 
-        public Criteria andCityCodeNotBetween(long value1, long value2) {
+        public Criteria andCityCodeNotBetween(Long value1, Long value2) {
             addCriterion("CITY_CODE not between", value1, value2, "cityCode");
             return (Criteria) this;
         }
@@ -985,32 +995,32 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdEqualTo(long value) {
+        public Criteria andCreateIdEqualTo(Long value) {
             addCriterion("CREATE_ID =", value, "createId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdNotEqualTo(long value) {
+        public Criteria andCreateIdNotEqualTo(Long value) {
             addCriterion("CREATE_ID <>", value, "createId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdGreaterThan(long value) {
+        public Criteria andCreateIdGreaterThan(Long value) {
             addCriterion("CREATE_ID >", value, "createId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdGreaterThanOrEqualTo(long value) {
+        public Criteria andCreateIdGreaterThanOrEqualTo(Long value) {
             addCriterion("CREATE_ID >=", value, "createId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdLessThan(long value) {
+        public Criteria andCreateIdLessThan(Long value) {
             addCriterion("CREATE_ID <", value, "createId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdLessThanOrEqualTo(long value) {
+        public Criteria andCreateIdLessThanOrEqualTo(Long value) {
             addCriterion("CREATE_ID <=", value, "createId");
             return (Criteria) this;
         }
@@ -1025,12 +1035,12 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdBetween(long value1, long value2) {
+        public Criteria andCreateIdBetween(Long value1, Long value2) {
             addCriterion("CREATE_ID between", value1, value2, "createId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateIdNotBetween(long value1, long value2) {
+        public Criteria andCreateIdNotBetween(Long value1, Long value2) {
             addCriterion("CREATE_ID not between", value1, value2, "createId");
             return (Criteria) this;
         }
@@ -1105,32 +1115,32 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andOperIdEqualTo(long value) {
+        public Criteria andOperIdEqualTo(Long value) {
             addCriterion("OPER_ID =", value, "operId");
             return (Criteria) this;
         }
 
-        public Criteria andOperIdNotEqualTo(long value) {
+        public Criteria andOperIdNotEqualTo(Long value) {
             addCriterion("OPER_ID <>", value, "operId");
             return (Criteria) this;
         }
 
-        public Criteria andOperIdGreaterThan(long value) {
+        public Criteria andOperIdGreaterThan(Long value) {
             addCriterion("OPER_ID >", value, "operId");
             return (Criteria) this;
         }
 
-        public Criteria andOperIdGreaterThanOrEqualTo(long value) {
+        public Criteria andOperIdGreaterThanOrEqualTo(Long value) {
             addCriterion("OPER_ID >=", value, "operId");
             return (Criteria) this;
         }
 
-        public Criteria andOperIdLessThan(long value) {
+        public Criteria andOperIdLessThan(Long value) {
             addCriterion("OPER_ID <", value, "operId");
             return (Criteria) this;
         }
 
-        public Criteria andOperIdLessThanOrEqualTo(long value) {
+        public Criteria andOperIdLessThanOrEqualTo(Long value) {
             addCriterion("OPER_ID <=", value, "operId");
             return (Criteria) this;
         }
@@ -1145,12 +1155,12 @@ public class RouteCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andOperIdBetween(long value1, long value2) {
+        public Criteria andOperIdBetween(Long value1, Long value2) {
             addCriterion("OPER_ID between", value1, value2, "operId");
             return (Criteria) this;
         }
 
-        public Criteria andOperIdNotBetween(long value1, long value2) {
+        public Criteria andOperIdNotBetween(Long value1, Long value2) {
             addCriterion("OPER_ID not between", value1, value2, "operId");
             return (Criteria) this;
         }
@@ -1212,6 +1222,136 @@ public class RouteCriteria {
 
         public Criteria andOperTimeNotBetween(Timestamp value1, Timestamp value2) {
             addCriterion("OPER_TIME not between", value1, value2, "operTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeIsNull() {
+            addCriterion("COUNTY_CODE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeIsNotNull() {
+            addCriterion("COUNTY_CODE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeEqualTo(Long value) {
+            addCriterion("COUNTY_CODE =", value, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeNotEqualTo(Long value) {
+            addCriterion("COUNTY_CODE <>", value, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeGreaterThan(Long value) {
+            addCriterion("COUNTY_CODE >", value, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeGreaterThanOrEqualTo(Long value) {
+            addCriterion("COUNTY_CODE >=", value, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeLessThan(Long value) {
+            addCriterion("COUNTY_CODE <", value, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeLessThanOrEqualTo(Long value) {
+            addCriterion("COUNTY_CODE <=", value, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeIn(List<Long> values) {
+            addCriterion("COUNTY_CODE in", values, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeNotIn(List<Long> values) {
+            addCriterion("COUNTY_CODE not in", values, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeBetween(Long value1, Long value2) {
+            addCriterion("COUNTY_CODE between", value1, value2, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountyCodeNotBetween(Long value1, Long value2) {
+            addCriterion("COUNTY_CODE not between", value1, value2, "countyCode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIsNull() {
+            addCriterion("ADDRESS is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIsNotNull() {
+            addCriterion("ADDRESS is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressEqualTo(String value) {
+            addCriterion("ADDRESS =", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotEqualTo(String value) {
+            addCriterion("ADDRESS <>", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressGreaterThan(String value) {
+            addCriterion("ADDRESS >", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("ADDRESS >=", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressLessThan(String value) {
+            addCriterion("ADDRESS <", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressLessThanOrEqualTo(String value) {
+            addCriterion("ADDRESS <=", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressLike(String value) {
+            addCriterion("ADDRESS like", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotLike(String value) {
+            addCriterion("ADDRESS not like", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIn(List<String> values) {
+            addCriterion("ADDRESS in", values, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotIn(List<String> values) {
+            addCriterion("ADDRESS not in", values, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressBetween(String value1, String value2) {
+            addCriterion("ADDRESS between", value1, value2, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotBetween(String value1, String value2) {
+            addCriterion("ADDRESS not between", value1, value2, "address");
             return (Criteria) this;
         }
     }

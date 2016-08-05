@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.Route" >
     <id column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="SELLER_ID" property="sellerId" jdbcType="BIGINT" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="VARCHAR" />
     <result column="CONTRACT_CUST_ID" property="contractCustId" jdbcType="VARCHAR" />
     <result column="CONTRACT_ID" property="contractId" jdbcType="VARCHAR" />
-    <result column="SERV_ID" property="servId" jdbcType="BIGINT" />
+    <result column="SERV_ID" property="servId" jdbcType="DECIMAL" />
     <result column="ROUTE_NAME" property="routeName" jdbcType="VARCHAR" />
     <result column="ROUTE_TYPE" property="routeType" jdbcType="CHAR" />
     <result column="PROV_CODE" property="provCode" jdbcType="BIGINT" />
@@ -19,6 +19,8 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="OPER_ID" property="operId" jdbcType="BIGINT" />
     <result column="OPER_TIME" property="operTime" jdbcType="TIMESTAMP" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="BIGINT" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -81,14 +83,13 @@
   <sql id="Base_Column_List" >
     ROUTE_ID, TENANT_ID, SELLER_ID, CONTRACT_CUST_ID, CONTRACT_ID, SERV_ID, ROUTE_NAME, 
     ROUTE_TYPE, PROV_CODE, CITY_CODE, BEGIN_DATE, END_DATE, STATE, CREATE_ID, CREATE_TIME, 
-    OPER_ID, OPER_TIME
+    OPER_ID, OPER_TIME, COUNTY_CODE, ADDRESS
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.route.dao.mapper.bo.RouteCriteria" >
     select
     <if test="distinct" >
       distinct
     </if>
-    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from route
     <if test="_parameter != null" >
@@ -123,13 +124,15 @@
       ROUTE_NAME, ROUTE_TYPE, PROV_CODE, 
       CITY_CODE, BEGIN_DATE, END_DATE, 
       STATE, CREATE_ID, CREATE_TIME, 
-      OPER_ID, OPER_TIME)
-    values (#{routeId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{sellerId,jdbcType=BIGINT}, 
-      #{contractCustId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{servId,jdbcType=BIGINT}, 
+      OPER_ID, OPER_TIME, COUNTY_CODE, 
+      ADDRESS)
+    values (#{routeId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{sellerId,jdbcType=VARCHAR}, 
+      #{contractCustId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{servId,jdbcType=DECIMAL}, 
       #{routeName,jdbcType=VARCHAR}, #{routeType,jdbcType=CHAR}, #{provCode,jdbcType=BIGINT}, 
       #{cityCode,jdbcType=BIGINT}, #{beginDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
       #{state,jdbcType=VARCHAR}, #{createId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{operId,jdbcType=BIGINT}, #{operTime,jdbcType=TIMESTAMP})
+      #{operId,jdbcType=BIGINT}, #{operTime,jdbcType=TIMESTAMP}, #{countyCode,jdbcType=BIGINT}, 
+      #{address,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.route.dao.mapper.bo.Route" >
     insert into route
@@ -140,22 +143,30 @@
       <if test="tenantId != null" >
         TENANT_ID,
       </if>
-      SELLER_ID,
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
       <if test="contractCustId != null" >
         CONTRACT_CUST_ID,
       </if>
       <if test="contractId != null" >
         CONTRACT_ID,
       </if>
-      SERV_ID,
+      <if test="servId != null" >
+        SERV_ID,
+      </if>
       <if test="routeName != null" >
         ROUTE_NAME,
       </if>
       <if test="routeType != null" >
         ROUTE_TYPE,
       </if>
-      PROV_CODE,
-      CITY_CODE,
+      <if test="provCode != null" >
+        PROV_CODE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
       <if test="beginDate != null" >
         BEGIN_DATE,
       </if>
@@ -165,13 +176,23 @@
       <if test="state != null" >
         STATE,
       </if>
-      CREATE_ID,
+      <if test="createId != null" >
+        CREATE_ID,
+      </if>
       <if test="createTime != null" >
         CREATE_TIME,
       </if>
-      OPER_ID,
+      <if test="operId != null" >
+        OPER_ID,
+      </if>
       <if test="operTime != null" >
         OPER_TIME,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -181,22 +202,30 @@
       <if test="tenantId != null" >
         #{tenantId,jdbcType=VARCHAR},
       </if>
-      #{sellerId,jdbcType=BIGINT},
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
       <if test="contractCustId != null" >
         #{contractCustId,jdbcType=VARCHAR},
       </if>
       <if test="contractId != null" >
         #{contractId,jdbcType=VARCHAR},
       </if>
-      #{servId,jdbcType=BIGINT},
+      <if test="servId != null" >
+        #{servId,jdbcType=DECIMAL},
+      </if>
       <if test="routeName != null" >
         #{routeName,jdbcType=VARCHAR},
       </if>
       <if test="routeType != null" >
         #{routeType,jdbcType=CHAR},
       </if>
-      #{provCode,jdbcType=BIGINT},
-      #{cityCode,jdbcType=BIGINT},
+      <if test="provCode != null" >
+        #{provCode,jdbcType=BIGINT},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=BIGINT},
+      </if>
       <if test="beginDate != null" >
         #{beginDate,jdbcType=DATE},
       </if>
@@ -206,13 +235,23 @@
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
       </if>
-      #{createId,jdbcType=BIGINT},
+      <if test="createId != null" >
+        #{createId,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      #{operId,jdbcType=BIGINT},
+      <if test="operId != null" >
+        #{operId,jdbcType=BIGINT},
+      </if>
       <if test="operTime != null" >
         #{operTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -232,7 +271,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.sellerId != null" >
-        SELLER_ID = #{record.sellerId,jdbcType=BIGINT},
+        SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
       </if>
       <if test="record.contractCustId != null" >
         CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
@@ -241,7 +280,7 @@
         CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
       </if>
       <if test="record.servId != null" >
-        SERV_ID = #{record.servId,jdbcType=BIGINT},
+        SERV_ID = #{record.servId,jdbcType=DECIMAL},
       </if>
       <if test="record.routeName != null" >
         ROUTE_NAME = #{record.routeName,jdbcType=VARCHAR},
@@ -276,6 +315,12 @@
       <if test="record.operTime != null" >
         OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.countyCode != null" >
+        COUNTY_CODE = #{record.countyCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -285,10 +330,10 @@
     update route
     set ROUTE_ID = #{record.routeId,jdbcType=VARCHAR},
       TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      SELLER_ID = #{record.sellerId,jdbcType=BIGINT},
+      SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
       CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
       CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
-      SERV_ID = #{record.servId,jdbcType=BIGINT},
+      SERV_ID = #{record.servId,jdbcType=DECIMAL},
       ROUTE_NAME = #{record.routeName,jdbcType=VARCHAR},
       ROUTE_TYPE = #{record.routeType,jdbcType=CHAR},
       PROV_CODE = #{record.provCode,jdbcType=BIGINT},
@@ -299,7 +344,9 @@
       CREATE_ID = #{record.createId,jdbcType=BIGINT},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       OPER_ID = #{record.operId,jdbcType=BIGINT},
-      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP}
+      OPER_TIME = #{record.operTime,jdbcType=TIMESTAMP},
+      COUNTY_CODE = #{record.countyCode,jdbcType=BIGINT},
+      ADDRESS = #{record.address,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -311,7 +358,7 @@
         TENANT_ID = #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="sellerId != null" >
-        SELLER_ID = #{sellerId,jdbcType=BIGINT},
+        SELLER_ID = #{sellerId,jdbcType=VARCHAR},
       </if>
       <if test="contractCustId != null" >
         CONTRACT_CUST_ID = #{contractCustId,jdbcType=VARCHAR},
@@ -320,7 +367,7 @@
         CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
       </if>
       <if test="servId != null" >
-        SERV_ID = #{servId,jdbcType=BIGINT},
+        SERV_ID = #{servId,jdbcType=DECIMAL},
       </if>
       <if test="routeName != null" >
         ROUTE_NAME = #{routeName,jdbcType=VARCHAR},
@@ -355,16 +402,22 @@
       <if test="operTime != null" >
         OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE = #{countyCode,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
     </set>
     where ROUTE_ID = #{routeId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ai.slp.route.dao.mapper.bo.Route" >
     update route
     set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
-      SELLER_ID = #{sellerId,jdbcType=BIGINT},
+      SELLER_ID = #{sellerId,jdbcType=VARCHAR},
       CONTRACT_CUST_ID = #{contractCustId,jdbcType=VARCHAR},
       CONTRACT_ID = #{contractId,jdbcType=VARCHAR},
-      SERV_ID = #{servId,jdbcType=BIGINT},
+      SERV_ID = #{servId,jdbcType=DECIMAL},
       ROUTE_NAME = #{routeName,jdbcType=VARCHAR},
       ROUTE_TYPE = #{routeType,jdbcType=CHAR},
       PROV_CODE = #{provCode,jdbcType=BIGINT},
@@ -375,7 +428,9 @@
       CREATE_ID = #{createId,jdbcType=BIGINT},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       OPER_ID = #{operId,jdbcType=BIGINT},
-      OPER_TIME = #{operTime,jdbcType=TIMESTAMP}
+      OPER_TIME = #{operTime,jdbcType=TIMESTAMP},
+      COUNTY_CODE = #{countyCode,jdbcType=BIGINT},
+      ADDRESS = #{address,jdbcType=VARCHAR}
     where ROUTE_ID = #{routeId,jdbcType=VARCHAR}
   </update>
 </mapper>

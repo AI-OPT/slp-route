@@ -80,7 +80,7 @@ public class RouteQueryBusiSVImpl implements IRouteQueryBusiSV {
         }
         if (!StringUtil.isBlank(vo.getSellerName())) {
             long sellerId = 0;// 需要根据供应商名称查询得到供应商ID
-            criteria.andSellerIdEqualTo(sellerId);
+            criteria.andSellerIdEqualTo(String.valueOf(sellerId));
         }
         if (!CollectionUtil.isEmpty(vo.getStateList())) {
             criteria.andStateIn(vo.getStateList());

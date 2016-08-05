@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteGroupCriteria {
+public class RouteSupplyAddsLogCriteria {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class RouteGroupCriteria {
 
     protected Integer limitEnd;
 
-    public RouteGroupCriteria() {
+    public RouteSupplyAddsLogCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -125,283 +125,403 @@ public class RouteGroupCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andRouteGroupIdIsNull() {
-            addCriterion("ROUTE_GROUP_ID is null");
+        public Criteria andSupplyAddsLogIdIsNull() {
+            addCriterion("SUPPLY_ADDS_LOG_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdIsNotNull() {
-            addCriterion("ROUTE_GROUP_ID is not null");
+        public Criteria andSupplyAddsLogIdIsNotNull() {
+            addCriterion("SUPPLY_ADDS_LOG_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_ID =", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdEqualTo(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID =", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdNotEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_ID <>", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdNotEqualTo(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID <>", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdGreaterThan(String value) {
-            addCriterion("ROUTE_GROUP_ID >", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdGreaterThan(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID >", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdGreaterThanOrEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_ID >=", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdGreaterThanOrEqualTo(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID >=", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdLessThan(String value) {
-            addCriterion("ROUTE_GROUP_ID <", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdLessThan(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID <", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdLessThanOrEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_ID <=", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdLessThanOrEqualTo(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID <=", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdLike(String value) {
-            addCriterion("ROUTE_GROUP_ID like", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdLike(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID like", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdNotLike(String value) {
-            addCriterion("ROUTE_GROUP_ID not like", value, "routeGroupId");
+        public Criteria andSupplyAddsLogIdNotLike(String value) {
+            addCriterion("SUPPLY_ADDS_LOG_ID not like", value, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdIn(List<String> values) {
-            addCriterion("ROUTE_GROUP_ID in", values, "routeGroupId");
+        public Criteria andSupplyAddsLogIdIn(List<String> values) {
+            addCriterion("SUPPLY_ADDS_LOG_ID in", values, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdNotIn(List<String> values) {
-            addCriterion("ROUTE_GROUP_ID not in", values, "routeGroupId");
+        public Criteria andSupplyAddsLogIdNotIn(List<String> values) {
+            addCriterion("SUPPLY_ADDS_LOG_ID not in", values, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdBetween(String value1, String value2) {
-            addCriterion("ROUTE_GROUP_ID between", value1, value2, "routeGroupId");
+        public Criteria andSupplyAddsLogIdBetween(String value1, String value2) {
+            addCriterion("SUPPLY_ADDS_LOG_ID between", value1, value2, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupIdNotBetween(String value1, String value2) {
-            addCriterion("ROUTE_GROUP_ID not between", value1, value2, "routeGroupId");
+        public Criteria andSupplyAddsLogIdNotBetween(String value1, String value2) {
+            addCriterion("SUPPLY_ADDS_LOG_ID not between", value1, value2, "supplyAddsLogId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdIsNull() {
-            addCriterion("TENANT_ID is null");
+        public Criteria andSupplyIdIsNull() {
+            addCriterion("SUPPLY_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdIsNotNull() {
-            addCriterion("TENANT_ID is not null");
+        public Criteria andSupplyIdIsNotNull() {
+            addCriterion("SUPPLY_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdEqualTo(String value) {
-            addCriterion("TENANT_ID =", value, "tenantId");
+        public Criteria andSupplyIdEqualTo(String value) {
+            addCriterion("SUPPLY_ID =", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdNotEqualTo(String value) {
-            addCriterion("TENANT_ID <>", value, "tenantId");
+        public Criteria andSupplyIdNotEqualTo(String value) {
+            addCriterion("SUPPLY_ID <>", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdGreaterThan(String value) {
-            addCriterion("TENANT_ID >", value, "tenantId");
+        public Criteria andSupplyIdGreaterThan(String value) {
+            addCriterion("SUPPLY_ID >", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdGreaterThanOrEqualTo(String value) {
-            addCriterion("TENANT_ID >=", value, "tenantId");
+        public Criteria andSupplyIdGreaterThanOrEqualTo(String value) {
+            addCriterion("SUPPLY_ID >=", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdLessThan(String value) {
-            addCriterion("TENANT_ID <", value, "tenantId");
+        public Criteria andSupplyIdLessThan(String value) {
+            addCriterion("SUPPLY_ID <", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdLessThanOrEqualTo(String value) {
-            addCriterion("TENANT_ID <=", value, "tenantId");
+        public Criteria andSupplyIdLessThanOrEqualTo(String value) {
+            addCriterion("SUPPLY_ID <=", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdLike(String value) {
-            addCriterion("TENANT_ID like", value, "tenantId");
+        public Criteria andSupplyIdLike(String value) {
+            addCriterion("SUPPLY_ID like", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdNotLike(String value) {
-            addCriterion("TENANT_ID not like", value, "tenantId");
+        public Criteria andSupplyIdNotLike(String value) {
+            addCriterion("SUPPLY_ID not like", value, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdIn(List<String> values) {
-            addCriterion("TENANT_ID in", values, "tenantId");
+        public Criteria andSupplyIdIn(List<String> values) {
+            addCriterion("SUPPLY_ID in", values, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdNotIn(List<String> values) {
-            addCriterion("TENANT_ID not in", values, "tenantId");
+        public Criteria andSupplyIdNotIn(List<String> values) {
+            addCriterion("SUPPLY_ID not in", values, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdBetween(String value1, String value2) {
-            addCriterion("TENANT_ID between", value1, value2, "tenantId");
+        public Criteria andSupplyIdBetween(String value1, String value2) {
+            addCriterion("SUPPLY_ID between", value1, value2, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andTenantIdNotBetween(String value1, String value2) {
-            addCriterion("TENANT_ID not between", value1, value2, "tenantId");
+        public Criteria andSupplyIdNotBetween(String value1, String value2) {
+            addCriterion("SUPPLY_ID not between", value1, value2, "supplyId");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameIsNull() {
-            addCriterion("ROUTE_GROUP_NAME is null");
+        public Criteria andSupplyNameIsNull() {
+            addCriterion("SUPPLY_NAME is null");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameIsNotNull() {
-            addCriterion("ROUTE_GROUP_NAME is not null");
+        public Criteria andSupplyNameIsNotNull() {
+            addCriterion("SUPPLY_NAME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_NAME =", value, "routeGroupName");
+        public Criteria andSupplyNameEqualTo(String value) {
+            addCriterion("SUPPLY_NAME =", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameNotEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_NAME <>", value, "routeGroupName");
+        public Criteria andSupplyNameNotEqualTo(String value) {
+            addCriterion("SUPPLY_NAME <>", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameGreaterThan(String value) {
-            addCriterion("ROUTE_GROUP_NAME >", value, "routeGroupName");
+        public Criteria andSupplyNameGreaterThan(String value) {
+            addCriterion("SUPPLY_NAME >", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameGreaterThanOrEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_NAME >=", value, "routeGroupName");
+        public Criteria andSupplyNameGreaterThanOrEqualTo(String value) {
+            addCriterion("SUPPLY_NAME >=", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameLessThan(String value) {
-            addCriterion("ROUTE_GROUP_NAME <", value, "routeGroupName");
+        public Criteria andSupplyNameLessThan(String value) {
+            addCriterion("SUPPLY_NAME <", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameLessThanOrEqualTo(String value) {
-            addCriterion("ROUTE_GROUP_NAME <=", value, "routeGroupName");
+        public Criteria andSupplyNameLessThanOrEqualTo(String value) {
+            addCriterion("SUPPLY_NAME <=", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameLike(String value) {
-            addCriterion("ROUTE_GROUP_NAME like", value, "routeGroupName");
+        public Criteria andSupplyNameLike(String value) {
+            addCriterion("SUPPLY_NAME like", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameNotLike(String value) {
-            addCriterion("ROUTE_GROUP_NAME not like", value, "routeGroupName");
+        public Criteria andSupplyNameNotLike(String value) {
+            addCriterion("SUPPLY_NAME not like", value, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameIn(List<String> values) {
-            addCriterion("ROUTE_GROUP_NAME in", values, "routeGroupName");
+        public Criteria andSupplyNameIn(List<String> values) {
+            addCriterion("SUPPLY_NAME in", values, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameNotIn(List<String> values) {
-            addCriterion("ROUTE_GROUP_NAME not in", values, "routeGroupName");
+        public Criteria andSupplyNameNotIn(List<String> values) {
+            addCriterion("SUPPLY_NAME not in", values, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameBetween(String value1, String value2) {
-            addCriterion("ROUTE_GROUP_NAME between", value1, value2, "routeGroupName");
+        public Criteria andSupplyNameBetween(String value1, String value2) {
+            addCriterion("SUPPLY_NAME between", value1, value2, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGroupNameNotBetween(String value1, String value2) {
-            addCriterion("ROUTE_GROUP_NAME not between", value1, value2, "routeGroupName");
+        public Criteria andSupplyNameNotBetween(String value1, String value2) {
+            addCriterion("SUPPLY_NAME not between", value1, value2, "supplyName");
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNull() {
-            addCriterion("STATE is null");
+        public Criteria andBeforeUsableNumIsNull() {
+            addCriterion("BEFORE_USABLE__NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNotNull() {
-            addCriterion("STATE is not null");
+        public Criteria andBeforeUsableNumIsNotNull() {
+            addCriterion("BEFORE_USABLE__NUM is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStateEqualTo(String value) {
-            addCriterion("STATE =", value, "state");
+        public Criteria andBeforeUsableNumEqualTo(Long value) {
+            addCriterion("BEFORE_USABLE__NUM =", value, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotEqualTo(String value) {
-            addCriterion("STATE <>", value, "state");
+        public Criteria andBeforeUsableNumNotEqualTo(Long value) {
+            addCriterion("BEFORE_USABLE__NUM <>", value, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThan(String value) {
-            addCriterion("STATE >", value, "state");
+        public Criteria andBeforeUsableNumGreaterThan(Long value) {
+            addCriterion("BEFORE_USABLE__NUM >", value, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThanOrEqualTo(String value) {
-            addCriterion("STATE >=", value, "state");
+        public Criteria andBeforeUsableNumGreaterThanOrEqualTo(Long value) {
+            addCriterion("BEFORE_USABLE__NUM >=", value, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThan(String value) {
-            addCriterion("STATE <", value, "state");
+        public Criteria andBeforeUsableNumLessThan(Long value) {
+            addCriterion("BEFORE_USABLE__NUM <", value, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThanOrEqualTo(String value) {
-            addCriterion("STATE <=", value, "state");
+        public Criteria andBeforeUsableNumLessThanOrEqualTo(Long value) {
+            addCriterion("BEFORE_USABLE__NUM <=", value, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateLike(String value) {
-            addCriterion("STATE like", value, "state");
+        public Criteria andBeforeUsableNumIn(List<Long> values) {
+            addCriterion("BEFORE_USABLE__NUM in", values, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotLike(String value) {
-            addCriterion("STATE not like", value, "state");
+        public Criteria andBeforeUsableNumNotIn(List<Long> values) {
+            addCriterion("BEFORE_USABLE__NUM not in", values, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateIn(List<String> values) {
-            addCriterion("STATE in", values, "state");
+        public Criteria andBeforeUsableNumBetween(Long value1, Long value2) {
+            addCriterion("BEFORE_USABLE__NUM between", value1, value2, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotIn(List<String> values) {
-            addCriterion("STATE not in", values, "state");
+        public Criteria andBeforeUsableNumNotBetween(Long value1, Long value2) {
+            addCriterion("BEFORE_USABLE__NUM not between", value1, value2, "beforeUsableNum");
             return (Criteria) this;
         }
 
-        public Criteria andStateBetween(String value1, String value2) {
-            addCriterion("STATE between", value1, value2, "state");
+        public Criteria andSupplyNumIsNull() {
+            addCriterion("SUPPLY_NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotBetween(String value1, String value2) {
-            addCriterion("STATE not between", value1, value2, "state");
+        public Criteria andSupplyNumIsNotNull() {
+            addCriterion("SUPPLY_NUM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumEqualTo(Long value) {
+            addCriterion("SUPPLY_NUM =", value, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumNotEqualTo(Long value) {
+            addCriterion("SUPPLY_NUM <>", value, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumGreaterThan(Long value) {
+            addCriterion("SUPPLY_NUM >", value, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumGreaterThanOrEqualTo(Long value) {
+            addCriterion("SUPPLY_NUM >=", value, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumLessThan(Long value) {
+            addCriterion("SUPPLY_NUM <", value, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumLessThanOrEqualTo(Long value) {
+            addCriterion("SUPPLY_NUM <=", value, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumIn(List<Long> values) {
+            addCriterion("SUPPLY_NUM in", values, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumNotIn(List<Long> values) {
+            addCriterion("SUPPLY_NUM not in", values, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumBetween(Long value1, Long value2) {
+            addCriterion("SUPPLY_NUM between", value1, value2, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplyNumNotBetween(Long value1, Long value2) {
+            addCriterion("SUPPLY_NUM not between", value1, value2, "supplyNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceIsNull() {
+            addCriterion("SOURCE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceIsNotNull() {
+            addCriterion("SOURCE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceEqualTo(String value) {
+            addCriterion("SOURCE =", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceNotEqualTo(String value) {
+            addCriterion("SOURCE <>", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceGreaterThan(String value) {
+            addCriterion("SOURCE >", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceGreaterThanOrEqualTo(String value) {
+            addCriterion("SOURCE >=", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLessThan(String value) {
+            addCriterion("SOURCE <", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLessThanOrEqualTo(String value) {
+            addCriterion("SOURCE <=", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLike(String value) {
+            addCriterion("SOURCE like", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceNotLike(String value) {
+            addCriterion("SOURCE not like", value, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceIn(List<String> values) {
+            addCriterion("SOURCE in", values, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceNotIn(List<String> values) {
+            addCriterion("SOURCE not in", values, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceBetween(String value1, String value2) {
+            addCriterion("SOURCE between", value1, value2, "source");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceNotBetween(String value1, String value2) {
+            addCriterion("SOURCE not between", value1, value2, "source");
             return (Criteria) this;
         }
 
