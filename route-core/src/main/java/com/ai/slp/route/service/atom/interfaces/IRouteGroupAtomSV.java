@@ -1,5 +1,8 @@
 package com.ai.slp.route.service.atom.interfaces;
 
-public interface IRouteGroupAtomSV {
+import com.ai.opt.base.vo.PageInfo;
+import com.ai.slp.route.dao.mapper.bo.RouteGroup;
 
+public interface IRouteGroupAtomSV {
+	public PageInfo<RouteGroup> queryPageInfo(RouteGroup routeGroup,Integer pageNo,Integer pageSize);
 }
