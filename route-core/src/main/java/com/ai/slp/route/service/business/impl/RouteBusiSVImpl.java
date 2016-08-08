@@ -41,6 +41,7 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		route.setProvCode(request.getProvCode());
 		route.setCityCode(request.getCityCode());
 		route.setCountyCode(request.getCountyCode());
+		route.setAddress(request.getAddress());
 		route.setState("1");
 		route.setRouteType(RouteConstant.Route.RouteType.STORAGE);
 		route.setCreateId(0001l);

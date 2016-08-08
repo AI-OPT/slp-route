@@ -14,6 +14,15 @@ public class RouteAddParamRequest extends BaseInfo implements Serializable {
 	private Long provCode;
 	private Long cityCode;
 	private Long countyCode;
+	private String address;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public String getRouteName() {
 		return routeName;

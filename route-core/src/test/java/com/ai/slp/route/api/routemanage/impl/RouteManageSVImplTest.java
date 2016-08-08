@@ -30,6 +30,7 @@ public class RouteManageSVImplTest {
 		request.setCountyCode(0001l);
 		request.setCityCode(0001l);
 		request.setCountyCode(0001l);
+		request.setAddress("北京市海淀区西北旺路10号院亚信研发总部");
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteAddParamResponse response = this.routeManageSV.addRoute(request);
