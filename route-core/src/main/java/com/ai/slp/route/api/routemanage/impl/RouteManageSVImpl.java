@@ -55,7 +55,6 @@ public class RouteManageSVImpl implements IRouteManageSV {
 		//
 		RoutePageSearchResponse response = new RoutePageSearchResponse();
 		ResponseHeader responseHeader =new ResponseHeader();
-		response.getPageInfo().setPageSize(1);
 		
 		//
 		if(null == request){
