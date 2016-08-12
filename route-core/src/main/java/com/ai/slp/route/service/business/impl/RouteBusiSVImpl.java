@@ -83,9 +83,12 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		List<RoutePageSearchVo> voList = new ArrayList<RoutePageSearchVo>();
 		RoutePageSearchVo vo = null;
 		//
+		int index = 0;
 		for(Route route : pageInfo.getResult()){
+			index++;
 			vo = new RoutePageSearchVo();
 			//
+			vo.setIndex((pageNo - 1) * pageSize + index);
 			vo.setTenantId(tenantId);
 			vo.setRouteId(route.getRouteId());
 			vo.setRouteName(route.getRouteName());

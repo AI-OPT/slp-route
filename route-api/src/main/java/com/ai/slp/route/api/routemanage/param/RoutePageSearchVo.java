@@ -10,13 +10,20 @@ public class RoutePageSearchVo extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private Integer index;
 	private String routeId;
 	private String routeName;
 	private String state;
 	private Long provCode;
 	private Long cityCode;
 	private Long countyCode;
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 
 	public String getRouteId() {
 		return routeId;
