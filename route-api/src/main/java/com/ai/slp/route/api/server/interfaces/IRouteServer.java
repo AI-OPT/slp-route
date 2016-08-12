@@ -2,8 +2,8 @@ package com.ai.slp.route.api.server.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.route.api.server.params.IRouteServerRequest;
-import com.ai.slp.route.api.server.params.RouteServerResponse;
 
 /**
  * 路由服务的Dubbo服务<br>
@@ -25,7 +25,7 @@ public interface IRouteServer {
      * @ApiDocMethod
      * @ApiCode ROUTE_CORE_SERVICE_0001
      */
-    RouteServerResponse callServerByRouteId(IRouteServerRequest request);
+    BaseResponse callServerByRouteId(IRouteServerRequest request);
 
     /**
      * 通过服务ID调用路由服务. <br>
@@ -38,5 +38,5 @@ public interface IRouteServer {
      * @ApiDocMethod
      * @ApiCode ROUTE_CORE_SERVICE_0002
      */
-    RouteServerResponse callServerByServerId(IRouteServerRequest request);
+    BaseResponse callServerByServerId(IRouteServerRequest request);
 }
