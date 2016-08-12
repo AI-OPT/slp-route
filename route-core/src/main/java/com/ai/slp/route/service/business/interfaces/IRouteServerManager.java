@@ -1,7 +1,7 @@
 package com.ai.slp.route.service.business.interfaces;
 
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.route.api.server.params.IRouteServerRequest;
-import com.ai.slp.route.api.server.params.RouteServerResponse;
 
 import java.sql.SQLException;
 
@@ -9,9 +9,8 @@ import java.sql.SQLException;
  * Created by xin on 16-5-5.
  */
 public interface IRouteServerManager {
-    RouteServerResponse callServerByServerId(IRouteServerRequest request);
+    ResponseHeader callServerByServerId(IRouteServerRequest request);
 
-    RouteServerResponse callServerByRouteId(IRouteServerRequest request) throws SQLException;
-
+    ResponseHeader callServerByRouteId(IRouteServerRequest request) throws SQLException;
 
 }
