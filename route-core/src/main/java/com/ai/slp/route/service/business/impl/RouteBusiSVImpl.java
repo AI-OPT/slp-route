@@ -98,6 +98,7 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 			vo.setCityCode(route.getCityCode());
 			vo.setCountyCode(route.getCountyCode());
 			vo.setState(route.getState());
+			vo.setAddress(route.getAddress());
 			//
 			voList.add(vo);
 		}
