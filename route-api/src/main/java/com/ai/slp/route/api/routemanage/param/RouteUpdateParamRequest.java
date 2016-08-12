@@ -4,35 +4,18 @@ import java.io.Serializable;
 
 import com.ai.opt.base.vo.BaseInfo;
 
-public class RoutePageSearchVo extends BaseInfo implements Serializable {
+public class RouteUpdateParamRequest extends BaseInfo implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer index;
 	private String routeId;
 	private String routeName;
-	private String state;
 	private Long provCode;
 	private Long cityCode;
 	private Long countyCode;
 	private String address;
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Integer getIndex() {
-		return index;
-	}
-
-	public void setIndex(Integer index) {
-		this.index = index;
-	}
 
 	public String getRouteId() {
 		return routeId;
@@ -42,20 +25,20 @@ public class RoutePageSearchVo extends BaseInfo implements Serializable {
 		this.routeId = routeId;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getRouteName() {
 		return routeName;
 	}
 
 	public void setRouteName(String routeName) {
 		this.routeName = routeName;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
 	}
 
 	public Long getProvCode() {

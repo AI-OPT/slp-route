@@ -35,7 +35,7 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 			criteria.andRouteIdLike(routeId);
 		}
 		if(!StringUtil.isBlank(routeName)){
-			criteria.andRouteNameLike(routeName);
+			criteria.andRouteNameLike("%"+routeName+"%");
 		}
 		if(!CollectionUtil.isEmpty(states)){
 			criteria.andStateIn(states);
@@ -53,6 +53,13 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
         pageInfo.setPageSize(pageSize);
 		//
 		return pageInfo;
+	}
+
+	@Override
+	public void update(Route route) {
+		
+		MapperFactory.getRouteMapper().updateByPrimaryKeySelective(route);
+		
 	}
 	
 }

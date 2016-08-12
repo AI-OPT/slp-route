@@ -15,6 +15,8 @@ import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchVo;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
@@ -83,9 +85,12 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		List<RoutePageSearchVo> voList = new ArrayList<RoutePageSearchVo>();
 		RoutePageSearchVo vo = null;
 		//
+		int index = 0;
 		for(Route route : pageInfo.getResult()){
+			index++;
 			vo = new RoutePageSearchVo();
 			//
+			vo.setIndex((pageNo - 1) * pageSize + index);
 			vo.setTenantId(tenantId);
 			vo.setRouteId(route.getRouteId());
 			vo.setRouteName(route.getRouteName());
@@ -93,6 +98,7 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 			vo.setCityCode(route.getCityCode());
 			vo.setCountyCode(route.getCountyCode());
 			vo.setState(route.getState());
+			vo.setAddress(route.getAddress());
 			//
 			voList.add(vo);
 		}
@@ -104,6 +110,32 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		responseHeader.setResultMessage("成功");
 		response.setResponseHeader(responseHeader);
 		//
+		return response;
+	}
+
+	@Override
+	public RouteUpdateParamResponse updateRoute(RouteUpdateParamRequest request) {
+		//
+		RouteUpdateParamResponse response = new RouteUpdateParamResponse();
+		ResponseHeader responseHeader =new ResponseHeader();
+		
+		Route route = new Route();
+		//
+		route.setRouteId(request.getRouteId());
+		//
+		route.setRouteName(request.getRouteName());
+		route.setProvCode(request.getProvCode());
+		route.setCityCode(request.getCityCode());
+		route.setCountyCode(request.getCountyCode());
+		route.setAddress(request.getAddress());
+		//
+		this.routeAtomSV.update(route);
+		//
+		responseHeader.setIsSuccess(true);
+		responseHeader.setResultCode("000000");
+		responseHeader.setResultMessage("仓库修改成功");
+		//
+		response.setResponseHeader(responseHeader);
 		return response;
 	}
 
