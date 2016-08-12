@@ -54,5 +54,12 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 		//
 		return pageInfo;
 	}
+
+	@Override
+	public void update(Route route) {
+		
+		MapperFactory.getRouteMapper().updateByPrimaryKeySelective(route);
+		
+	}
 	
 }

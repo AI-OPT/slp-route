@@ -12,6 +12,8 @@ import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -85,6 +87,31 @@ public class RouteManageSVImpl implements IRouteManageSV {
 			//
 			response.setResponseHeader(responseHeader);
 		}
+		return response;
+	}
+	@Override
+	public RouteUpdateParamResponse updateRoute(RouteUpdateParamRequest request)
+			throws BusinessException, SystemException {
+		//
+		RouteUpdateParamResponse response = new RouteUpdateParamResponse();
+		ResponseHeader responseHeader =new ResponseHeader();
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		}
+		
+		//
+		try{
+		
+			response = this.routeBusiSV.updateRoute(request);
+			
+		}catch(Exception e){
+			
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("仓库创建失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		//
 		return response;
 	}
 	

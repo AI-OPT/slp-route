@@ -12,6 +12,8 @@ import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 /**
  * 
  *
@@ -49,4 +51,17 @@ public interface IRouteManageSV {
 	@POST
 	@Path("/queryPageSearch")
 	public RoutePageSearchResponse queryPageSearch(RoutePageSearchRequest request)throws BusinessException,SystemException;
+	/**
+	 * 修改仓库信息
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteManage-003
+     * @RestRelativeURL RouteManage/updateRoute
+     */
+	@POST
+	@Path("/updateRoute")
+	public RouteUpdateParamResponse updateRoute(RouteUpdateParamRequest request)throws BusinessException,SystemException;
+	
 }

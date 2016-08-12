@@ -7,6 +7,7 @@ import com.ai.slp.route.dao.mapper.bo.Route;
 
 public interface IRouteAtomSV {
 	public void insert(Route route);
+	public void update(Route route);
 	public PageInfo<Route> queryRouteListPageInfo(String tenantId,String routeId,String routeName,List<String> states,Integer pageNo,Integer pageSize);
 
 }
