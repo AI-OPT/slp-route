@@ -51,9 +51,13 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		List<RouteProdSupplyPageSearchVo> voList = new ArrayList<RouteProdSupplyPageSearchVo>();
 		RouteProdSupplyPageSearchVo vo = null;
 		//
+		int index = 0;
 		for(RouteProdSupply routeProdSupplyVo : pageInfo.getResult()){
+			index++;
+			
 			vo = new RouteProdSupplyPageSearchVo();
 			//
+			vo.setIndex((pageNo - 1) * pageSize + index);
 			vo.setRouteId(routeProdSupplyVo.getRouteId());
 			vo.setTenantId(routeProdSupplyVo.getTenantId());
 			vo.setSupplyId(routeProdSupplyVo.getSupplyId());

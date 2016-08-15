@@ -10,6 +10,7 @@ public class RouteProdSupplyPageSearchVo extends BaseInfo implements Serializabl
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Integer index;
 	private String supplyId;
 	private String supplyName;
 	private String routeId;
@@ -17,6 +18,13 @@ public class RouteProdSupplyPageSearchVo extends BaseInfo implements Serializabl
 	private Long usableNum;
 	private Long usedNum;
 
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 	public String getSupplyId() {
 		return supplyId;
 	}
