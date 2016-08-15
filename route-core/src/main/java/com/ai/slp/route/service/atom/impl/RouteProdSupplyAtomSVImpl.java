@@ -29,6 +29,12 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		if(!StringUtil.isBlank(routeProdSupply.getStandedProdId())){
 			criteria.andStandedProdIdLike(routeProdSupply.getStandedProdId());
 		}
+		if(!StringUtil.isBlank(routeProdSupply.getSupplyId())){
+			criteria.andSupplyIdLike("%"+routeProdSupply.getSupplyId()+"%");
+		}
+		if(!StringUtil.isBlank(routeProdSupply.getSupplyName())){
+			criteria.andSupplyNameLike("%"+routeProdSupply.getSupplyName()+"%");
+		}
 		if (null != pageNo  && null != pageSize) {
             example.setLimitStart((pageNo - 1) * pageSize);
             example.setLimitEnd(pageSize);
