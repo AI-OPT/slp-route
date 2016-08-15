@@ -1,9 +1,11 @@
 package com.ai.slp.route.service.business.impl;
 
+import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.slp.route.action.ICallServerAction;
 import com.ai.slp.route.action.ServerType;
 import com.ai.slp.route.api.server.params.IRouteServerRequest;
-import com.ai.slp.route.api.server.params.RouteServerResponse;
+import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.dao.mapper.bo.RouteServInfo;
 import com.ai.slp.route.dao.mapper.interfaces.RouteMapper;
@@ -28,8 +30,8 @@ public class RouteServerManagerImpl implements IRouteServerManager {
 
 
     @Override
-    public RouteServerResponse callServerByServerId(IRouteServerRequest request) {
-        RouteServerResponse routeServerResponse = new RouteServerResponse("000000");
+    public ResponseHeader callServerByServerId(IRouteServerRequest request) {
+        ResponseHeader header = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "");
         try {
             RouteServInfo routeServInfo = routeServInfoMapper.selectByPrimaryKey((int) request.getServerId());
             if (routeServInfo == null) {
@@ -37,22 +39,23 @@ public class RouteServerManagerImpl implements IRouteServerManager {
             }
 
             ICallServerAction action = ServerType.convert(routeServInfo.getServType()).chooseCallServerAction(routeServInfo, request.getRequestData());
-            routeServerResponse.setResponseData(action.doCall());
+            header.setResultMessage(action.doCall());
         } catch (Exception e) {
             logger.error("call server action fail.",e);
-            routeServerResponse.setResponseCode("999999");
+            header.setIsSuccess(false);
+            header.setResultCode(ExceptCodeConstants.Special.SYSTEM_ERROR);
         }
 
-        return routeServerResponse;
+        return header;
     }
 
     @Override
-    public RouteServerResponse callServerByRouteId(IRouteServerRequest request) throws SQLException {
+    public ResponseHeader callServerByRouteId(IRouteServerRequest request) throws SQLException {
         Route routeInfo = routeMapper.selectByPrimaryKey(request.getRouteId());
         if (routeInfo.getServId() == 0) {
-            RouteServerResponse response = new RouteServerResponse("999999");
-            response.setResponseMessage("Can not find the serviceId in RouteID[" + request.getRouteId() + "]");
-            return response;
+            ResponseHeader header = new ResponseHeader(false, ExceptCodeConstant.PARAM_IS_NULL,
+                    "Can not find the serviceId in RouteID[" + request.getRouteId() + "]");
+            return header;
         }
         request.setServerId(routeInfo.getServId());
         return callServerByServerId(request);

@@ -1,8 +1,10 @@
 package com.ai.slp.route.api.server.impl;
 
+import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.slp.route.api.server.interfaces.IRouteServer;
 import com.ai.slp.route.api.server.params.IRouteServerRequest;
-import com.ai.slp.route.api.server.params.RouteServerResponse;
 import com.ai.slp.route.service.business.interfaces.IRouteServerManager;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.lang.StringUtils;
@@ -21,8 +23,8 @@ public class RouteServerImpl implements IRouteServer {
     private IRouteServerManager routeServerManager;
 
     @Override
-    public RouteServerResponse callServerByRouteId(IRouteServerRequest request) {
-
+    public BaseResponse callServerByRouteId(IRouteServerRequest request) {
+        ResponseHeader header;
         if (StringUtils.isBlank(request.getTenantId())) {
             throw new RuntimeException("TenantId can not be null");
         }
@@ -32,16 +34,18 @@ public class RouteServerImpl implements IRouteServer {
         }
 
         try {
-            return routeServerManager.callServerByRouteId(request);
+            header = routeServerManager.callServerByRouteId(request);
         } catch (Exception e) {
             logger.error("Failed to call server by route Id", e);
+            header = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR,"");
         }
-
-        return new RouteServerResponse("999999");
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setResponseHeader(header);
+        return baseResponse;
     }
 
     @Override
-    public RouteServerResponse callServerByServerId(IRouteServerRequest request) {
+    public BaseResponse callServerByServerId(IRouteServerRequest request) {
         if (StringUtils.isBlank(request.getTenantId())) {
             throw new RuntimeException("TenantId can not be null");
         }
@@ -49,7 +53,8 @@ public class RouteServerImpl implements IRouteServer {
         if (request.getServerId() == 0) {
             throw new RuntimeException("routeID can not be null");
         }
-
-        return routeServerManager.callServerByServerId(request);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setResponseHeader(routeServerManager.callServerByServerId(request));
+        return baseResponse;
     }
 }
