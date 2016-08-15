@@ -12,10 +12,18 @@ public class RouteProdSupplyPageSearchRequest extends BaseInfo implements Serial
 	private static final long serialVersionUID = 1L;
 	private String routeId;
 	private String standedProdId;
+	private String supplyId;
 	private String supplyName;
 	private String productCatId;
 	private Integer pageNo;
 	private Integer pageSize;
+	public String getSupplyId() {
+		return supplyId;
+	}
+
+	public void setSupplyId(String supplyId) {
+		this.supplyId = supplyId;
+	}
 
 	public Integer getPageNo() {
 		return pageNo;

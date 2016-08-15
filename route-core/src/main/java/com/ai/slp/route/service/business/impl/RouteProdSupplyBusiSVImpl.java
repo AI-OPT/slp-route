@@ -29,6 +29,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		Integer pageSize = request.getPageSize();
 		String routeId = request.getRouteId();
 		String standedProdId = request.getStandedProdId();
+		String supplyId = request.getSupplyId();
 		String supplyName = request.getSupplyName();
 		String productCatId = request.getProductCatId();
 		String tenantId = request.getTenantId();
@@ -38,6 +39,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		routeProdSupply.setTenantId(tenantId);
 		routeProdSupply.setRouteId(routeId);
 		routeProdSupply.setStandedProdId(standedProdId);
+		routeProdSupply.setSupplyId(supplyId);
 		routeProdSupply.setSupplyName(supplyName);
 		routeProdSupply.setProductCatId(productCatId);
 		//
