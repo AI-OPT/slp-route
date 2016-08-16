@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.slp.common.api.area.interfaces.IGnAreaQuerySV;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
@@ -99,6 +101,10 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 			vo.setCountyCode(route.getCountyCode());
 			vo.setState(route.getState());
 			vo.setAddress(route.getAddress());
+			//
+			vo.setProvName(DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getProvCode().toString()).getAreaName());
+			vo.setCityName(DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getCityCode().toString()).getAreaName());
+			vo.setCountyName(DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getCountyCode().toString()).getAreaName());
 			//
 			voList.add(vo);
 		}
