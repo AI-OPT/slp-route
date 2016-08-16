@@ -17,7 +17,35 @@ public class RoutePageSearchVo extends BaseInfo implements Serializable {
 	private Long provCode;
 	private Long cityCode;
 	private Long countyCode;
+	private String provName;
+	private String cityName;
+	private String countyName;
 	private String address;
+	
+	public String getProvName() {
+		return provName;
+	}
+
+	public void setProvName(String provName) {
+		this.provName = provName;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getCountyName() {
+		return countyName;
+	}
+
+	public void setCountyName(String countyName) {
+		this.countyName = countyName;
+	}
+
 	public String getAddress() {
 		return address;
 	}
