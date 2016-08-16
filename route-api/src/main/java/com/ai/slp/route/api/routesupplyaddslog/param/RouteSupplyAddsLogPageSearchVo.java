@@ -8,12 +8,21 @@ public class RouteSupplyAddsLogPageSearchVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Integer index;
 	private String supplyId;
 	private String supplyName;
 	private Long beforeUsableNum;
 	private Long supplyNum;
 	private String operId;
 	private Timestamp operTime;
+
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 	public String getSupplyId() {
 		return supplyId;
 	}

@@ -42,9 +42,12 @@ public class RouteSupplyAddsLogBusiSVImpl implements IRouteSupplyAddsLogBusiSV {
 		List<RouteSupplyAddsLogPageSearchVo> voList = new ArrayList<RouteSupplyAddsLogPageSearchVo>();
 		RouteSupplyAddsLogPageSearchVo vo = null;
 		//
+		int index = 0;
 		for(RouteSupplyAddsLog routeSupplyAddsLogVo : pageInfo.getResult()){
+			index++;
 			vo = new RouteSupplyAddsLogPageSearchVo();
 			//
+			vo.setIndex((pageNo - 1) * pageSize + index);
 			vo.setSupplyId(routeSupplyAddsLogVo.getSupplyId());
 			vo.setSupplyName(routeSupplyAddsLogVo.getSupplyName());
 			vo.setBeforeUsableNum(routeSupplyAddsLogVo.getBeforeUsableNum());
