@@ -12,6 +12,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.common.api.area.interfaces.IGnAreaQuerySV;
+import com.ai.slp.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
@@ -102,9 +103,19 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 			vo.setState(route.getState());
 			vo.setAddress(route.getAddress());
 			//
-			vo.setProvName(DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getProvCode().toString()).getAreaName());
-			vo.setCityName(DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getCityCode().toString()).getAreaName());
-			vo.setCountyName(DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getCountyCode().toString()).getAreaName());
+			GnAreaVo provVo = DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getProvCode().toString());
+			if(null != provVo){
+				vo.setProvName(provVo.getAreaName());
+			}
+			GnAreaVo cityVo = DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getCityCode().toString());
+			if(null != cityVo){
+				vo.setCityName(cityVo.getAreaName());
+			}
+			GnAreaVo countyVo = DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(route.getCountyCode().toString());
+			if(null != countyVo){
+				vo.setCountyName(countyVo.getAreaName());
+			}
+			
 			//
 			voList.add(vo);
 		}

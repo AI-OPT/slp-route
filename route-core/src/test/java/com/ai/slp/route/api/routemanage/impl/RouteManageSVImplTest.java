@@ -41,9 +41,9 @@ public class RouteManageSVImplTest {
 	public void queryPageSearch(){
 		RoutePageSearchRequest request = new RoutePageSearchRequest();
 		//
-		//request.setTenantId("SLP");
-//		request.setPageNo(1);
-//		request.setPageSize(200);
+		request.setTenantId("SLP");
+		request.setPageNo(1);
+		request.setPageSize(200);
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RoutePageSearchResponse response = this.routeManageSV.queryPageSearch(request);
