@@ -14,6 +14,8 @@ import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateStateResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -108,6 +110,23 @@ public class RouteManageSVImpl implements IRouteManageSV {
 			
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("仓库创建失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		//
+		return response;
+	}
+	@Override
+	public RouteUpdateStateResponse updateRouteState(RouteUpdateStateRequest request)
+			throws BusinessException, SystemException {
+		RouteUpdateStateResponse response = new RouteUpdateStateResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		try{
+			response = this.routeBusiSV.updateRouteState(request);
+		}catch(Exception e){
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("仓库状态修改失败");
 			//
 			response.setResponseHeader(responseHeader);
 		}

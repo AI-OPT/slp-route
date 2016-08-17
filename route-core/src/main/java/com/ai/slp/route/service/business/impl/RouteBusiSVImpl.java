@@ -20,6 +20,8 @@ import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchVo;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateStateResponse;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
@@ -131,6 +133,7 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 	}
 
 	@Override
+	@Transactional
 	public RouteUpdateParamResponse updateRoute(RouteUpdateParamRequest request) {
 		//
 		RouteUpdateParamResponse response = new RouteUpdateParamResponse();
@@ -151,6 +154,28 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		responseHeader.setIsSuccess(true);
 		responseHeader.setResultCode("000000");
 		responseHeader.setResultMessage("仓库修改成功");
+		//
+		response.setResponseHeader(responseHeader);
+		return response;
+	}
+
+	@Override
+	@Transactional
+	public RouteUpdateStateResponse updateRouteState(RouteUpdateStateRequest request) {
+		RouteUpdateStateResponse response = new RouteUpdateStateResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		Route route = new Route();
+		route.setTenantId(request.getTenantId());
+		//
+		route.setRouteId(request.getRouteId());
+		route.setState(request.getState());
+		//
+		this.routeAtomSV.update(route);
+		//
+		responseHeader.setIsSuccess(true);
+		responseHeader.setResultCode("000000");
+		responseHeader.setResultMessage("仓库状态成功");
 		//
 		response.setResponseHeader(responseHeader);
 		return response;
