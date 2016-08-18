@@ -38,5 +38,11 @@ public class RouteSupplyAddsLogAtomSVImpl implements IRouteSupplyAddsLogAtomSV {
 		return pageInfo;
 	}
 
+	@Override
+	public void insert(RouteSupplyAddsLog routeSupplyAddsLog) {
+		MapperFactory.getRouteSupplyAddsLogMapper().insert(routeSupplyAddsLog);
+		
+	}
+
 	
 }

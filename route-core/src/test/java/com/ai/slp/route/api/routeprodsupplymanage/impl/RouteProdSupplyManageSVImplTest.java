@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,5 +36,16 @@ public class RouteProdSupplyManageSVImplTest {
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}
-
+	@Test
+	public void updateUsableNum(){
+		RouteProdSupplyUpdateUsableNumRequest request = new RouteProdSupplyUpdateUsableNumRequest();
+		request.setSupplyId("1000000001");
+		request.setSupplyName("山东 移动手机 话费充值 10元");
+		request.setUnsableNum(15l);
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		RouteProdSupplyUpdateUsableNumResponse response = this.routeProdSupplyManageSV.updateUsableNum(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
 }

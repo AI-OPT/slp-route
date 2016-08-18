@@ -50,5 +50,16 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
         return pageInfo;
 	}
 
+	@Override
+	public void updateByPrimaryKeySelective(RouteProdSupply routeProdSupply) {
+		MapperFactory.getRouteProdSupplyMapper().updateByPrimaryKeySelective(routeProdSupply);
+	}
+
+	@Override
+	public RouteProdSupply getRouteProdSupplyByPrimaryKey(String supplyId) {
+		RouteProdSupply routeProdSupply = MapperFactory.getRouteProdSupplyMapper().selectByPrimaryKey(supplyId);
+		return routeProdSupply;
+	}
+
 
 }
