@@ -18,10 +18,10 @@ public class RouteSupplyAddsLogAtomSVImpl implements IRouteSupplyAddsLogAtomSV {
 		//
 		RouteSupplyAddsLogCriteria.Criteria criteria = example.createCriteria();
 		if(!StringUtil.isBlank(routeSupplyAddsLog.getSupplyId())){
-			criteria.andSupplyIdLike(routeSupplyAddsLog.getSupplyId());
+			criteria.andSupplyIdLike("%"+routeSupplyAddsLog.getSupplyId()+"%");
 		}
 		if(!StringUtil.isBlank(routeSupplyAddsLog.getSupplyName())){
-			criteria.andSupplyNameLike(routeSupplyAddsLog.getSupplyName());
+			criteria.andSupplyNameLike("%"+routeSupplyAddsLog.getSupplyName()+"%");
 		}
 		if (null != pageNo  && null != pageSize) {
             example.setLimitStart((pageNo - 1) * pageSize);
