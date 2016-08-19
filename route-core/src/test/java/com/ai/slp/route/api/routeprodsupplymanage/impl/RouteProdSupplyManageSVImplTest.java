@@ -41,7 +41,7 @@ public class RouteProdSupplyManageSVImplTest {
 		RouteProdSupplyUpdateUsableNumRequest request = new RouteProdSupplyUpdateUsableNumRequest();
 		request.setSupplyId("1000000001");
 		request.setSupplyName("山东 移动手机 话费充值 10元");
-		request.setUnsableNum(15l);
+		request.setUsableNum(15l);
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteProdSupplyUpdateUsableNumResponse response = this.routeProdSupplyManageSV.updateUsableNum(request);

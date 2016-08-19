@@ -16,18 +16,18 @@ public class RouteProdSupplyUpdateUsableNumRequest implements Serializable {
 	public void setSupplyName(String supplyName) {
 		this.supplyName = supplyName;
 	}
-	private Long unsableNum;
+	private Long usableNum;
 	public String getSupplyId() {
 		return supplyId;
 	}
 	public void setSupplyId(String supplyId) {
 		this.supplyId = supplyId;
 	}
-	public Long getUnsableNum() {
-		return unsableNum;
+	public Long getUsableNum() {
+		return usableNum;
 	}
-	public void setUnsableNum(Long unsableNum) {
-		this.unsableNum = unsableNum;
+	public void setUsableNum(Long usableNum) {
+		this.usableNum = usableNum;
 	}
 
 }

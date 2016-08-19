@@ -99,8 +99,8 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		RouteProdSupply routeProdSupply = new RouteProdSupply();
 		//
 		routeProdSupply.setSupplyId(request.getSupplyId());
-		routeProdSupply.setUsableNum(request.getUnsableNum() + unsableNum);
-		routeProdSupply.setTotalNum(request.getUnsableNum() + totalNum);
+		routeProdSupply.setUsableNum(request.getUsableNum() + unsableNum);
+		routeProdSupply.setTotalNum(request.getUsableNum() + totalNum);
 		//
 		this.routeProdSupplyAtomSV.updateByPrimaryKeySelective(routeProdSupply);
 		
@@ -112,7 +112,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		routeSupplyAddsLog.setSource("");
 		routeSupplyAddsLog.setSupplyId(request.getSupplyId());
 		routeSupplyAddsLog.setSupplyName(request.getSupplyName());
-		routeSupplyAddsLog.setSupplyNum(request.getUnsableNum());
+		routeSupplyAddsLog.setSupplyNum(request.getUsableNum());
 		routeSupplyAddsLog.setBeforeUsableNum(unsableNum);
 		//
 		this.routeSupplyAddsLogAtomSV.insert(routeSupplyAddsLog);
