@@ -15,9 +15,11 @@ import com.ai.slp.common.api.area.interfaces.IGnAreaQuerySV;
 import com.ai.slp.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
+import com.ai.slp.route.api.routemanage.param.RouteIdParamRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchVo;
+import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
@@ -178,6 +180,26 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		responseHeader.setResultMessage("仓库状态成功");
 		//
 		response.setResponseHeader(responseHeader);
+		return response;
+	}
+
+	@Override
+	public RouteResponse findRouteInfo(RouteIdParamRequest request) {
+		RouteResponse response = new RouteResponse();
+		//
+		
+		Route route = this.routeAtomSV.findRouteInfo(request.getRouteId());
+		//
+		if(null != route){
+			response.setRouteId(route.getRouteId());
+			response.setRouteName(route.getRouteName());
+			response.setProvCode(route.getProvCode());
+			response.setCityCode(route.getCityCode());
+			response.setCountyCode(route.getCountyCode());
+			response.setState(route.getState());
+			response.setAddress(route.getAddress());
+		}
+		
 		return response;
 	}
 

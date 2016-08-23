@@ -61,5 +61,10 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 		MapperFactory.getRouteMapper().updateByPrimaryKeySelective(route);
 		
 	}
+
+	@Override
+	public Route findRouteInfo(String routeId) {
+		return (Route)MapperFactory.getRouteMapper().selectByPrimaryKey(routeId);
+	}
 	
 }

@@ -10,8 +10,10 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
+import com.ai.slp.route.api.routemanage.param.RouteIdParamRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
@@ -79,4 +81,19 @@ public interface IRouteManageSV {
 	@POST
 	@Path("/updateRouteState")
 	public RouteUpdateStateResponse updateRouteState(RouteUpdateStateRequest request)throws BusinessException,SystemException;
+	/**
+	 * 根据路由id查询路由信息
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode
+	 * @ApiCode RouteManage-005
+     * @RestRelativeURL RouteManage/findRouteInfo
+     */
+	@POST
+	@Path("/findRouteInfo")
+	public RouteResponse findRouteInfo(RouteIdParamRequest request)throws BusinessException,SystemException;
 }

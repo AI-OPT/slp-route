@@ -10,8 +10,10 @@ import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.route.api.routemanage.interfaces.IRouteManageSV;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
+import com.ai.slp.route.api.routemanage.param.RouteIdParamRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
@@ -131,6 +133,25 @@ public class RouteManageSVImpl implements IRouteManageSV {
 			response.setResponseHeader(responseHeader);
 		}
 		//
+		return response;
+	}
+	@Override
+	public RouteResponse findRouteInfo(RouteIdParamRequest request) throws BusinessException, SystemException {
+		RouteResponse response = new RouteResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		try{
+			response = this.routeBusiSV.findRouteInfo(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("查询成功");
+			response.setResponseHeader(responseHeader);
+		}catch(Exception e){
+			responseHeader.setIsSuccess(false);
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("查询失败");
+			response.setResponseHeader(responseHeader);
+		}
+		
 		return response;
 	}
 	
