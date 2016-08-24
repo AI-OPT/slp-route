@@ -60,7 +60,7 @@ public class IRouteItemBusiSVImpl implements IRouteItemBusiSV {
 			vo.setRouteId(voNew.getRouteId());
 			vo.setRouteGroupId(voNew.getRouteGroupId());
 			vo.setRouteItemId(voNew.getRouteItemId());
-			//find routeName from routeAtomSv of method findRouteInfo
+			//find routeName from routeAtomSv of the method findRouteInfo
 			Route route = this.routeAtomSV.findRouteInfo(voNew.getRouteId());
 			vo.setRouteName(route.getRouteName());
 			//
