@@ -15,6 +15,10 @@ public class RouteGroup {
 
     private Timestamp operTime;
 
+    private String supplierId;
+
+    private String routeGroupType;
+
     public String getRouteGroupId() {
         return routeGroupId;
     }
@@ -61,5 +65,21 @@ public class RouteGroup {
 
     public void setOperTime(Timestamp operTime) {
         this.operTime = operTime;
+    }
+
+    public String getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(String supplierId) {
+        this.supplierId = supplierId == null ? null : supplierId.trim();
+    }
+
+    public String getRouteGroupType() {
+        return routeGroupType;
+    }
+
+    public void setRouteGroupType(String routeGroupType) {
+        this.routeGroupType = routeGroupType == null ? null : routeGroupType.trim();
     }
 }

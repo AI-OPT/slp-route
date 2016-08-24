@@ -524,6 +524,146 @@ public class RouteGroupCriteria {
             addCriterion("OPER_TIME not between", value1, value2, "operTime");
             return (Criteria) this;
         }
+
+        public Criteria andSupplierIdIsNull() {
+            addCriterion("SUPPLIER_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdIsNotNull() {
+            addCriterion("SUPPLIER_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdEqualTo(String value) {
+            addCriterion("SUPPLIER_ID =", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdNotEqualTo(String value) {
+            addCriterion("SUPPLIER_ID <>", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdGreaterThan(String value) {
+            addCriterion("SUPPLIER_ID >", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdGreaterThanOrEqualTo(String value) {
+            addCriterion("SUPPLIER_ID >=", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdLessThan(String value) {
+            addCriterion("SUPPLIER_ID <", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdLessThanOrEqualTo(String value) {
+            addCriterion("SUPPLIER_ID <=", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdLike(String value) {
+            addCriterion("SUPPLIER_ID like", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdNotLike(String value) {
+            addCriterion("SUPPLIER_ID not like", value, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdIn(List<String> values) {
+            addCriterion("SUPPLIER_ID in", values, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdNotIn(List<String> values) {
+            addCriterion("SUPPLIER_ID not in", values, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdBetween(String value1, String value2) {
+            addCriterion("SUPPLIER_ID between", value1, value2, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSupplierIdNotBetween(String value1, String value2) {
+            addCriterion("SUPPLIER_ID not between", value1, value2, "supplierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeIsNull() {
+            addCriterion("ROUTE_GROUP_TYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeIsNotNull() {
+            addCriterion("ROUTE_GROUP_TYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeEqualTo(String value) {
+            addCriterion("ROUTE_GROUP_TYPE =", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeNotEqualTo(String value) {
+            addCriterion("ROUTE_GROUP_TYPE <>", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeGreaterThan(String value) {
+            addCriterion("ROUTE_GROUP_TYPE >", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("ROUTE_GROUP_TYPE >=", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeLessThan(String value) {
+            addCriterion("ROUTE_GROUP_TYPE <", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeLessThanOrEqualTo(String value) {
+            addCriterion("ROUTE_GROUP_TYPE <=", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeLike(String value) {
+            addCriterion("ROUTE_GROUP_TYPE like", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeNotLike(String value) {
+            addCriterion("ROUTE_GROUP_TYPE not like", value, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeIn(List<String> values) {
+            addCriterion("ROUTE_GROUP_TYPE in", values, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeNotIn(List<String> values) {
+            addCriterion("ROUTE_GROUP_TYPE not in", values, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeBetween(String value1, String value2) {
+            addCriterion("ROUTE_GROUP_TYPE between", value1, value2, "routeGroupType");
+            return (Criteria) this;
+        }
+
+        public Criteria andRouteGroupTypeNotBetween(String value1, String value2) {
+            addCriterion("ROUTE_GROUP_TYPE not between", value1, value2, "routeGroupType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
