@@ -11,6 +11,7 @@ import com.ai.slp.route.dao.mapper.interfaces.RouteItemMapper;
 import com.ai.slp.route.dao.mapper.interfaces.RouteMapper;
 import com.ai.slp.route.dao.mapper.interfaces.RouteProdSupplyMapper;
 import com.ai.slp.route.dao.mapper.interfaces.RouteSupplyAddsLogMapper;
+import com.ai.slp.route.dao.mapper.interfaces.RouteTargetAreaMapper;
 
 
 @Component
@@ -45,5 +46,8 @@ public class MapperFactory {
     }
     public static RouteSupplyAddsLogMapper getRouteSupplyAddsLogMapper() {
         return sqlSessionTemplate.getMapper(RouteSupplyAddsLogMapper.class);
+    }
+    public static RouteTargetAreaMapper getRouteTargetAreaMapper() {
+        return sqlSessionTemplate.getMapper(RouteTargetAreaMapper.class);
     }
 }
