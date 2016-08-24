@@ -69,6 +69,7 @@ public class IRouteItemBusiSVImpl implements IRouteItemBusiSV {
 			AreaVo areaVo = null;
 			for(RouteTargetArea routeTargetArea : areaList){
 				areaVo = new AreaVo();
+				areaVo.setRouteAreaId(routeTargetArea.getRouteAreaId());
 				areaVo.setProvinceCode(routeTargetArea.getProvCode().toString());
 				GnAreaVo gnAreaVo = DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(routeTargetArea.getProvCode().toString());
 				areaVo.setProvinceName(null != gnAreaVo?gnAreaVo.getAreaName():"");
