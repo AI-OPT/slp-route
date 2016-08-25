@@ -135,7 +135,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			//
 			String supplyId = SequenceUtil.createSupplyId();
 			//
-			routeProdSupply.setTenantId("CH");
+			routeProdSupply.setTenantId(addRequest.getTenantId());
 			routeProdSupply.setSupplyId(supplyId);
 			routeProdSupply.setSupplyName(addRequest.getProdName());
 			routeProdSupply.setStandedProdId(addRequest.getProdId());
