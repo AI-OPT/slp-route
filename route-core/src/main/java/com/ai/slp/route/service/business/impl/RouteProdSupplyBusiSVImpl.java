@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchVo;
@@ -117,6 +120,49 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		//
 		this.routeSupplyAddsLogAtomSV.insert(routeSupplyAddsLog);
 		//
+		return response;
+	}
+	@Override
+	@Transactional
+	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request) {
+		RouteProdSupplyAddResponse response = new RouteProdSupplyAddResponse();
+		//
+		RouteProdSupply routeProdSupply = null;
+		RouteSupplyAddsLog routeSupplyAddsLog = null;
+		//
+		for(RouteProdSupplyAddRequest addRequest : request.getRouteProdSupplyAddRequestList()){
+			routeProdSupply = new RouteProdSupply();
+			//
+			String supplyId = SequenceUtil.createSupplyId();
+			//
+			routeProdSupply.setTenantId("CH");
+			routeProdSupply.setSupplyId(supplyId);
+			routeProdSupply.setSupplyName(addRequest.getProdName());
+			routeProdSupply.setStandedProdId(addRequest.getProdId());
+			routeProdSupply.setRouteId(addRequest.getRouteId());
+			routeProdSupply.setProductCatId("");
+			routeProdSupply.setUsableNum(addRequest.getAmount().longValue());
+			routeProdSupply.setTotalNum(addRequest.getAmount().longValue());
+			routeProdSupply.setOperId(1l);
+			routeProdSupply.setOperTime(DateUtil.getSysDate());
+			routeProdSupply.setState("1");
+			//
+			this.routeProdSupplyAtomSV.insert(routeProdSupply);
+
+			//添加仓库量
+			routeSupplyAddsLog = new RouteSupplyAddsLog();
+			routeSupplyAddsLog.setSupplyAddsLogId(SequenceUtil.createSupplyAddsLogId());
+			routeSupplyAddsLog.setOperId(Long.valueOf(1));
+			routeSupplyAddsLog.setOperTime(DateUtil.getSysDate());
+			routeSupplyAddsLog.setSource("");
+			routeSupplyAddsLog.setSupplyId(supplyId);
+			routeSupplyAddsLog.setSupplyName(addRequest.getProdName());
+			routeSupplyAddsLog.setSupplyNum(addRequest.getAmount().longValue());
+			routeSupplyAddsLog.setBeforeUsableNum(0l);
+			//
+			this.routeSupplyAddsLogAtomSV.insert(routeSupplyAddsLog);
+			
+		}
 		return response;
 	}
 }

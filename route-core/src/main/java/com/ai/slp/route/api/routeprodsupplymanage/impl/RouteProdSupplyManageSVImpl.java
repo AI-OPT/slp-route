@@ -8,6 +8,8 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
@@ -90,6 +92,31 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 			//
 			response.setResponseHeader(responseHeader);
 		}
+		return response;
+	}
+
+	@Override
+	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request)
+			throws BusinessException, SystemException {
+		//
+		RouteProdSupplyAddResponse response = new RouteProdSupplyAddResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		try {
+			response = this.routeProdSupplyBusiSV.addRouteProdSupplyList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		//
 		return response;
 	}
 

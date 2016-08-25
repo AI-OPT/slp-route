@@ -7,4 +7,5 @@ public interface IRouteProdSupplyAtomSV {
 	public PageInfo<RouteProdSupply> queryRouteProdSupplyPageInfo(RouteProdSupply routeProdSupply,Integer pageNo,Integer pageSize);
 	public void updateByPrimaryKeySelective(RouteProdSupply routeProdSupply);
 	public RouteProdSupply getRouteProdSupplyByPrimaryKey(String supplyId);
+	public void insert(RouteProdSupply routeProdSupply);
 }

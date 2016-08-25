@@ -61,5 +61,11 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		return routeProdSupply;
 	}
 
+	@Override
+	public void insert(RouteProdSupply routeProdSupply) {
+		MapperFactory.getRouteProdSupplyMapper().insert(routeProdSupply);
+		
+	}
+
 
 }

@@ -15,6 +15,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
@@ -51,4 +54,19 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/updateUsableNum")
 	public RouteProdSupplyUpdateUsableNumResponse updateUsableNum(RouteProdSupplyUpdateUsableNumRequest request)throws BusinessException,SystemException;
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode
+	 * @ApiCode RouteProdSupplyManage-003
+     * @RestRelativeURL RouteProdSupplyManage/addRouteProdSupplyList
+     */
+	@POST
+	@Path("/addRouteProdSupplyList")
+	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request)throws BusinessException,SystemException;
 }
