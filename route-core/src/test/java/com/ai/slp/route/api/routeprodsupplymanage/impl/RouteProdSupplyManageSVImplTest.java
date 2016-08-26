@@ -18,8 +18,10 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddReques
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -81,6 +83,18 @@ public class RouteProdSupplyManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteProdSupplyAddResponse response = this.routeProdSupplyManageSV.addRouteProdSupplyList(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void queryStandedProdIdList(){
+		RouteProdSupplyRouteIdRequest request = new RouteProdSupplyRouteIdRequest();
+		//
+		request.setTenantId("changhong");
+		request.setRouteId("0000000000000254");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		StandedProdIdListResponse response = this.routeProdSupplyManageSV.queryStandedProdIdList(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

@@ -16,8 +16,11 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRespon
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchVo;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdVo;
 import com.ai.slp.route.dao.mapper.bo.RouteProdSupply;
 import com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog;
 import com.ai.slp.route.service.atom.interfaces.IRouteProdSupplyAtomSV;
@@ -163,6 +166,30 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			this.routeSupplyAddsLogAtomSV.insert(routeSupplyAddsLog);
 			
 		}
+		return response;
+	}
+	@Override
+	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request) {
+		StandedProdIdListResponse response = new StandedProdIdListResponse();
+		//
+		String routeId = request.getRouteId();
+		String tenantId = request.getTenantId();
+		
+		List<RouteProdSupply> routeProdSupplyList = this.routeProdSupplyAtomSV.queryStandedProdIdList(routeId, tenantId);
+		//
+		List<StandedProdIdVo> voList = new ArrayList<StandedProdIdVo>();
+		StandedProdIdVo standedProdIdVo = null;
+		//
+		for(RouteProdSupply routeProdSupply : routeProdSupplyList){
+			standedProdIdVo = new StandedProdIdVo();
+			//
+			standedProdIdVo.setStandedProdId(routeProdSupply.getStandedProdId());
+			//
+			voList.add(standedProdIdVo);
+		}
+		//
+		response.setList(voList);
+		//
 		return response;
 	}
 }

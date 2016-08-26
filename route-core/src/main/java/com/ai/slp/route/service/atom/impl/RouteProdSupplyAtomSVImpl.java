@@ -1,5 +1,7 @@
 package com.ai.slp.route.service.atom.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.PageInfo;
@@ -65,6 +67,18 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 	public void insert(RouteProdSupply routeProdSupply) {
 		MapperFactory.getRouteProdSupplyMapper().insert(routeProdSupply);
 		
+	}
+
+	@Override
+	public List<RouteProdSupply> queryStandedProdIdList(String routeId, String tenantId) {
+		RouteProdSupplyCriteria example = new RouteProdSupplyCriteria();
+		RouteProdSupplyCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andTenantIdEqualTo(tenantId);
+		//
+		criteria.andRouteIdEqualTo(routeId);
+		//
+		return MapperFactory.getRouteProdSupplyMapper().selectByExample(example);
 	}
 
 

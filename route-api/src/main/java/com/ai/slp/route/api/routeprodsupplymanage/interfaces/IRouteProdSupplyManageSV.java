@@ -20,8 +20,10 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddReques
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 @Path("/RouteProdSupplyManage")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
@@ -69,4 +71,18 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/addRouteProdSupplyList")
 	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request)throws BusinessException,SystemException;
+	/**
+	 * 根据仓库编号和租户编号查询当前仓库下的标准品编号列表
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-004
+     * @RestRelativeURL RouteProdSupplyManage/queryStandedProdIdList
+     */
+	@POST
+	@Path("/queryStandedProdIdList")
+	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request)throws BusinessException,SystemException;
 }

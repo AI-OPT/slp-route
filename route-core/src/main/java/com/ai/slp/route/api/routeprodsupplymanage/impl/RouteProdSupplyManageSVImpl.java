@@ -12,8 +12,10 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteProdSupplyBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -111,6 +113,46 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 			response.setResponseHeader(responseHeader);
 		} catch (Exception e) {
 			e.printStackTrace();
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		//
+		return response;
+	}
+
+	@Override
+	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request)
+			throws BusinessException, SystemException {
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getRouteId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"仓库id不能为空");
+		}
+		if(StringUtil.isBlank(request.getTenantId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"租户id不能为空");
+		}
+		//
+		StandedProdIdListResponse response = new StandedProdIdListResponse();
+		
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		try {
+			response = this.routeProdSupplyBusiSV.queryStandedProdIdList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (BusinessException e) {
+
+			responseHeader.setResultCode(e.getErrorCode());
+			responseHeader.setResultMessage(e.getErrorMessage());
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
 			//
