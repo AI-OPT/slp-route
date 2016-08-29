@@ -37,6 +37,7 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		if(!StringUtil.isBlank(routeProdSupply.getSupplyName())){
 			criteria.andSupplyNameLike("%"+routeProdSupply.getSupplyName()+"%");
 		}
+		example.setOrderByClause(" oper_time desc ");
 		if (null != pageNo  && null != pageSize) {
             example.setLimitStart((pageNo - 1) * pageSize);
             example.setLimitEnd(pageSize);

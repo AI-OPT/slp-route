@@ -23,6 +23,7 @@ public class RouteSupplyAddsLogAtomSVImpl implements IRouteSupplyAddsLogAtomSV {
 		if(!StringUtil.isBlank(routeSupplyAddsLog.getSupplyName())){
 			criteria.andSupplyNameLike("%"+routeSupplyAddsLog.getSupplyName()+"%");
 		}
+		example.setOrderByClause(" oper_time desc ");
 		if (null != pageNo  && null != pageSize) {
             example.setLimitStart((pageNo - 1) * pageSize);
             example.setLimitEnd(pageSize);

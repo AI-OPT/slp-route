@@ -40,6 +40,7 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 		if(!CollectionUtil.isEmpty(states)){
 			criteria.andStateIn(states);
 		}
+		example.setOrderByClause(" create_time desc ");
 		if (null != pageNo  && null != pageSize) {
             example.setLimitStart((pageNo - 1) * pageSize);
             example.setLimitEnd(pageSize);
