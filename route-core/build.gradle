@@ -13,7 +13,7 @@ dependencies {
             "org.springframework:spring-test:4.1.7.RELEASE",
             "junit:junit:4.12"
     )
-    compile 'com.ai.slp.common:cache:1.0-SNAPSHOT'
+    compile 'com.ai.platform.common:cache:1.0-SNAPSHOT'
     //地区
-    compile 'com.ai.slp.common:area:1.0-SNAPSHOT'
+    compile 'com.ai.platform.common:area:1.0-SNAPSHOT'
 }

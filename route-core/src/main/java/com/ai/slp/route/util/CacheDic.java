@@ -1,9 +1,9 @@
 package com.ai.slp.route.util;
 
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
-import com.ai.slp.common.api.cache.interfaces.ICacheSV;
-import com.ai.slp.common.api.cache.param.SysParam;
-import com.ai.slp.common.api.cache.param.SysParamSingleCond;
+import com.ai.platform.common.api.cache.interfaces.ICacheSV;
+import com.ai.platform.common.api.cache.param.SysParam;
+import com.ai.platform.common.api.cache.param.SysParamSingleCond;
 
 public class CacheDic {
 

@@ -24,10 +24,10 @@
 
 	<!-- <dubbo:consumer timeout="${dubbo.consoumer.timeout}" /> -->
 	
-	<dubbo:reference id="iCacheSV" interface="com.ai.slp.common.api.cache.interfaces.ICacheSV"/>
+	<dubbo:reference id="iCacheSV" interface="com.ai.platform.common.api.cache.interfaces.ICacheSV"/>
 	
 	<!-- 地区查询 -->
 	<dubbo:reference id="iGnAreaQuerySV"
-		interface="com.ai.slp.common.api.area.interfaces.IGnAreaQuerySV" />
+		interface="com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV" />
 	
 </beans>

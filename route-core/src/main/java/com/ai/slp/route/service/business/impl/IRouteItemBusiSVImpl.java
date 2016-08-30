@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
-import com.ai.slp.common.api.area.interfaces.IGnAreaQuerySV;
-import com.ai.slp.common.api.area.param.GnAreaVo;
+import com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV;
+import com.ai.platform.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routeitemmanage.param.AreaVo;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
