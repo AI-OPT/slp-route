@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -21,8 +22,11 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsa
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdVo;
+import com.ai.slp.route.constants.RouteConstant;
+import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.dao.mapper.bo.RouteProdSupply;
 import com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog;
+import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
 import com.ai.slp.route.service.atom.interfaces.IRouteProdSupplyAtomSV;
 import com.ai.slp.route.service.atom.interfaces.IRouteSupplyAddsLogAtomSV;
 import com.ai.slp.route.service.business.interfaces.IRouteProdSupplyBusiSV;
@@ -34,6 +38,8 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 	private IRouteProdSupplyAtomSV routeProdSupplyAtomSV;
 	@Autowired
 	private IRouteSupplyAddsLogAtomSV routeSupplyAddsLogAtomSV;
+	@Autowired
+	private IRouteAtomSV routeAtomSV;
 
 	@Override
 	public RouteProdSupplyPageSearchResponse queryPageSearch(RouteProdSupplyPageSearchRequest request) {
@@ -132,8 +138,12 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		//
 		RouteProdSupply routeProdSupply = null;
 		RouteSupplyAddsLog routeSupplyAddsLog = null;
+		String routeId = null;
 		//
 		for(RouteProdSupplyAddRequest addRequest : request.getRouteProdSupplyAddRequestList()){
+			//
+			routeId = addRequest.getRouteId();
+			//
 			routeProdSupply = new RouteProdSupply();
 			//
 			String supplyId = SequenceUtil.createSupplyId();
@@ -166,6 +176,14 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			this.routeSupplyAddsLogAtomSV.insert(routeSupplyAddsLog);
 			
 		}
+		//
+		if(!CollectionUtil.isEmpty(request.getRouteProdSupplyAddRequestList())){
+			Route route = new Route();
+			route.setRouteId(routeId);
+			route.setState(RouteConstant.Route.State.NORMAL);
+			this.routeAtomSV.update(route);
+		}
+		//
 		return response;
 	}
 	@Override
