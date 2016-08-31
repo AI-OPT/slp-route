@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -89,7 +91,7 @@ public interface IRouteProdSupplyManageSV {
 	@Path("/queryStandedProdIdList")
 	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request)throws BusinessException,SystemException;
 	/**
-	 * 
+	 * 根据商品编号查询仓库数量
 	 * @param request
 	 * @return
 	 * @throws BusinessException
@@ -104,7 +106,7 @@ public interface IRouteProdSupplyManageSV {
 	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request)throws BusinessException,SystemException;
 
 	/**
-	 * 
+	 * 根据商品编号查询商品的仓库列表
 	 * @param request
 	 * @return
 	 * @throws BusinessException
@@ -117,4 +119,18 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/queryStandedProdRouteList")
 	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request)throws BusinessException,SystemException;
+	/**
+	 * 修改商品成本价
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-007
+     * @RestRelativeURL RouteProdSupplyManage/updateCostPrice
+     */
+	@POST
+	@Path("/updateCostPrice")
+	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request)throws BusinessException,SystemException;
 }

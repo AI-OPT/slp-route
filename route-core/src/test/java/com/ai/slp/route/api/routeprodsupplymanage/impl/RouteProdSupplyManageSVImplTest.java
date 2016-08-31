@@ -13,6 +13,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -119,6 +122,34 @@ public class RouteProdSupplyManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		StandedProdRouteListResponse response = this.routeProdSupplyManageSV.queryStandedProdRouteList(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void updateCostPrice(){
+		CostPriceUpdateListRequest request = new CostPriceUpdateListRequest();
+		//request.setStandedProdId("100000000199");
+		List<CostPriceUpdateVo> voList = new ArrayList<CostPriceUpdateVo>();
+		//
+		CostPriceUpdateVo vo = new CostPriceUpdateVo();
+		vo.setRouteId("0000000000000254");
+		vo.setStandedProdId("100000000199");
+		vo.setTenantId("changhong");
+		vo.setCostPrice(12666l);
+		
+		CostPriceUpdateVo vo2 = new CostPriceUpdateVo();
+		vo2.setRouteId("0000000000000188");
+		vo2.setStandedProdId("100000000199");
+		vo2.setTenantId("changhong");
+		vo2.setCostPrice(12555l);
+		//
+		voList.add(vo);
+		voList.add(vo2);
+		//
+		request.setVoList(voList);
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		CostPriceUpdateResponse response = this.routeProdSupplyManageSV.updateCostPrice(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

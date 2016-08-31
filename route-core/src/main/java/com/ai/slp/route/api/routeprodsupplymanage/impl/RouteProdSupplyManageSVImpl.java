@@ -6,8 +6,11 @@ import org.springframework.stereotype.Component;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -209,6 +212,36 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 		//
 		try {
 			response = this.routeProdSupplyBusiSV.queryStandedProdRouteList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		return response;
+	}
+
+	@Override
+	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request)
+			throws BusinessException, SystemException {
+		CostPriceUpdateResponse response = new CostPriceUpdateResponse();
+		
+
+		ResponseHeader responseHeader = new ResponseHeader();
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "请求参数不能为空");
+		}
+		if(CollectionUtil.isEmpty(request.getVoList())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "请求参数集合不能为空");
+		}
+		//
+		try {
+			response = this.routeProdSupplyBusiSV.updateCostPrice(request);
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode("000000");
 			responseHeader.setResultMessage("成功");

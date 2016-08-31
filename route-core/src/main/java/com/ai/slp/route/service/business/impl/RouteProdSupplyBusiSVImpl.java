@@ -11,6 +11,9 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -251,6 +254,24 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		}
 		response.setVoList(voList);
 		//
+		return response;
+	}
+	@Override
+	@Transactional
+	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request) {
+		CostPriceUpdateResponse response = new CostPriceUpdateResponse();
+		
+		List<CostPriceUpdateVo> voList = request.getVoList();
+		//
+		for(CostPriceUpdateVo vo : voList){
+			String tenantId = vo.getTenantId();
+			String routeId = vo.getRouteId();
+			String standedProdId = vo.getStandedProdId();
+			Long costPrice = vo.getCostPrice();
+			//
+			this.routeProdSupplyAtomSV.updateCostPrice(tenantId, routeId, standedProdId, costPrice);
+		}
+		
 		return response;
 	}
 }

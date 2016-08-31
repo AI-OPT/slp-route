@@ -15,4 +15,5 @@ public interface IRouteProdSupplyAtomSV {
 	
 	public Integer queryRouteAmount(String standedProdId);
 	public List<RouteProdSupply> queryStandedProdRouteList(String standedProdId);
+	public void updateCostPrice(String tenantId,String routeId,String standedProdId,Long costPrice);
 }
