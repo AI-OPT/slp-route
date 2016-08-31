@@ -24,6 +24,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsa
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -107,6 +108,17 @@ public class RouteProdSupplyManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteAmountResponse response = this.routeProdSupplyManageSV.queryRouteAmount(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void queryStandedProdRouteList(){
+		StandedProdIdRequest request = new StandedProdIdRequest();
+		request.setStandedProdId("100000000199");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		StandedProdRouteListResponse response = this.routeProdSupplyManageSV.queryStandedProdRouteList(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

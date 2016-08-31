@@ -14,4 +14,5 @@ public interface IRouteProdSupplyAtomSV {
 	public List<RouteProdSupply> queryStandedProdIdList(String routeId,String tenantId);
 	
 	public Integer queryRouteAmount(String standedProdId);
+	public List<RouteProdSupply> queryStandedProdRouteList(String standedProdId);
 }

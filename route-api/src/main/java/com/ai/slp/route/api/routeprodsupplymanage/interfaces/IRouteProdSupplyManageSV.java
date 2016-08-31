@@ -26,6 +26,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsa
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
 @Path("/RouteProdSupplyManage")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
@@ -101,4 +102,19 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/queryRouteAmount")
 	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request)throws BusinessException,SystemException;
+
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-006
+     * @RestRelativeURL RouteProdSupplyManage/queryStandedProdRouteList
+     */
+	@POST
+	@Path("/queryStandedProdRouteList")
+	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request)throws BusinessException,SystemException;
 }

@@ -18,6 +18,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsa
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteProdSupplyBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -179,6 +180,35 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 		try {
 
 			response = this.routeProdSupplyBusiSV.queryRouteAmount(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		return response;
+	}
+
+	@Override
+	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request)
+			throws BusinessException, SystemException {
+		StandedProdRouteListResponse response = new StandedProdRouteListResponse();
+		
+		ResponseHeader responseHeader = new ResponseHeader();
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getStandedProdId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "商品id不能为空");
+		}
+		//
+		try {
+			response = this.routeProdSupplyBusiSV.queryStandedProdRouteList(request);
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode("000000");
 			responseHeader.setResultMessage("成功");

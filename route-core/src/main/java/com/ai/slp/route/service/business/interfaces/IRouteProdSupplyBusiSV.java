@@ -10,6 +10,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsa
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
 
 public interface IRouteProdSupplyBusiSV {
 	public RouteProdSupplyPageSearchResponse queryPageSearch(RouteProdSupplyPageSearchRequest request);
@@ -17,4 +18,5 @@ public interface IRouteProdSupplyBusiSV {
 	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request);
 	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request);
 	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request);
+	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request);
 }
