@@ -11,8 +11,10 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRoutePageSearchResponse;
 
 public interface IRouteProdSupplyBusiSV {
 	public RouteProdSupplyPageSearchResponse queryPageSearch(RouteProdSupplyPageSearchRequest request);
@@ -22,4 +24,5 @@ public interface IRouteProdSupplyBusiSV {
 	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request);
 	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request);
 	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request);
+	public StandedProdRoutePageSearchResponse queryStandedProdRoutePageSearch(StandedProdIdPageSearchRequest request);
 }

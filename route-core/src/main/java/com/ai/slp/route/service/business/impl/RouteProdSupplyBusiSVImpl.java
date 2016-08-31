@@ -25,9 +25,11 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRoutePageSearchResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteVo;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
@@ -272,6 +274,47 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			this.routeProdSupplyAtomSV.updateCostPrice(tenantId, routeId, standedProdId, costPrice);
 		}
 		
+		return response;
+	}
+	@Override
+	public StandedProdRoutePageSearchResponse queryStandedProdRoutePageSearch(StandedProdIdPageSearchRequest request) {
+		StandedProdRoutePageSearchResponse response = new StandedProdRoutePageSearchResponse();
+		//
+		String tenantId = request.getTenantId();
+		String standedProdId = request.getStandedProdId();
+		Integer pageNo = request.getPageNo();
+		Integer pageSize = request.getPageSize();
+		//
+		PageInfo<RouteProdSupply> pageInfo = this.routeProdSupplyAtomSV.queryStandedProdRoutePageSearch(tenantId, standedProdId, pageNo, pageSize);
+		PageInfo<StandedProdRouteVo> voPageInfo = new PageInfo<StandedProdRouteVo>();
+		//
+		voPageInfo.setCount(pageInfo.getCount());
+		voPageInfo.setPageCount(pageInfo.getPageCount());
+		voPageInfo.setPageNo(pageNo);
+		voPageInfo.setPageSize(pageSize);
+		//
+		List<StandedProdRouteVo> voList = new ArrayList<StandedProdRouteVo>();
+		StandedProdRouteVo vo = null;
+		for(RouteProdSupply routeProdSupplyVo : pageInfo.getResult()){
+			//
+			vo = new StandedProdRouteVo();
+			//
+			vo.setRouteId(routeProdSupplyVo.getRouteId());
+			Route route = this.routeAtomSV.findRouteInfo(routeProdSupplyVo.getRouteId());
+			//
+			if(null != route){
+				vo.setRouteName(route.getRouteName());
+			}
+			vo.setStandedProdId(routeProdSupplyVo.getStandedProdId());
+			vo.setTotalNum(routeProdSupplyVo.getTotalNum());
+			vo.setUsableNum(routeProdSupplyVo.getUsableNum());
+			vo.setSupplyName(routeProdSupplyVo.getSupplyName());
+			//
+			voList.add(vo);
+		}
+		voPageInfo.setResult(voList);
+		response.setPageInfo(voPageInfo);
+		//
 		return response;
 	}
 }

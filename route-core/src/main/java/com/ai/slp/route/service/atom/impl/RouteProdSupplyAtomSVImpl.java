@@ -117,5 +117,27 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		MapperFactory.getRouteProdSupplyMapper().updateByExampleSelective(record, example);
 	}
 
+	@Override
+	public PageInfo<RouteProdSupply> queryStandedProdRoutePageSearch(String tenantId, String standedProdId,Integer pageNo,Integer pageSize) {
+		RouteProdSupplyCriteria example = new RouteProdSupplyCriteria();
+		RouteProdSupplyCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andTenantIdEqualTo(tenantId);
+		criteria.andStandedProdIdEqualTo(standedProdId);
+		if(null != pageNo && null != pageSize){
+			 example.setLimitStart((pageNo - 1) * pageSize);
+	         example.setLimitEnd(pageSize);
+		}
+		PageInfo<RouteProdSupply> pageInfo = new PageInfo<RouteProdSupply>();
+		RouteProdSupplyMapper mapper = MapperFactory.getRouteProdSupplyMapper();
+		pageInfo.setResult(mapper.selectByExample(example));
+        pageInfo.setCount(mapper.countByExample(example));
+        pageInfo.setPageNo(pageNo);
+        pageInfo.setPageSize(pageSize);
+		//
+		return pageInfo;
+	
+	}
+
 
 }

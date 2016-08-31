@@ -27,8 +27,10 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRoutePageSearchResponse;
 @Path("/RouteProdSupplyManage")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
@@ -133,4 +135,20 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/updateCostPrice")
 	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request)throws BusinessException,SystemException;
+	/**
+	 * 根据商品编号查询商品的仓库列表-分页查询
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-007
+     * @RestRelativeURL RouteProdSupplyManage/queryStandedProdRoutePageSearch
+     */
+	@POST
+	@Path("/queryStandedProdRoutePageSearch")
+	public StandedProdRoutePageSearchResponse queryStandedProdRoutePageSearch(StandedProdIdPageSearchRequest request)throws BusinessException,SystemException;
+	
+	
 }

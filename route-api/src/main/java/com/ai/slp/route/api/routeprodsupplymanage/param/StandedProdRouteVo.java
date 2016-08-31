@@ -11,6 +11,13 @@ public class StandedProdRouteVo implements Serializable {
 	private String standedProdId;
 	private String routeId;
 	private String routeName;
+	private String supplyName;
+	public String getSupplyName() {
+		return supplyName;
+	}
+	public void setSupplyName(String supplyName) {
+		this.supplyName = supplyName;
+	}
 	private Long usableNum;
 	private Long totalNum;
 	public Long getUsableNum() {
