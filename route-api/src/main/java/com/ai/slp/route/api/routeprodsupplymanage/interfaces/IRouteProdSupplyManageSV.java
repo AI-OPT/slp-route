@@ -143,7 +143,7 @@ public interface IRouteProdSupplyManageSV {
 	 * @throws SystemException
 	 * @author zhangzd
 	 * @ApiDocMethod
-	 * @ApiCode RouteProdSupplyManage-007
+	 * @ApiCode RouteProdSupplyManage-008
      * @RestRelativeURL RouteProdSupplyManage/queryStandedProdRoutePageSearch
      */
 	@POST
