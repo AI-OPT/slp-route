@@ -244,6 +244,8 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			if(null != route){
 				vo.setRouteName(route.getRouteName());
 			}
+			vo.setUsableNum(routeProdSupply.getUsableNum());
+			vo.setTotalNum(routeProdSupply.getTotalNum());
 			//
 			voList.add(vo);
 		}
