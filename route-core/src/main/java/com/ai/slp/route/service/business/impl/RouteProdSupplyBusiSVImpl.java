@@ -11,6 +11,7 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -21,6 +22,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdVo;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
@@ -207,6 +209,18 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		}
 		//
 		response.setList(voList);
+		//
+		return response;
+	}
+	@Override
+	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request) {
+		//
+		RouteAmountResponse response = new RouteAmountResponse();
+		
+		String standedProdId = request.getStandedProdId();
+		Integer routeAmount = this.routeProdSupplyAtomSV.queryRouteAmount(standedProdId);
+		//
+		response.setRouteAmount(routeAmount);
 		//
 		return response;
 	}

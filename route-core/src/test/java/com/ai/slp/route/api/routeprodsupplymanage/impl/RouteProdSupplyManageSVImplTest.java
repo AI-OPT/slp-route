@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -22,6 +23,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -95,6 +97,16 @@ public class RouteProdSupplyManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		StandedProdIdListResponse response = this.routeProdSupplyManageSV.queryStandedProdIdList(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void queryRouteAmount(){
+		StandedProdIdRequest request = new StandedProdIdRequest();
+		request.setStandedProdId("1111");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		RouteAmountResponse response = this.routeProdSupplyManageSV.queryRouteAmount(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

@@ -82,5 +82,15 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		return MapperFactory.getRouteProdSupplyMapper().selectByExample(example);
 	}
 
+	@Override
+	public Integer queryRouteAmount(String standedProdId) {
+		RouteProdSupplyCriteria example = new RouteProdSupplyCriteria();
+		RouteProdSupplyCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andStandedProdIdEqualTo(standedProdId);
+		//
+		return MapperFactory.getRouteProdSupplyMapper().countByExample(example);
+	}
+
 
 }

@@ -8,6 +8,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
@@ -16,6 +17,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteProdSupplyBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -125,18 +127,18 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 	@Override
 	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request)
 			throws BusinessException, SystemException {
-		if(null == request){
-			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		if (null == request) {
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "请求参数不能为空");
 		}
-		if(StringUtil.isBlank(request.getRouteId())){
-			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"仓库id不能为空");
+		if (StringUtil.isBlank(request.getRouteId())) {
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "仓库id不能为空");
 		}
-		if(StringUtil.isBlank(request.getTenantId())){
-			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"租户id不能为空");
+		if (StringUtil.isBlank(request.getTenantId())) {
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "租户id不能为空");
 		}
 		//
 		StandedProdIdListResponse response = new StandedProdIdListResponse();
-		
+
 		ResponseHeader responseHeader = new ResponseHeader();
 		//
 		try {
@@ -159,6 +161,35 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 			response.setResponseHeader(responseHeader);
 		}
 		//
+		return response;
+	}
+
+	@Override
+	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request)
+			throws BusinessException, SystemException {
+		RouteAmountResponse response = new RouteAmountResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getStandedProdId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "商品id不能为空");
+		}
+		//
+		try {
+
+			response = this.routeProdSupplyBusiSV.queryRouteAmount(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
 		return response;
 	}
 

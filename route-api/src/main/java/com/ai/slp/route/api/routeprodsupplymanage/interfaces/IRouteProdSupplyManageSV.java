@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -24,6 +25,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyRouteIdRe
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyUpdateUsableNumResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdRequest;
 @Path("/RouteProdSupplyManage")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
@@ -85,4 +87,18 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/queryStandedProdIdList")
 	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request)throws BusinessException,SystemException;
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-005
+     * @RestRelativeURL RouteProdSupplyManage/queryRouteAmount
+     */
+	@POST
+	@Path("/queryRouteAmount")
+	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request)throws BusinessException,SystemException;
 }

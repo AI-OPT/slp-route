@@ -1,0 +1,21 @@
+package com.ai.slp.route.api.routeprodsupplymanage.param;
+
+import java.io.Serializable;
+
+public class StandedProdIdRequest implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String standedProdId;
+
+	public String getStandedProdId() {
+		return standedProdId;
+	}
+
+	public void setStandedProdId(String standedProdId) {
+		this.standedProdId = standedProdId;
+	}
+	
+
+}
