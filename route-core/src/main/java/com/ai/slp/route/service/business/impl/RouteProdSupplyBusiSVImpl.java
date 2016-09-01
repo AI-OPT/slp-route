@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.CollectionUtil;
@@ -31,6 +32,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdIdVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRoutePageSearchResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteVo;
+import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.dao.mapper.bo.RouteProdSupply;
@@ -116,6 +118,16 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		RouteProdSupply vo = this.routeProdSupplyAtomSV.getRouteProdSupplyByPrimaryKey(request.getSupplyId());
 		Long unsableNum = null == vo.getUsableNum()?0:vo.getUsableNum();
 		Long totalNum = null == vo.getTotalNum()?0:vo.getTotalNum();
+		
+		RouteProdSupply dbRouteProdSupply = this.routeProdSupplyAtomSV.getRouteProdSupplyByPrimaryKey(request.getSupplyId());
+		Integer dbTotalNum = 0;
+		if(null != dbRouteProdSupply){
+			dbTotalNum = Integer.parseInt(null == dbRouteProdSupply.getTotalNum()?"0":dbRouteProdSupply.getTotalNum().toString());
+			dbTotalNum+= dbTotalNum + Integer.parseInt(totalNum.toString());
+		}
+		if(dbTotalNum > 99999999){
+			throw new BusinessException(ExceptCodeConstant.ERROR,"供货数量已超出99999999总量");
+		}
 		//
 		RouteProdSupply routeProdSupply = new RouteProdSupply();
 		//

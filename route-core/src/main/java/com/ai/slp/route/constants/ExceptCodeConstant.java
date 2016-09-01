@@ -25,4 +25,8 @@ public class ExceptCodeConstant {
      * 未配置系统参数或未刷新缓存
      */
     public static final String NO_DATA_OR_CACAE_ERROR = "000003";
+    /**
+     * 失败返回码
+     */
+    public static final String ERROR = "999999";
 }
