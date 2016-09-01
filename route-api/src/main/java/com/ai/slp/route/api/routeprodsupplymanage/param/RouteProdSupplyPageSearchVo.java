@@ -17,6 +17,15 @@ public class RouteProdSupplyPageSearchVo extends BaseInfo implements Serializabl
 	private Long totalNum;
 	private Long usableNum;
 	private Long usedNum;
+	private String standedProdId;
+
+	public String getStandedProdId() {
+		return standedProdId;
+	}
+
+	public void setStandedProdId(String standedProdId) {
+		this.standedProdId = standedProdId;
+	}
 
 	public Integer getIndex() {
 		return index;

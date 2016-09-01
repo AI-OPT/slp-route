@@ -1,7 +1,10 @@
 package com.ai.slp.route.service.business.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -101,6 +104,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			vo.setTotalNum(routeProdSupplyVo.getTotalNum());
 			vo.setUsableNum(routeProdSupplyVo.getUsableNum());
 			vo.setUsedNum(routeProdSupplyVo.getUsedNum());
+			vo.setStandedProdId(routeProdSupplyVo.getStandedProdId());
 			//
 			voList.add(vo);
 		}
@@ -343,13 +347,18 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		List<ProductCatIdVo> voList = new ArrayList<ProductCatIdVo>();
 		ProductCatIdVo vo = null;
 		//
+		Map<String,String> hashMap = new HashMap<String,String>();
+		
 		for(RouteProdSupply routeProdSupply : routeProdSupplyList){
+			//
+			hashMap.put(routeProdSupply.getProductCatId(), routeProdSupply.getProductCatId());
 			vo = new ProductCatIdVo();
 			//
 			vo.setProductCatId(routeProdSupply.getProductCatId());
 			//
 			voList.add(vo);
 		}
+		Iterator iterator = hashMap.entrySet().iterator();
 		//
 		response.setVoList(voList);
 		//
