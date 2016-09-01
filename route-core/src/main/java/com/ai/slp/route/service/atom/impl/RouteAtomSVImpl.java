@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.dao.mapper.bo.RouteCriteria;
 import com.ai.slp.route.dao.mapper.factory.MapperFactory;
@@ -40,6 +41,8 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 		if(!CollectionUtil.isEmpty(states)){
 			criteria.andStateIn(states);
 		}
+		//如果仓库废弃就不显示 必传条件
+		criteria.andStateNotEqualTo(RouteConstant.Route.State.ABANDONED);
 		example.setOrderByClause(" create_time desc ");
 		if (null != pageNo  && null != pageSize) {
             example.setLimitStart((pageNo - 1) * pageSize);
