@@ -173,7 +173,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			routeProdSupply.setSupplyName(addRequest.getProdName());
 			routeProdSupply.setStandedProdId(addRequest.getProdId());
 			routeProdSupply.setRouteId(addRequest.getRouteId());
-			routeProdSupply.setProductCatId("");
+			routeProdSupply.setProductCatId(addRequest.getProdCatId());
 			routeProdSupply.setUsableNum(addRequest.getAmount().longValue());
 			routeProdSupply.setTotalNum(addRequest.getAmount().longValue());
 			routeProdSupply.setOperId(1l);
