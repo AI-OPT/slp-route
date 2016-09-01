@@ -29,7 +29,7 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 			criteria.andRouteIdEqualTo(routeProdSupply.getRouteId());
 		}
 		if(!StringUtil.isBlank(routeProdSupply.getStandedProdId())){
-			criteria.andStandedProdIdLike(routeProdSupply.getStandedProdId());
+			criteria.andStandedProdIdLike("%"+routeProdSupply.getStandedProdId()+"%");
 		}
 		if(!StringUtil.isBlank(routeProdSupply.getSupplyId())){
 			criteria.andSupplyIdLike("%"+routeProdSupply.getSupplyId()+"%");
