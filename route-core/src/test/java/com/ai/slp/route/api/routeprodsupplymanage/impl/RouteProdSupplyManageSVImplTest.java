@@ -16,6 +16,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyMan
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
+import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -166,6 +167,18 @@ public class RouteProdSupplyManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		StandedProdRoutePageSearchResponse response = this.routeProdSupplyManageSV.queryStandedProdRoutePageSearch(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void queryProductCatList(){
+		RouteProdSupplyRouteIdRequest request = new RouteProdSupplyRouteIdRequest();
+		//
+		request.setTenantId("changhong");
+		request.setRouteId("0000000000000304");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		ProductCatIdListResponse response = this.routeProdSupplyManageSV.queryProductCatList(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}
