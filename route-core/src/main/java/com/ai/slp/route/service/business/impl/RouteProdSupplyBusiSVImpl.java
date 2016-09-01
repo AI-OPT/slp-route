@@ -119,11 +119,10 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		Long unsableNum = null == vo.getUsableNum()?0:vo.getUsableNum();
 		Long totalNum = null == vo.getTotalNum()?0:vo.getTotalNum();
 		
-		RouteProdSupply dbRouteProdSupply = this.routeProdSupplyAtomSV.getRouteProdSupplyByPrimaryKey(request.getSupplyId());
 		Integer dbTotalNum = 0;
-		if(null != dbRouteProdSupply){
-			dbTotalNum = Integer.parseInt(null == dbRouteProdSupply.getTotalNum()?"0":dbRouteProdSupply.getTotalNum().toString());
-			dbTotalNum+= dbTotalNum + Integer.parseInt(totalNum.toString());
+		if(null != vo){
+			Integer requestUsableNum = Integer.parseInt(null == request.getUsableNum()?"0":request.getUsableNum().toString());
+			dbTotalNum = Integer.parseInt(totalNum.toString()) + requestUsableNum;
 		}
 		if(dbTotalNum > 99999999){
 			throw new BusinessException(ExceptCodeConstant.ERROR,"供货数量已超出99999999总量");
