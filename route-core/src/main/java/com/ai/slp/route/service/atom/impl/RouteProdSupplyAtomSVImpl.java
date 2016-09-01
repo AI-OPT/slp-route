@@ -139,5 +139,19 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 	
 	}
 
+	@Override
+	public List<RouteProdSupply> queryProductCatList(String routeId, String tenantId) {
+		RouteProdSupplyCriteria example = new RouteProdSupplyCriteria();
+		RouteProdSupplyCriteria.Criteria criteria = example.createCriteria();
+		//
+		
+		criteria.andTenantIdEqualTo(tenantId);
+		//
+		criteria.andRouteIdEqualTo(routeId);
+		example.isDistinct();
+		//
+		return MapperFactory.getRouteProdSupplyMapper().selectByExample(example);
+	}
+
 
 }

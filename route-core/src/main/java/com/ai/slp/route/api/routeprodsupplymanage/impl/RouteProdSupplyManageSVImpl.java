@@ -11,6 +11,7 @@ import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.interfaces.IRouteProdSupplyManageSV;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -294,6 +295,38 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 			response.setResponseHeader(responseHeader);
 		}
 		return response;
+	}
+
+	@Override
+	public ProductCatIdListResponse queryProductCatList(RouteProdSupplyRouteIdRequest request)
+			throws BusinessException, SystemException {
+		ProductCatIdListResponse response = new ProductCatIdListResponse();
+		//
+		//
+		ResponseHeader responseHeader = new ResponseHeader();
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getTenantId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL, "租户id不能为空");
+		}
+		
+		//
+		try {
+			response = this.routeProdSupplyBusiSV.queryProductCatList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		//
+		return response;	
 	}
 
 }

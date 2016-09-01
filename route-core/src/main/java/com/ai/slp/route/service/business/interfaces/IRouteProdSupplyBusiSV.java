@@ -2,6 +2,7 @@ package com.ai.slp.route.service.business.interfaces;
 
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -25,4 +26,5 @@ public interface IRouteProdSupplyBusiSV {
 	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request);
 	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request);
 	public StandedProdRoutePageSearchResponse queryStandedProdRoutePageSearch(StandedProdIdPageSearchRequest request);
+	public ProductCatIdListResponse queryProductCatList(RouteProdSupplyRouteIdRequest request);
 }

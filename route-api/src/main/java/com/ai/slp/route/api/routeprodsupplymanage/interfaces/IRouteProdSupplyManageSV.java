@@ -17,6 +17,7 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -149,6 +150,19 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/queryStandedProdRoutePageSearch")
 	public StandedProdRoutePageSearchResponse queryStandedProdRoutePageSearch(StandedProdIdPageSearchRequest request)throws BusinessException,SystemException;
-	
+	/**
+	 * 查询当前仓库下的产品类目信息-全量
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-009
+     * @RestRelativeURL RouteProdSupplyManage/queryProductCatList
+     */
+	@POST
+	@Path("/queryProductCatList")
+	public ProductCatIdListResponse queryProductCatList(RouteProdSupplyRouteIdRequest request)throws BusinessException,SystemException;
 	
 }

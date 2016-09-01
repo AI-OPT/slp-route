@@ -15,6 +15,8 @@ import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
+import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
@@ -320,6 +322,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			vo.setTotalNum(routeProdSupplyVo.getTotalNum());
 			vo.setUsableNum(routeProdSupplyVo.getUsableNum());
 			vo.setSupplyName(routeProdSupplyVo.getSupplyName());
+			vo.setSupplyId(routeProdSupplyVo.getSupplyId());
 			//
 			voList.add(vo);
 		}
@@ -327,5 +330,30 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		response.setPageInfo(voPageInfo);
 		//
 		return response;
+	}
+	@Override
+	public ProductCatIdListResponse queryProductCatList(RouteProdSupplyRouteIdRequest request) {
+		//
+		ProductCatIdListResponse response = new ProductCatIdListResponse();
+		//
+		String routeId = request.getRouteId();
+		String tenantId = request.getTenantId();
+		//
+		List<RouteProdSupply> routeProdSupplyList = this.routeProdSupplyAtomSV.queryProductCatList(routeId, tenantId);
+		List<ProductCatIdVo> voList = new ArrayList<ProductCatIdVo>();
+		ProductCatIdVo vo = null;
+		//
+		for(RouteProdSupply routeProdSupply : routeProdSupplyList){
+			vo = new ProductCatIdVo();
+			//
+			vo.setProductCatId(routeProdSupply.getProductCatId());
+			//
+			voList.add(vo);
+		}
+		//
+		response.setVoList(voList);
+		//
+		return response;
+		
 	}
 }
