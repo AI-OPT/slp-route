@@ -320,6 +320,7 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 			//
 			response.setResponseHeader(responseHeader);
 		} catch (Exception e) {
+			e.printStackTrace();
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
 			//

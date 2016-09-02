@@ -15,6 +15,7 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
@@ -351,14 +352,21 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		
 		for(RouteProdSupply routeProdSupply : routeProdSupplyList){
 			//
-			hashMap.put(routeProdSupply.getProductCatId(), routeProdSupply.getProductCatId());
+			if(!StringUtil.isBlank(routeProdSupply.getProductCatId())){
+				hashMap.put(routeProdSupply.getProductCatId(), routeProdSupply.getProductCatId());
+			}
+		}
+		//
+		Iterator iterator = hashMap.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry entry = (Map.Entry) iterator.next();
+			//
 			vo = new ProductCatIdVo();
 			//
-			vo.setProductCatId(routeProdSupply.getProductCatId());
+			vo.setProductCatId(entry.getValue().toString());
 			//
 			voList.add(vo);
 		}
-		Iterator iterator = hashMap.entrySet().iterator();
 		//
 		response.setVoList(voList);
 		//
