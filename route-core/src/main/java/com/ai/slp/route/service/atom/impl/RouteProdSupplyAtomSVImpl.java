@@ -103,7 +103,7 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 	}
 
 	@Override
-	public void updateCostPrice(String tenantId, String routeId, String standedProdId, Long costPrice) {
+	public void updateCostPrice(String tenantId, String routeId, String standedProdId, Long costPrice,String supplyId) {
 		//
 		RouteProdSupply record = new RouteProdSupply();
 		record.setCostPrice(costPrice);
@@ -113,6 +113,7 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		criteria.andTenantIdEqualTo(tenantId);
 		criteria.andRouteIdEqualTo(routeId);
 		criteria.andStandedProdIdEqualTo(standedProdId);
+		criteria.andSupplyIdEqualTo(supplyId);
 		//
 		MapperFactory.getRouteProdSupplyMapper().updateByExampleSelective(record, example);
 	}

@@ -10,10 +10,17 @@ public class CostPriceUpdateVo extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String supplyId;
 	private String standedProdId;
 	private String routeId;
 	private Long costPrice;
+	public String getSupplyId() {
+		return supplyId;
+	}
 
+	public void setSupplyId(String supplyId) {
+		this.supplyId = supplyId;
+	}
 	public String getStandedProdId() {
 		return standedProdId;
 	}

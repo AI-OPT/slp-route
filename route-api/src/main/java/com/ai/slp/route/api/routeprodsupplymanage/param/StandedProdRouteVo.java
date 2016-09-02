@@ -8,11 +8,18 @@ public class StandedProdRouteVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String tenantId;
 	private String standedProdId;
 	private String routeId;
 	private String routeName;
 	private String supplyName;
 	private String supplyId;
+	public String getTenantId() {
+		return tenantId;
+	}
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 	public String getSupplyId() {
 		return supplyId;
 	}

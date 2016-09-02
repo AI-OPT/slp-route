@@ -288,8 +288,9 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			String routeId = vo.getRouteId();
 			String standedProdId = vo.getStandedProdId();
 			Long costPrice = vo.getCostPrice();
+			String supplyId = vo.getSupplyId();
 			//
-			this.routeProdSupplyAtomSV.updateCostPrice(tenantId, routeId, standedProdId, costPrice);
+			this.routeProdSupplyAtomSV.updateCostPrice(tenantId, routeId, standedProdId, costPrice,supplyId);
 		}
 		
 		return response;
@@ -328,6 +329,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			vo.setUsableNum(routeProdSupplyVo.getUsableNum());
 			vo.setSupplyName(routeProdSupplyVo.getSupplyName());
 			vo.setSupplyId(routeProdSupplyVo.getSupplyId());
+			vo.setTenantId(routeProdSupplyVo.getTenantId());
 			//
 			voList.add(vo);
 		}

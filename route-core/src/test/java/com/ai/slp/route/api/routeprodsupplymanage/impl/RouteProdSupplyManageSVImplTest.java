@@ -137,17 +137,18 @@ public class RouteProdSupplyManageSVImplTest {
 		CostPriceUpdateVo vo = new CostPriceUpdateVo();
 		vo.setRouteId("0000000000000254");
 		vo.setStandedProdId("100000000199");
+		vo.setSupplyId("0000000000000277");
 		vo.setTenantId("changhong");
-		vo.setCostPrice(12666l);
+		vo.setCostPrice(12667l);
 		
-		CostPriceUpdateVo vo2 = new CostPriceUpdateVo();
-		vo2.setRouteId("0000000000000188");
-		vo2.setStandedProdId("100000000199");
-		vo2.setTenantId("changhong");
-		vo2.setCostPrice(12555l);
+//		CostPriceUpdateVo vo2 = new CostPriceUpdateVo();
+//		vo2.setRouteId("0000000000000188");
+//		vo2.setStandedProdId("100000000199");
+//		vo2.setTenantId("changhong");
+//		vo2.setCostPrice(12555l);
 		//
 		voList.add(vo);
-		voList.add(vo2);
+		//voList.add(vo2);
 		//
 		request.setVoList(voList);
 		//
