@@ -9,6 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routegroupmanage.interfaces.IRouteGroupManageSV;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
 import com.alibaba.fastjson.JSON;
@@ -30,6 +32,21 @@ public class RouteGroupManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteGroupPageSearchResponse response = this.routeGroupManageSV.queryPageSearch(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void insertRouteGroup(){
+		RouteGroupAddRequest request = new RouteGroupAddRequest();
+		//
+		request.setOperId(1l);
+		request.setRouteGroupId("0000000000000042");
+		request.setStandedProdId("1");
+		request.setTenantId("changhong");
+		request.setStandedProdName("超级产品");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		RouteGroupAddResponse response = this.routeGroupManageSV.insertRouteGroup(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

@@ -16,4 +16,6 @@ dependencies {
     compile 'com.ai.platform.common:cache:1.0-SNAPSHOT'
     //地区
     compile 'com.ai.platform.common:area:1.0-SNAPSHOT'
+    //配货组相关接口
+	compile 'com.ai.slp.product:product:1.1.0-SNAPSHOT'
 }

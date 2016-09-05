@@ -30,4 +30,8 @@
 	<dubbo:reference id="iGnAreaQuerySV"
 		interface="com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV" />
 	
+	<!-- 配货组相关 -->
+	<dubbo:reference id="productServerSV"
+		interface="com.ai.slp.product.api.product.interfaces.IProductServerSV" />	
+	
 </beans>

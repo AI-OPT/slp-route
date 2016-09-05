@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.slp.route.api.routegroupmanage.interfaces.IRouteGroupManageSV;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
@@ -48,6 +51,46 @@ public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
 			response.setResponseHeader(responseHeader);
 		}
 		//
+		return response;
+	}
+
+	@Override
+	public RouteGroupAddResponse insertRouteGroup(RouteGroupAddRequest request)
+			throws BusinessException, SystemException {
+		RouteGroupAddResponse response = new RouteGroupAddResponse();
+		//
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getStandedProdId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"标准品Id不能为空");
+		}
+		if(StringUtil.isBlank(request.getTenantId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"租户Id不能为空");
+		}
+		if(StringUtil.isBlank(request.getStandedProdName())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"标准品名称不能为空");
+		}
+		if(null == request.getOperId()){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"操作者编号不能为空");
+		}
+		//
+		try{
+			response = this.routeGroupBusiSV.insertRouteGroup(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		}catch(Exception e){
+			e.printStackTrace();
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
 		return response;
 	}
 

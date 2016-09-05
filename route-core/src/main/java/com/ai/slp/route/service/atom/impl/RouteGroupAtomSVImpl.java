@@ -43,5 +43,16 @@ public class RouteGroupAtomSVImpl implements IRouteGroupAtomSV {
 		return pageInfo;
 	}
 
+	@Override
+	public void insert(RouteGroup routeGroup) {
+		MapperFactory.getRouteGroupMapper().insertSelective(routeGroup);
+		
+	}
+
+	@Override
+	public RouteGroup findRouteGroup(String routeGroupId) {
+		return MapperFactory.getRouteGroupMapper().selectByPrimaryKey(routeGroupId);
+	}
+
 
 }

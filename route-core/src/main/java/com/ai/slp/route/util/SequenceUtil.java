@@ -7,7 +7,10 @@ public final class SequenceUtil {
     private static final String ROUTE$ROUTE_ID$SEQ = "ROUTE$ROUTE_ID$SEQ";
     private static final String ROUTE_SUPPLY_ADDS_LOG$SUPPLY_ADDS_LOG_ID$SEQ = "ROUTE_SUPPLY_ADDS_LOG$SUPPLY_ADDS_LOG_ID$SEQ";
     private static final String ROUTE_PROD_SUPPLY$SUPPLY_ID$SEQ = "ROUTE_PROD_SUPPLY$SUPPLY_ID$SEQ";
-
+    
+    private static final String ROUTE_GROUP$ROUTE_GROUP_ID$SEQ = "ROUTE_GROUP$ROUTE_GROUP_ID$SEQ";
+    private static final String ROUTE_ITEM$ROUTE_ITEM_ID$SEQ = "ROUTE_ITEM$ROUTE_ITEM_ID$SEQ";
+    
     public static String createRouteId() {
         return SeqUtil.getNewId(ROUTE$ROUTE_ID$SEQ, 16);
     }
@@ -17,4 +20,11 @@ public final class SequenceUtil {
     public static String createSupplyId() {
         return SeqUtil.getNewId(ROUTE_PROD_SUPPLY$SUPPLY_ID$SEQ, 16);
     }
+    public static String createRouteGroupId(){
+    	return SeqUtil.getNewId(ROUTE_GROUP$ROUTE_GROUP_ID$SEQ, 16);
+    }
+    public static String createRouteItemId(){
+    	return SeqUtil.getNewId(ROUTE_ITEM$ROUTE_ITEM_ID$SEQ, 16);
+    }
+    
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ai.slp.route.dao.interfaces.RouteGroupMapper" >
+<mapper namespace="com.ai.slp.route.dao.mapper.interfaces.RouteGroupMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.route.dao.mapper.bo.RouteGroup" >
     <id column="ROUTE_GROUP_ID" property="routeGroupId" jdbcType="VARCHAR" />
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />

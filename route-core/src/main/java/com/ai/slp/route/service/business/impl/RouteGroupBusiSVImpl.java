@@ -5,19 +5,40 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
+import com.ai.opt.sdk.util.CollectionUtil;
+import com.ai.opt.sdk.util.DateUtil;
+import com.ai.slp.product.api.product.interfaces.IProductServerSV;
+import com.ai.slp.product.api.product.param.RouteGroupSet;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchVo;
 import com.ai.slp.route.dao.mapper.bo.RouteGroup;
+import com.ai.slp.route.dao.mapper.bo.RouteItem;
+import com.ai.slp.route.dao.mapper.bo.RouteProdSupply;
+import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
 import com.ai.slp.route.service.atom.interfaces.IRouteGroupAtomSV;
+import com.ai.slp.route.service.atom.interfaces.IRouteItemAtomSV;
+import com.ai.slp.route.service.atom.interfaces.IRouteProdSupplyAtomSV;
 import com.ai.slp.route.service.business.interfaces.IRouteGroupBusiSV;
+import com.ai.slp.route.util.SequenceUtil;
+
 @Service
 public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 
 	@Autowired
 	private IRouteGroupAtomSV routeGroupAtomSV;
+	@Autowired
+	private IRouteItemAtomSV routeItemAtomSV;
+	@Autowired
+	private IRouteProdSupplyAtomSV routeProdSupplyAtomSV;
 
 	@Override
 	public RouteGroupPageSearchResponse queryPageSearch(RouteGroupPageSearchRequest request) {
@@ -42,7 +63,7 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		List<RouteGroupPageSearchVo> voList = new ArrayList<RouteGroupPageSearchVo>();
 		RouteGroupPageSearchVo vo = null;
 		//
-		for(RouteGroup routeGroupVo : pageInfo.getResult()){
+		for (RouteGroup routeGroupVo : pageInfo.getResult()) {
 			vo = new RouteGroupPageSearchVo();
 			//
 			vo.setTenantId(routeGroupVo.getTenantId());
@@ -61,4 +82,87 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		return response;
 	}
 
+	@Transactional
+	public RouteGroupAddResponse insertRouteGroup(RouteGroupAddRequest request) {
+		//
+		RouteGroupAddResponse response = new RouteGroupAddResponse();
+		//
+		String routeGroupId = request.getRouteGroupId();// SequenceUtil.createRouteGroupId();
+		String routeGroupName = request.getStandedProdName() + "-配货组";
+		Long operId = request.getOperId();
+		//
+		RouteGroup routeGroupDb = this.routeGroupAtomSV.findRouteGroup(routeGroupId);
+		//
+		if (null == routeGroupDb) {
+			RouteGroup routeGroup = new RouteGroup();
+			//
+			routeGroupId = SequenceUtil.createRouteGroupId();
+			//
+			routeGroup.setTenantId(request.getTenantId());
+			routeGroup.setRouteGroupId(routeGroupId);
+			routeGroup.setRouteGroupName(routeGroupName);
+			routeGroup.setOperId(operId);
+			routeGroup.setOperTime(DateUtil.getSysDate());
+			routeGroup.setRouteGroupType("C");
+			routeGroup.setState("1");
+			routeGroup.setSupplierId("-1");
+			//
+			this.routeGroupAtomSV.insert(routeGroup);
+		}
+
+		//
+		String standedProdId = request.getStandedProdId();
+		List<RouteProdSupply> routeProdSupplyList = this.routeProdSupplyAtomSV.queryStandedProdRouteList(standedProdId);
+		if(CollectionUtil.isEmpty(routeProdSupplyList)){
+			throw new BusinessException("999999","此商品下没有可供选择的仓库信息，请您将此商品添加到相应的仓库中");
+		}
+		RouteItem routeItem = null;
+		String routeItemId = null;
+		//
+		List<RouteItem> routeItemList = this.routeItemAtomSV.findRouteItemByRouteGroupId(routeGroupId);
+		//
+		for (RouteProdSupply routeProdSupply : routeProdSupplyList) {
+			//
+			routeItemId = SequenceUtil.createRouteItemId();
+			//
+			routeItem = new RouteItem();
+			routeItem.setOperId(operId);
+			routeItem.setOperTime(DateUtil.getSysDate());
+			routeItem.setRouteGroupId(routeGroupId);
+			routeItem.setRouteId(routeProdSupply.getRouteId());
+			routeItem.setState("1");
+			routeItem.setRouteItemId(routeItemId);
+			//
+			boolean flag = this.routeIdInList(routeProdSupply.getRouteId(), routeItemList);
+			if (flag == false) {
+				//
+				this.routeItemAtomSV.insert(routeItem);
+			}
+		}
+		//
+		RouteGroupSet routeGroupSet = new RouteGroupSet();
+		routeGroupSet.setOperId(operId);
+		routeGroupSet.setProdId(standedProdId);
+		routeGroupSet.setRouteGroupId(routeGroupId);
+		routeGroupSet.setSupplierId("-1");
+		routeGroupSet.setTenantId(request.getTenantId());
+		//
+		DubboConsumerFactory.getService(IProductServerSV.class).changeRouteGroup(routeGroupSet);
+		//
+		response.setRouteGroupId(routeGroupId);
+		//
+		return response;
+	}
+    
+	public boolean routeIdInList(String routeId, List<RouteItem> routeItemList) {
+		boolean flag = false;
+		for (RouteItem routeItem : routeItemList) {
+			if (routeId == routeItem.getRouteId() || routeId.equals(routeItem.getRouteId())) {
+				flag = true;
+				break;
+			}
+		}
+		//
+		return flag;
+	}
 }

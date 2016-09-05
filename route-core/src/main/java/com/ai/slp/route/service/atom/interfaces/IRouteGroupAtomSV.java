@@ -5,4 +5,6 @@ import com.ai.slp.route.dao.mapper.bo.RouteGroup;
 
 public interface IRouteGroupAtomSV {
 	public PageInfo<RouteGroup> queryPageInfo(RouteGroup routeGroup,Integer pageNo,Integer pageSize);
+	public void insert(RouteGroup routeGroup);
+	public RouteGroup findRouteGroup(String routeGroupId);
 }

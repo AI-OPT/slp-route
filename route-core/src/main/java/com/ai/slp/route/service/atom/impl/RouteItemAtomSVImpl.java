@@ -1,5 +1,7 @@
 package com.ai.slp.route.service.atom.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.PageInfo;
@@ -40,6 +42,23 @@ public class RouteItemAtomSVImpl implements IRouteItemAtomSV {
 	@Override
 	public void deleteByPrimaryKey(String routeItemId) {
 		MapperFactory.getRouteItemMapper().deleteByPrimaryKey(routeItemId);
+	}
+
+	@Override
+	public void insert(RouteItem routeItem) {
+		MapperFactory.getRouteItemMapper().insertSelective(routeItem);
+		
+	}
+
+	@Override
+	public List<RouteItem> findRouteItemByRouteGroupId(String routeGroupId) {
+		RouteItemCriteria example = new RouteItemCriteria();
+		RouteItemCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andRouteGroupIdEqualTo(routeGroupId);
+		//
+		return MapperFactory.getRouteItemMapper().selectByExample(example);
+		
 	}
 
 }
