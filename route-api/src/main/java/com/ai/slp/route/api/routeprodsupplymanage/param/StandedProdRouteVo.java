@@ -14,6 +14,14 @@ public class StandedProdRouteVo implements Serializable {
 	private String routeName;
 	private String supplyName;
 	private String supplyId;
+	private Long costPrice;
+	
+	public Long getCostPrice() {
+		return costPrice;
+	}
+	public void setCostPrice(Long costPrice) {
+		this.costPrice = costPrice;
+	}
 	public String getTenantId() {
 		return tenantId;
 	}

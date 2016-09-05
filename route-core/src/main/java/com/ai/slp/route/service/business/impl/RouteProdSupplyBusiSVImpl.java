@@ -330,6 +330,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			vo.setSupplyName(routeProdSupplyVo.getSupplyName());
 			vo.setSupplyId(routeProdSupplyVo.getSupplyId());
 			vo.setTenantId(routeProdSupplyVo.getTenantId());
+			vo.setCostPrice(routeProdSupplyVo.getCostPrice());
 			//
 			voList.add(vo);
 		}
