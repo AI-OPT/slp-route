@@ -13,9 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.slp.product.api.productcat.interfaces.IProductCatSV;
+import com.ai.slp.product.api.productcat.param.ProductCatInfo;
+import com.ai.slp.product.api.productcat.param.ProductCatUniqueReq;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
@@ -360,6 +364,8 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			}
 		}
 		//
+		ProductCatInfo productCatInfo = null;
+		//
 		Iterator iterator = hashMap.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry entry = (Map.Entry) iterator.next();
@@ -367,6 +373,15 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 			vo = new ProductCatIdVo();
 			//
 			vo.setProductCatId(entry.getValue().toString());
+			//
+			ProductCatUniqueReq req = new ProductCatUniqueReq();
+			//
+			req.setProductCatId(entry.getValue().toString());
+			req.setTenantId(request.getTenantId());
+			//
+			productCatInfo = new ProductCatInfo();
+			productCatInfo = DubboConsumerFactory.getService(IProductCatSV.class).queryByCatId(req);
+			vo.setProductCatName(productCatInfo.getProductCatName());
 			//
 			voList.add(vo);
 		}

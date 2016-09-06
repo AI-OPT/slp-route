@@ -32,6 +32,10 @@
 	
 	<!-- 配货组相关 -->
 	<dubbo:reference id="productServerSV"
-		interface="com.ai.slp.product.api.product.interfaces.IProductServerSV" />	
+		interface="com.ai.slp.product.api.product.interfaces.IProductServerSV" />
+		
+	<!-- 商品类目相关 -->
+	<dubbo:reference id="productCatSV"
+		interface="com.ai.slp.product.api.productcat.interfaces.IProductCatSV" />
 	
 </beans>

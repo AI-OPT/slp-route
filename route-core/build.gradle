@@ -18,4 +18,6 @@ dependencies {
     compile 'com.ai.platform.common:area:1.0-SNAPSHOT'
     //配货组相关接口
 	compile 'com.ai.slp.product:product:1.1.0-SNAPSHOT'
+	//查询商品类目
+	compile 'com.ai.slp.product:productcat:1.0-SNAPSHOT'
 }
