@@ -14,6 +14,16 @@ public class RouteGroupAddRequest extends BaseInfo implements Serializable {
 	private String standedProdName;
 	private String routeGroupId;
 	private Long operId; 
+	private String productId;
+	
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
 	public Long getOperId() {
 		return operId;
 	}

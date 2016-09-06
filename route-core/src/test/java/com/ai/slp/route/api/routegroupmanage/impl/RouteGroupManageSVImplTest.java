@@ -41,7 +41,7 @@ public class RouteGroupManageSVImplTest {
 		//
 		request.setOperId(1l);
 		request.setRouteGroupId("0000000000000042");
-		request.setStandedProdId("1");
+		request.setStandedProdId("100000000178");
 		request.setTenantId("changhong");
 		request.setStandedProdName("超级产品");
 		//

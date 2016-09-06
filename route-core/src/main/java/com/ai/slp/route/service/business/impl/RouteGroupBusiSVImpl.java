@@ -142,7 +142,7 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		//
 		RouteGroupSet routeGroupSet = new RouteGroupSet();
 		routeGroupSet.setOperId(operId);
-		routeGroupSet.setProdId(standedProdId);
+		routeGroupSet.setProdId(request.getProductId());
 		routeGroupSet.setRouteGroupId(routeGroupId);
 		routeGroupSet.setSupplierId("-1");
 		routeGroupSet.setTenantId(request.getTenantId());
