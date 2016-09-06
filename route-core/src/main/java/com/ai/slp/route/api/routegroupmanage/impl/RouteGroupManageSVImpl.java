@@ -85,7 +85,7 @@ public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
 			//
 			response.setResponseHeader(responseHeader);
 		}catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
 			//
