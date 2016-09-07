@@ -14,6 +14,8 @@ import com.ai.platform.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddVo;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteByRouteItemIdRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -104,6 +106,19 @@ public class RouteTargetAreaBusiSVImpl implements IRouteTargetAreaBusiSV {
 			this.routeTargetAreaAtomSV.insertSelective(routeTargetArea);
 		}
 		//
+		return response;
+	}
+
+	@Override
+	@Transactional
+	public AreaDeleteResponse deleteByRouteItemId(AreaDeleteByRouteItemIdRequest request) {
+		AreaDeleteResponse response = new AreaDeleteResponse();
+		//
+		String tenantId = request.getTenantId();
+		String routeItemId = request.getRouteItemId();
+		//
+		this.routeTargetAreaAtomSV.delete(tenantId, routeItemId);
+		
 		return response;
 	}
 

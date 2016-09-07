@@ -9,6 +9,8 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.route.api.routetargetarea.interfaces.IRouteTargetAreaSV;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteByRouteItemIdRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -69,6 +71,29 @@ public class RouteTargetAreaSVImpl implements IRouteTargetAreaSV {
 		try{
 			
 			response = this.routeTargetAreaBusiSV.addTargetAreaToList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			response.setResponseHeader(responseHeader);
+
+		}catch(Exception e){
+			e.printStackTrace();
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			response.setResponseHeader(responseHeader);
+		}
+		return response;
+	}
+	@Override
+	public AreaDeleteResponse deleteByRouteItemId(AreaDeleteByRouteItemIdRequest request)
+			throws BusinessException, SystemException {
+		AreaDeleteResponse response = new AreaDeleteResponse();
+		
+		ResponseHeader responseHeader = new ResponseHeader();
+		
+		try{
+			
+			response = this.routeTargetAreaBusiSV.deleteByRouteItemId(request);
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode("000000");
 			responseHeader.setResultMessage("成功");

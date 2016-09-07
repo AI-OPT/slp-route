@@ -15,6 +15,8 @@ import com.ai.slp.route.api.routetargetarea.interfaces.IRouteTargetAreaSV;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddVo;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteByRouteItemIdRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -84,6 +86,20 @@ public class RouteTargetAreaSVImplTest {
 		log.info("request:"+JSON.toJSONString(request));
 		
 		AreaAddListResponse response = this.routeTargetAreaSV.addTargetAreaToList(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void deleteByRouteItemId(){
+		AreaDeleteByRouteItemIdRequest request = new AreaDeleteByRouteItemIdRequest();
+		//
+		request.setTenantId("changhong");
+		request.setRouteItemId("90007");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		
+		AreaDeleteResponse response = this.routeTargetAreaSV.deleteByRouteItemId(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

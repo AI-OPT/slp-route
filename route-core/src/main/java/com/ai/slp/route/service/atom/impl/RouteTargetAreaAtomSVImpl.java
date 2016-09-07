@@ -62,4 +62,15 @@ public class RouteTargetAreaAtomSVImpl implements IRouteTargetAreaAtomSV {
 		
 	}
 
+	@Override
+	public void delete(String tenantId, String routeItemId) {
+		RouteTargetAreaCriteria example = new RouteTargetAreaCriteria();
+		RouteTargetAreaCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andTenantIdEqualTo(tenantId);
+		criteria.andRouteItemIdEqualTo(routeItemId);
+		//
+		MapperFactory.getRouteTargetAreaMapper().deleteByExample(example);
+	}
+
 }
