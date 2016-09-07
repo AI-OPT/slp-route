@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV;
 import com.ai.platform.common.api.area.param.GnAreaVo;
+import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdVo;
@@ -29,6 +30,33 @@ public class RouteTargetAreaBusiSVImpl implements IRouteTargetAreaBusiSV {
 		String routeItemId = request.getRouteItemId();
 		//
 		List<RouteTargetArea> routeTargetAreaList = this.routeTargetAreaAtomSV.queryAreaListForRouteItemId(tenantId, routeItemId);
+		List<AreaQueryByRouteItemIdVo> voList = new ArrayList<AreaQueryByRouteItemIdVo>();
+		AreaQueryByRouteItemIdVo vo = null;
+		//
+		for(RouteTargetArea routeTargetArea : routeTargetAreaList){
+			vo = new AreaQueryByRouteItemIdVo();
+			//
+			vo.setAreaCode(routeTargetArea.getProvCode().toString());
+			GnAreaVo gnAreaVo = DubboConsumerFactory.getService(IGnAreaQuerySV.class).queryGnArea(routeTargetArea.getProvCode().toString());
+			vo.setAreaName(null != gnAreaVo?gnAreaVo.getAreaName():"");
+			//
+			voList.add(vo);
+			
+		}
+		//
+		response.setVoList(voList);
+		//
+		return response;
+	}
+
+	@Override
+	public AreaQueryByRouteItemIdResponse queryAreaListByRouteItemIdList(AreaQueryByRouteItemIdListRequest request) {
+		AreaQueryByRouteItemIdResponse response = new AreaQueryByRouteItemIdResponse();
+		//
+		String tenantId = request.getTenantId();
+		List<String> routeItemIds = request.getRouteItemIdList();
+		//
+		List<RouteTargetArea> routeTargetAreaList = this.routeTargetAreaAtomSV.queryAreaListByRouteItemIdList(tenantId, routeItemIds);
 		List<AreaQueryByRouteItemIdVo> voList = new ArrayList<AreaQueryByRouteItemIdVo>();
 		AreaQueryByRouteItemIdVo vo = null;
 		//

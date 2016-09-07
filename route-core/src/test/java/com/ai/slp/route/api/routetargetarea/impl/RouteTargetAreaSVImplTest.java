@@ -1,5 +1,8 @@
 package com.ai.slp.route.api.routetargetarea.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -9,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routetargetarea.interfaces.IRouteTargetAreaSV;
+import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
 import com.alibaba.fastjson.JSON;
@@ -29,6 +33,22 @@ public class RouteTargetAreaSVImplTest {
 		log.info("request:"+JSON.toJSONString(request));
 		
 		AreaQueryByRouteItemIdResponse response = this.routeTargetAreaSV.queryAreaListByRouteItemId(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void queryAreaListByRouteItemIdList(){
+		AreaQueryByRouteItemIdListRequest request  = new AreaQueryByRouteItemIdListRequest();
+		//
+		request.setTenantId("changhong");
+		List<String> routeItemIdList = new ArrayList<String>();
+		routeItemIdList.add("90006");
+		request.setRouteItemIdList(routeItemIdList);
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		
+		AreaQueryByRouteItemIdResponse response = this.routeTargetAreaSV.queryAreaListByRouteItemIdList(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}
