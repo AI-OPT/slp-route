@@ -34,4 +34,15 @@ public class RouteTargetAreaAtomSVImpl implements IRouteTargetAreaAtomSV {
 		return MapperFactory.getRouteTargetAreaMapper().selectByExample(example);
 	}
 
+	@Override
+	public List<RouteTargetArea> queryAreaListForRouteItemId(String tenantId, String routeItemId) {
+		RouteTargetAreaCriteria example = new RouteTargetAreaCriteria();
+		RouteTargetAreaCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andTenantIdEqualTo(tenantId);
+		criteria.andRouteItemIdEqualTo(routeItemId);
+		//
+		return MapperFactory.getRouteTargetAreaMapper().selectByExample(example);
+	}
+
 }
