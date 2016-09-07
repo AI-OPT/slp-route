@@ -7,6 +7,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.route.api.routetargetarea.interfaces.IRouteTargetAreaSV;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -52,6 +54,28 @@ public class RouteTargetAreaSVImpl implements IRouteTargetAreaSV {
 			response.setResponseHeader(responseHeader);
 
 		}catch(Exception e){
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			response.setResponseHeader(responseHeader);
+		}
+		return response;
+	}
+	@Override
+	public AreaAddListResponse addTargetAreaToList(AreaAddListRequest request)
+			throws BusinessException, SystemException {
+		AreaAddListResponse response = new AreaAddListResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		
+		try{
+			
+			response = this.routeTargetAreaBusiSV.addTargetAreaToList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			response.setResponseHeader(responseHeader);
+
+		}catch(Exception e){
+			e.printStackTrace();
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
 			response.setResponseHeader(responseHeader);

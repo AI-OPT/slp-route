@@ -11,6 +11,8 @@ public final class SequenceUtil {
     private static final String ROUTE_GROUP$ROUTE_GROUP_ID$SEQ = "ROUTE_GROUP$ROUTE_GROUP_ID$SEQ";
     private static final String ROUTE_ITEM$ROUTE_ITEM_ID$SEQ = "ROUTE_ITEM$ROUTE_ITEM_ID$SEQ";
     
+    private static final String ROUTE_TARGET_AREA$ROUTE_AREA_ID$SEQ = "ROUTE_TARGET_AREA$ROUTE_AREA_ID$SEQ";
+    
     public static String createRouteId() {
         return SeqUtil.getNewId(ROUTE$ROUTE_ID$SEQ, 16);
     }
@@ -27,4 +29,7 @@ public final class SequenceUtil {
     	return SeqUtil.getNewId(ROUTE_ITEM$ROUTE_ITEM_ID$SEQ, 16);
     }
     
+    public static String createRouteAreaId(){
+    	return SeqUtil.getNewId(ROUTE_TARGET_AREA$ROUTE_AREA_ID$SEQ, 12);
+    }
 }

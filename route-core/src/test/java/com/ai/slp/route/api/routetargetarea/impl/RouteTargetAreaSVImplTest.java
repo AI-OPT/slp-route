@@ -12,6 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routetargetarea.interfaces.IRouteTargetAreaSV;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddVo;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -49,6 +52,38 @@ public class RouteTargetAreaSVImplTest {
 		log.info("request:"+JSON.toJSONString(request));
 		
 		AreaQueryByRouteItemIdResponse response = this.routeTargetAreaSV.queryAreaListByRouteItemIdList(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void addTargetAreaToList(){
+		AreaAddListRequest request = new AreaAddListRequest();
+		//
+		List<AreaAddVo> voList = new ArrayList<AreaAddVo>();
+		//
+		AreaAddVo vo = new AreaAddVo();
+		vo.setOperId("1");
+		vo.setProvCode("1001");
+		vo.setRouteItemId("90007");
+		vo.setState("1");
+		vo.setTenantId("changhong");
+		//
+		AreaAddVo vo2 = new AreaAddVo();
+		vo2.setOperId("1");
+		vo2.setProvCode("1002");
+		vo2.setRouteItemId("90007");
+		vo2.setState("1");
+		vo2.setTenantId("changhong");
+		//
+		voList.add(vo);
+		voList.add(vo2);
+		//
+		request.setVoList(voList);
+
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		
+		AreaAddListResponse response = this.routeTargetAreaSV.addTargetAreaToList(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

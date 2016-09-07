@@ -8,6 +8,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -50,4 +52,18 @@ public interface IRouteTargetAreaSV {
 	@POST
 	@Path("/queryAreaListByRouteItemIdList")
 	public AreaQueryByRouteItemIdResponse queryAreaListByRouteItemIdList(AreaQueryByRouteItemIdListRequest request) throws BusinessException, SystemException;
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteTargetArea-003
+     * @RestRelativeURL RouteTargetArea/addTargetAreaToList
+     */
+	@POST
+	@Path("/addTargetAreaToList")
+	public AreaAddListResponse addTargetAreaToList(AreaAddListRequest request) throws BusinessException, SystemException;
 }

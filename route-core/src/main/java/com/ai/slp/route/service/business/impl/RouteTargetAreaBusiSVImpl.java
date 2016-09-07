@@ -5,10 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV;
 import com.ai.platform.common.api.area.param.GnAreaVo;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
+import com.ai.slp.route.api.routetargetarea.param.AreaAddVo;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdResponse;
@@ -16,6 +21,7 @@ import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdVo;
 import com.ai.slp.route.dao.mapper.bo.RouteTargetArea;
 import com.ai.slp.route.service.atom.interfaces.IRouteTargetAreaAtomSV;
 import com.ai.slp.route.service.business.interfaces.IRouteTargetAreaBusiSV;
+import com.ai.slp.route.util.SequenceUtil;
 @Service
 public class RouteTargetAreaBusiSVImpl implements IRouteTargetAreaBusiSV {
 
@@ -72,6 +78,31 @@ public class RouteTargetAreaBusiSVImpl implements IRouteTargetAreaBusiSV {
 		}
 		//
 		response.setVoList(voList);
+		//
+		return response;
+	}
+
+	@Override
+	@Transactional
+	public AreaAddListResponse addTargetAreaToList(AreaAddListRequest request) {
+		AreaAddListResponse response  = new AreaAddListResponse();
+		//
+		List<AreaAddVo> voList = request.getVoList();
+		//
+		RouteTargetArea routeTargetArea = null;
+		//
+		for(AreaAddVo areaAddVo : voList){
+			routeTargetArea = new RouteTargetArea();
+			//
+			routeTargetArea.setTenantId(areaAddVo.getTenantId());
+			routeTargetArea.setRouteAreaId(SequenceUtil.createRouteAreaId());
+			routeTargetArea.setRouteItemId(areaAddVo.getRouteItemId());
+			routeTargetArea.setProvCode(Integer.parseInt(areaAddVo.getProvCode()));
+			routeTargetArea.setOperId(areaAddVo.getOperId());
+			routeTargetArea.setOperTime(DateUtil.getSysDate());
+			//
+			this.routeTargetAreaAtomSV.insertSelective(routeTargetArea);
+		}
 		//
 		return response;
 	}

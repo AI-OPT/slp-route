@@ -56,4 +56,10 @@ public class RouteTargetAreaAtomSVImpl implements IRouteTargetAreaAtomSV {
 		return MapperFactory.getRouteTargetAreaMapper().selectByExample(example);
 	}
 
+	@Override
+	public void insertSelective(RouteTargetArea routeTargetArea) {
+		MapperFactory.getRouteTargetAreaMapper().insertSelective(routeTargetArea);
+		
+	}
+
 }
