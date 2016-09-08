@@ -9,7 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.route.api.routeitemmanage.interfaces.IRouteItemManageSV;
+import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdQueryRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemListResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
 import com.alibaba.fastjson.JSON;
 
@@ -27,6 +29,14 @@ public class RouteItemManageSVImplTest {
 		request.setRouteGroupId("12345");
 		log.info("request:"+JSON.toJSONString(request));
 		RouteItemPageSearchResponse response = this.routeItemManageSV.queryPageInfo(request);
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void queryRouteItemList(){
+		RouteGroupIdQueryRequest request = new RouteGroupIdQueryRequest();
+		request.setRouteGroupId("12345");
+		log.info("request:"+JSON.toJSONString(request));
+		RouteItemListResponse response = this.routeItemManageSV.queryRouteItemList(request);
 		log.info("response:"+JSON.toJSONString(response));
 	}
 

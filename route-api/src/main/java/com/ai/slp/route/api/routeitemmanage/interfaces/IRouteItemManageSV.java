@@ -8,7 +8,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdQueryRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemListResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
 /**
  * 
@@ -35,4 +37,18 @@ public interface IRouteItemManageSV {
 	@POST
 	@Path("/queryPageInfo")
 	public RouteItemPageSearchResponse queryPageInfo(RouteGroupIdRequest request)throws BusinessException,SystemException;
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteItemManage-002
+	 * @RestRelativeURL RouteManage/queryRouteItemList
+     */
+	@POST
+	@Path("/queryRouteItemList")
+	public RouteItemListResponse queryRouteItemList(RouteGroupIdQueryRequest request)throws BusinessException,SystemException;
 }

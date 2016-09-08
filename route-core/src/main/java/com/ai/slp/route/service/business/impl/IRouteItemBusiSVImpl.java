@@ -11,9 +11,12 @@ import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV;
 import com.ai.platform.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routeitemmanage.param.AreaVo;
+import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdQueryRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemListResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemResponse;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemVo;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.dao.mapper.bo.RouteItem;
 import com.ai.slp.route.dao.mapper.bo.RouteTargetArea;
@@ -83,6 +86,29 @@ public class IRouteItemBusiSVImpl implements IRouteItemBusiSV {
 		//
 		pageInfoVo.setResult(voList);
 		response.setPageInfo(pageInfoVo);
+		//
+		return response;
+	}
+
+	@Override
+	public RouteItemListResponse queryRouteItemList(RouteGroupIdQueryRequest request) {
+		RouteItemListResponse response = new RouteItemListResponse();
+		String routeGroupId = request.getRouteGroupId();
+		//
+		List<RouteItem> routeItemList = this.routeItemAtomSV.findRouteItemByRouteGroupId(routeGroupId);
+		List<RouteItemVo> voList = new ArrayList<RouteItemVo>();
+		//
+		RouteItemVo vo = null;
+		for(RouteItem routeItem : routeItemList){
+			vo = new RouteItemVo();
+			//
+			vo.setRouteGroupId(routeItem.getRouteGroupId());
+			vo.setRouteId(routeItem.getRouteId());
+			vo.setRouteItemId(routeItem.getRouteItemId());
+			//
+			voList.add(vo);
+		}
+		response.setVoList(voList);
 		//
 		return response;
 	}
