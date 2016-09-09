@@ -12,5 +12,6 @@ public interface IRouteTargetAreaAtomSV {
 	public List<RouteTargetArea> queryAreaListByRouteItemIdList(String tenantId,List<String> routeItemIds);
 	public void insertSelective(RouteTargetArea routeTargetArea);
 	public void delete(String tenantId,String routeItemId);
+	public void deleteByRouteAreaId(String tenantId,String routeAreaId);
 	
 }

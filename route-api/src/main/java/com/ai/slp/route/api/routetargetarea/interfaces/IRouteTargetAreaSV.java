@@ -10,6 +10,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaAddListResponse;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteByRouteAreaIdRequest;
+import com.ai.slp.route.api.routetargetarea.param.AreaDeleteByRouteAreaIdResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaDeleteByRouteItemIdRequest;
 import com.ai.slp.route.api.routetargetarea.param.AreaDeleteResponse;
 import com.ai.slp.route.api.routetargetarea.param.AreaQueryByRouteItemIdListRequest;
@@ -41,7 +43,7 @@ public interface IRouteTargetAreaSV {
 	@Path("/queryAreaListByRouteItemId")
 	public AreaQueryByRouteItemIdResponse queryAreaListByRouteItemId(AreaQueryByRouteItemIdRequest request) throws BusinessException, SystemException;
 	/**
-	 * 
+	 * 通过routeItemId列表信息查询区域列表
 	 * @param request
 	 * @return
 	 * @throws BusinessException
@@ -55,7 +57,7 @@ public interface IRouteTargetAreaSV {
 	@Path("/queryAreaListByRouteItemIdList")
 	public AreaQueryByRouteItemIdResponse queryAreaListByRouteItemIdList(AreaQueryByRouteItemIdListRequest request) throws BusinessException, SystemException;
 	/**
-	 * 
+	 * 批量分配区域信息
 	 * @param request
 	 * @return
 	 * @throws BusinessException
@@ -69,7 +71,7 @@ public interface IRouteTargetAreaSV {
 	@Path("/addTargetAreaToList")
 	public AreaAddListResponse addTargetAreaToList(AreaAddListRequest request) throws BusinessException, SystemException;
 	/**
-	 * 
+	 * 通过routeItemId删除区域信息
 	 * @param request
 	 * @return
 	 * @throws BusinessException
@@ -82,4 +84,18 @@ public interface IRouteTargetAreaSV {
 	@POST
 	@Path("/deleteByRouteItemId")
 	public AreaDeleteResponse deleteByRouteItemId(AreaDeleteByRouteItemIdRequest request) throws BusinessException, SystemException;
+	/**
+	 * 通过区域主键删除区域信息
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteTargetArea-005
+     * @RestRelativeURL RouteTargetArea/deleteByRouteAreaId
+     */
+	@POST
+	@Path("/deleteByRouteAreaId")
+	public AreaDeleteByRouteAreaIdResponse deleteByRouteAreaId(AreaDeleteByRouteAreaIdRequest request) throws BusinessException, SystemException;
 }

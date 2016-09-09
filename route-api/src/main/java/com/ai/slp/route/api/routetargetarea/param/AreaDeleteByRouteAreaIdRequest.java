@@ -1,0 +1,23 @@
+package com.ai.slp.route.api.routetargetarea.param;
+
+import java.io.Serializable;
+
+import com.ai.opt.base.vo.BaseInfo;
+
+public class AreaDeleteByRouteAreaIdRequest extends BaseInfo implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String routeAreaId;
+
+	public String getRouteAreaId() {
+		return routeAreaId;
+	}
+
+	public void setRouteAreaId(String routeAreaId) {
+		this.routeAreaId = routeAreaId;
+	}
+
+}
