@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
@@ -13,6 +14,8 @@ import com.ai.platform.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routeitemmanage.param.AreaVo;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdQueryRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemDeleteByRouteItemIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemDeleteByRouteItemIdResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemListResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemResponse;
@@ -109,6 +112,19 @@ public class IRouteItemBusiSVImpl implements IRouteItemBusiSV {
 			voList.add(vo);
 		}
 		response.setVoList(voList);
+		//
+		return response;
+	}
+
+	@Override
+	@Transactional
+	public RouteItemDeleteByRouteItemIdResponse deleteByRouteItemId(RouteItemDeleteByRouteItemIdRequest request) {
+		RouteItemDeleteByRouteItemIdResponse response = new RouteItemDeleteByRouteItemIdResponse();
+		//
+		String routeItemId = request.getRouteItemId();
+		this.routeItemAtomSV.deleteByPrimaryKey(routeItemId);
+		//
+		this.routeTargetAreaAtomSV.deleteByRouteItemId(routeItemId);
 		//
 		return response;
 	}

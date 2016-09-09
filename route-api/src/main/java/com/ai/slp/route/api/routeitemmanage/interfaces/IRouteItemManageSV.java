@@ -10,6 +10,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdQueryRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemDeleteByRouteItemIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemDeleteByRouteItemIdResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemListResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
 /**
@@ -51,4 +53,19 @@ public interface IRouteItemManageSV {
 	@POST
 	@Path("/queryRouteItemList")
 	public RouteItemListResponse queryRouteItemList(RouteGroupIdQueryRequest request)throws BusinessException,SystemException;
+	
+	/**
+	 * 根据routeItemId主键删除信息
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteItemManage-003
+	 * @RestRelativeURL RouteManage/deleteByRouteItemId
+     */
+	@POST
+	@Path("/deleteByRouteItemId")
+	public RouteItemDeleteByRouteItemIdResponse deleteByRouteItemId(RouteItemDeleteByRouteItemIdRequest request)throws BusinessException,SystemException;
 }

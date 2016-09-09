@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.route.api.routeitemmanage.interfaces.IRouteItemManageSV;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdQueryRequest;
 import com.ai.slp.route.api.routeitemmanage.param.RouteGroupIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemDeleteByRouteItemIdRequest;
+import com.ai.slp.route.api.routeitemmanage.param.RouteItemDeleteByRouteItemIdResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemListResponse;
 import com.ai.slp.route.api.routeitemmanage.param.RouteItemPageSearchResponse;
 import com.alibaba.fastjson.JSON;
@@ -38,6 +40,14 @@ public class RouteItemManageSVImplTest {
 		log.info("request:"+JSON.toJSONString(request));
 		RouteItemListResponse response = this.routeItemManageSV.queryRouteItemList(request);
 		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void deleteByRouteItemId(){
+		RouteItemDeleteByRouteItemIdRequest request = new RouteItemDeleteByRouteItemIdRequest();
+		request.setRouteItemId("111");
+		log.info("request:"+JSON.toJSONString(request));
+		RouteItemDeleteByRouteItemIdResponse response = this.routeItemManageSV.deleteByRouteItemId(request);
+		log.info("response:"+JSON.toJSONString(response));		
 	}
 
 }
