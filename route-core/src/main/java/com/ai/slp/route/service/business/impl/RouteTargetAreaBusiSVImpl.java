@@ -125,6 +125,7 @@ public class RouteTargetAreaBusiSVImpl implements IRouteTargetAreaBusiSV {
 	}
 
 	@Override
+	@Transactional
 	public AreaDeleteByRouteAreaIdResponse deleteByRouteAreaId(AreaDeleteByRouteAreaIdRequest request) {
 		AreaDeleteByRouteAreaIdResponse response = new AreaDeleteByRouteAreaIdResponse();
 		//
