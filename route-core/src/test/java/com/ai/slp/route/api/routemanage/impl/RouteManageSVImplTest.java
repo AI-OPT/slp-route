@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.route.api.routemanage.interfaces.IRouteManageSV;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
+import com.ai.slp.route.api.routemanage.param.RouteListRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.alibaba.fastjson.JSON;
@@ -47,6 +49,16 @@ public class RouteManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RoutePageSearchResponse response = this.routeManageSV.queryPageSearch(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void queryRouteList(){
+		RouteListRequest request = new RouteListRequest();
+		request.setTenantId("changhong");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		RouteListResponse response = this.routeManageSV.queryRouteList(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}

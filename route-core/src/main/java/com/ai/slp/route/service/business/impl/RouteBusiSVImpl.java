@@ -16,6 +16,8 @@ import com.ai.platform.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteIdParamRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchVo;
@@ -24,6 +26,7 @@ import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateResponse;
+import com.ai.slp.route.api.routemanage.param.RouteVo;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
 import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
@@ -200,6 +203,30 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 			response.setAddress(route.getAddress());
 		}
 		
+		return response;
+	}
+
+	@Override
+	public RouteListResponse queryRouteList(RouteListRequest request) {
+		RouteListResponse response = new RouteListResponse();
+		//
+		String tenantId = request.getTenantId();
+		//
+		List<Route> list = this.routeAtomSV.queryRouteList(tenantId);
+		List<RouteVo> voList = new ArrayList<RouteVo>();
+		//
+		RouteVo vo = null;
+		for(Route route : list){
+			vo = new RouteVo();
+			//
+			vo.setRouteId(route.getRouteId());
+			vo.setRouteName(route.getRouteName());
+			//
+			voList.add(vo);
+		}
+		//
+		response.setVoList(voList);
+		//
 		return response;
 	}
 

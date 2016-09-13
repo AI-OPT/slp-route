@@ -70,5 +70,15 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 	public Route findRouteInfo(String routeId) {
 		return (Route)MapperFactory.getRouteMapper().selectByPrimaryKey(routeId);
 	}
+
+	@Override
+	public List<Route> queryRouteList(String tenantId) {
+		RouteCriteria example = new RouteCriteria();
+		//
+		RouteCriteria.Criteria criteria = example.createCriteria();
+		criteria.andTenantIdEqualTo(tenantId);
+		//
+		return MapperFactory.getRouteMapper().selectByExample(example);
+	}
 	
 }

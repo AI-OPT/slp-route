@@ -11,6 +11,8 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteIdParamRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RouteResponse;
@@ -96,4 +98,17 @@ public interface IRouteManageSV {
 	@POST
 	@Path("/findRouteInfo")
 	public RouteResponse findRouteInfo(RouteIdParamRequest request)throws BusinessException,SystemException;
+	/**
+	 * 
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteManage-006
+     * @RestRelativeURL RouteManage/queryRouteList
+     */
+	@POST
+	@Path("/queryRouteList")
+	public RouteListResponse queryRouteList(RouteListRequest request)throws BusinessException,SystemException;
 }

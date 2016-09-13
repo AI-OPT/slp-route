@@ -11,6 +11,8 @@ import com.ai.slp.route.api.routemanage.interfaces.IRouteManageSV;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteIdParamRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListRequest;
+import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RouteResponse;
@@ -152,6 +154,33 @@ public class RouteManageSVImpl implements IRouteManageSV {
 			response.setResponseHeader(responseHeader);
 		}
 		
+		return response;
+	}
+	@Override
+	public RouteListResponse queryRouteList(RouteListRequest request) throws BusinessException, SystemException {
+		RouteListResponse response = new RouteListResponse();
+		//
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getTenantId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"租户id不能为空");
+		}
+		try{
+			response = this.routeBusiSV.queryRouteList(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("查询成功");
+			response.setResponseHeader(responseHeader);
+		}catch(Exception e){
+			responseHeader.setIsSuccess(false);
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("查询失败");
+			response.setResponseHeader(responseHeader);
+		}
+		//
 		return response;
 	}
 	
