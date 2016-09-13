@@ -1,8 +1,11 @@
 package com.ai.slp.route.service.atom.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.route.dao.mapper.bo.RouteGroup;
 import com.ai.slp.route.dao.mapper.bo.RouteGroupCriteria;
@@ -52,6 +55,39 @@ public class RouteGroupAtomSVImpl implements IRouteGroupAtomSV {
 	@Override
 	public RouteGroup findRouteGroup(String routeGroupId) {
 		return MapperFactory.getRouteGroupMapper().selectByPrimaryKey(routeGroupId);
+	}
+
+	@Override
+	public RouteGroup findRouteGroup(String tenantId, String routeGroupId) {
+		RouteGroupCriteria example = new RouteGroupCriteria();
+		RouteGroupCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andTenantIdEqualTo(tenantId);
+		criteria.andRouteGroupIdEqualTo(routeGroupId);
+		//
+		List<RouteGroup> list = MapperFactory.getRouteGroupMapper().selectByExample(example);
+		//
+		RouteGroup routeGroup = null;
+		//
+		if(!CollectionUtil.isEmpty(list)){
+			routeGroup = new RouteGroup();
+			routeGroup = list.get(0);
+		}
+		//
+		return routeGroup;
+		
+	}
+
+	@Override
+	public void updateState(String state,String routeGroupId) {
+		RouteGroup routeGroup = new RouteGroup();
+		//
+		routeGroup.setState(state);
+		//
+		routeGroup.setRouteGroupId(routeGroupId);
+		//
+		MapperFactory.getRouteGroupMapper().updateByPrimaryKeySelective(routeGroup);
+		
 	}
 
 

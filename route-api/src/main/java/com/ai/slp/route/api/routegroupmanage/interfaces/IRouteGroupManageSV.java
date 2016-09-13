@@ -12,6 +12,8 @@ import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateResponse;
 
 @Path("/RouteGroupManage")
 @Consumes({ MediaType.APPLICATION_JSON })
@@ -45,4 +47,19 @@ public interface IRouteGroupManageSV {
 	@POST
 	@Path("/insertRouteGroup")
 	public RouteGroupAddResponse insertRouteGroup(RouteGroupAddRequest request) throws BusinessException,SystemException;
+	/**
+	 * 查询配货组状态
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteGroupManage-003
+     * @RestRelativeURL RouteGroupManage/findRouteGroupState
+     */
+	@POST
+	@Path("/findRouteGroupState")
+	public RouteGroupStateResponse findRouteGroupState(RouteGroupStateRequest request) throws BusinessException,SystemException;
+
 }

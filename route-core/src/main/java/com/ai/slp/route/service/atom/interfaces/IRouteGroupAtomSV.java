@@ -7,4 +7,6 @@ public interface IRouteGroupAtomSV {
 	public PageInfo<RouteGroup> queryPageInfo(RouteGroup routeGroup,Integer pageNo,Integer pageSize);
 	public void insert(RouteGroup routeGroup);
 	public RouteGroup findRouteGroup(String routeGroupId);
+	public RouteGroup findRouteGroup(String tenantId,String routeGroupId);
+	public void updateState(String state,String routeGroupId);
 }

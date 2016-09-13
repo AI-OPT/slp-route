@@ -12,6 +12,8 @@ import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteGroupBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -79,6 +81,50 @@ public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
 		//
 		try{
 			response = this.routeGroupBusiSV.insertRouteGroup(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		}catch(BusinessException e){
+			//e.printStackTrace();
+			responseHeader.setResultCode(e.getErrorCode());
+			responseHeader.setResultMessage(e.getErrorMessage());
+			//
+			response.setResponseHeader(responseHeader);
+		}catch(Exception e){
+			//e.printStackTrace();
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		return response;
+	}
+
+	@Override
+	public RouteGroupStateResponse findRouteGroupState(RouteGroupStateRequest request)
+			throws BusinessException, SystemException {
+		RouteGroupStateResponse response = new RouteGroupStateResponse();
+		//
+		
+		//
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		}
+		
+		if(StringUtil.isBlank(request.getTenantId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"租户Id不能为空");
+		}
+		
+		if(StringUtil.isBlank(request.getRouteGroupId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"配货组Id不能为空");
+		}
+		//
+		try{
+			response = this.routeGroupBusiSV.findRouteGroupState(request);
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode("000000");
 			responseHeader.setResultMessage("成功");

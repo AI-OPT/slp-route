@@ -20,6 +20,9 @@ import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchVo;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateResponse;
+import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.dao.mapper.bo.RouteGroup;
 import com.ai.slp.route.dao.mapper.bo.RouteItem;
 import com.ai.slp.route.dao.mapper.bo.RouteProdSupply;
@@ -150,6 +153,11 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		DubboConsumerFactory.getService(IProductServerSV.class).changeRouteGroup(routeGroupSet);
 		//
 		response.setRouteGroupId(routeGroupId);
+		
+		//如果routeItem表数据不为空，那么就将路由组状态修改为2
+		if(!CollectionUtil.isEmpty(routeItemList)){
+			this.routeGroupAtomSV.updateState("2", routeGroupId);
+		}
 		//
 		return response;
 	}
@@ -164,5 +172,21 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		}
 		//
 		return flag;
+	}
+
+	@Override
+	public RouteGroupStateResponse findRouteGroupState(RouteGroupStateRequest request) {
+		RouteGroupStateResponse response = new RouteGroupStateResponse();
+		//
+		String tenantId = request.getTenantId();
+		String routeGroupId = request.getRouteGroupId();
+		//
+		RouteGroup routeGroup = this.routeGroupAtomSV.findRouteGroup(tenantId, routeGroupId);
+		if(null != routeGroup){
+			response.setState(routeGroup.getState());
+		}else{
+			throw new BusinessException(ExceptCodeConstant.ERROR,"未查询到相关配货组信息");
+		}
+		return response;
 	}
 }

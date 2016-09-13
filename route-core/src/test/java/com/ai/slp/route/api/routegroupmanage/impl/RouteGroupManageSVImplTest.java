@@ -13,6 +13,8 @@ import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupAddResponse;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchRequest;
 import com.ai.slp.route.api.routegroupmanage.param.RouteGroupPageSearchResponse;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateRequest;
+import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -47,6 +49,17 @@ public class RouteGroupManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteGroupAddResponse response = this.routeGroupManageSV.insertRouteGroup(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void findRouteGroupState(){
+		RouteGroupStateRequest request = new RouteGroupStateRequest();
+		request.setTenantId("changhong");
+		request.setRouteGroupId("0000000000000032");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		RouteGroupStateResponse response = this.routeGroupManageSV.findRouteGroupState(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}
