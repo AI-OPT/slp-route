@@ -15,6 +15,8 @@ import com.ai.slp.route.api.routemanage.param.RouteListRequest;
 import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaRequest;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaResponse;
 import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
@@ -111,4 +113,19 @@ public interface IRouteManageSV {
 	@POST
 	@Path("/queryRouteList")
 	public RouteListResponse queryRouteList(RouteListRequest request)throws BusinessException,SystemException;
+
+	/**
+	 * 根据路由组编号和地区编码查询当前仓库的单条信息
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteManage-007
+     * @RestRelativeURL RouteManage/queryRouteInfoByGroupIdAndArea
+     */
+	@POST
+	@Path("/queryRouteInfoByGroupIdAndArea")
+	public RouteQueryByGroupIdAndAreaResponse queryRouteInfoByGroupIdAndArea(RouteQueryByGroupIdAndAreaRequest request)throws BusinessException,SystemException;
 }

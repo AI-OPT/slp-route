@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.slp.route.dao.mapper.bo.RouteTargetArea;
 import com.ai.slp.route.dao.mapper.bo.RouteTargetAreaCriteria;
 import com.ai.slp.route.dao.mapper.factory.MapperFactory;
@@ -83,6 +84,26 @@ public class RouteTargetAreaAtomSVImpl implements IRouteTargetAreaAtomSV {
 		criteria.andRouteAreaIdEqualTo(routeAreaId);
 		//
 		MapperFactory.getRouteTargetAreaMapper().deleteByExample(example);
+	}
+
+	@Override
+	public RouteTargetArea queryTargetAreaByItemIdListAndAreaCode(List<String> routeItemIdList, String provinceCode,String tenantId) {
+		RouteTargetAreaCriteria example = new RouteTargetAreaCriteria();
+		//
+		RouteTargetAreaCriteria.Criteria criteria = example.createCriteria();
+		//
+		criteria.andTenantIdEqualTo(tenantId);
+		//
+		criteria.andRouteItemIdIn(routeItemIdList);
+		//
+		criteria.andProvCodeEqualTo(Integer.parseInt(provinceCode));
+		//
+		List<RouteTargetArea> routeTargetAreaList = MapperFactory.getRouteTargetAreaMapper().selectByExample(example);
+		RouteTargetArea routeTargetArea = null;
+		if(!CollectionUtil.isEmpty(routeTargetAreaList)){
+			routeTargetArea = routeTargetAreaList.get(0);
+		}
+		return routeTargetArea;
 	}
 
 }

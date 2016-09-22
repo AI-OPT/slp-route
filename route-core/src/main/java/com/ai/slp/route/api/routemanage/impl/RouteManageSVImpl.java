@@ -15,6 +15,8 @@ import com.ai.slp.route.api.routemanage.param.RouteListRequest;
 import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaRequest;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaResponse;
 import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
@@ -173,6 +175,45 @@ public class RouteManageSVImpl implements IRouteManageSV {
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode("000000");
 			responseHeader.setResultMessage("查询成功");
+			response.setResponseHeader(responseHeader);
+		}catch(Exception e){
+			responseHeader.setIsSuccess(false);
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("查询失败");
+			response.setResponseHeader(responseHeader);
+		}
+		//
+		return response;
+	}
+	@Override
+	public RouteQueryByGroupIdAndAreaResponse queryRouteInfoByGroupIdAndArea(RouteQueryByGroupIdAndAreaRequest request)
+			throws BusinessException, SystemException {
+		RouteQueryByGroupIdAndAreaResponse response  = new RouteQueryByGroupIdAndAreaResponse();
+		//
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		if(null == request){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"请求参数不能为空");
+		}
+		if(StringUtil.isBlank(request.getTenantId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"租户id不能为空");
+		}
+		if(StringUtil.isBlank(request.getRouteGroupId())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"配货组id不能为空");
+		}
+		if(StringUtil.isBlank(request.getProvinceCode())){
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"省份编码不能为空");
+		}
+		
+		try{
+			response = this.routeBusiSV.queryRouteInfoByGroupIdAndArea(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("查询成功");
+			response.setResponseHeader(responseHeader);
+		}catch(BusinessException e){
+			responseHeader.setResultCode(e.getErrorCode());
+			responseHeader.setResultMessage(e.getErrorMessage());
 			response.setResponseHeader(responseHeader);
 		}catch(Exception e){
 			responseHeader.setIsSuccess(false);

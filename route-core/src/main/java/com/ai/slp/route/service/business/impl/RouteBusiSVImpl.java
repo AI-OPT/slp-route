@@ -1,16 +1,21 @@
 package com.ai.slp.route.service.business.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.platform.common.api.area.interfaces.IGnAreaQuerySV;
 import com.ai.platform.common.api.area.param.GnAreaVo;
 import com.ai.slp.route.api.routemanage.param.RouteAddParamRequest;
@@ -21,21 +26,34 @@ import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchVo;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaRequest;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaResponse;
 import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateStateResponse;
 import com.ai.slp.route.api.routemanage.param.RouteVo;
+import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.constants.RouteConstant;
 import com.ai.slp.route.dao.mapper.bo.Route;
+import com.ai.slp.route.dao.mapper.bo.RouteItem;
+import com.ai.slp.route.dao.mapper.bo.RouteTargetArea;
 import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
+import com.ai.slp.route.service.atom.interfaces.IRouteItemAtomSV;
+import com.ai.slp.route.service.atom.interfaces.IRouteTargetAreaAtomSV;
 import com.ai.slp.route.service.business.interfaces.IRouteBusiSV;
 import com.ai.slp.route.util.SequenceUtil;
 @Service
 public class RouteBusiSVImpl implements IRouteBusiSV {
 	@Autowired
 	private IRouteAtomSV routeAtomSV;
+	@Autowired
+	private IRouteItemAtomSV routeItemAtomSV;
+	@Autowired
+	private IRouteTargetAreaAtomSV routeTargetAreaAtomSV;
+	
+	
 	
 	@Override
 	@Transactional
@@ -226,6 +244,47 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		}
 		//
 		response.setVoList(voList);
+		//
+		return response;
+	}
+
+	@Override
+	public RouteQueryByGroupIdAndAreaResponse queryRouteInfoByGroupIdAndArea(
+			RouteQueryByGroupIdAndAreaRequest request) {
+		//
+		RouteQueryByGroupIdAndAreaResponse response = new RouteQueryByGroupIdAndAreaResponse();
+		//
+		String routeGroupId = request.getRouteGroupId();
+		String provinceCode = request.getProvinceCode();
+		String tenantId = request.getTenantId();
+		//
+		List<RouteItem> routeItemList = this.routeItemAtomSV.findRouteItemByRouteGroupId(routeGroupId);
+		//
+		RouteTargetArea routeTargetArea = null;
+		//
+		
+		if(!CollectionUtil.isEmpty(routeItemList)){
+			//
+			Map<String,String> routeItemMap = new HashMap<String,String>();
+			//
+			List<String> routeItemIdList = new ArrayList<String>();
+			//
+			for(RouteItem routeItem : routeItemList){
+				routeItemMap.put(routeItem.getRouteItemId(),routeItem.getRouteId());
+				//
+				routeItemIdList.add(routeItem.getRouteItemId());
+			}
+			//
+			routeTargetArea = this.routeTargetAreaAtomSV.queryTargetAreaByItemIdListAndAreaCode(routeItemIdList, provinceCode,tenantId);
+			//
+			String routeId = routeItemMap.get(routeTargetArea.getRouteItemId());
+			//
+			response.setRouteId(routeId);
+		}
+		if(StringUtil.isBlank(response.getRouteId())){
+			//
+			throw new BusinessException(ExceptCodeConstant.PARAM_IS_NULL,"仓库信息不存在");
+		}
 		//
 		return response;
 	}

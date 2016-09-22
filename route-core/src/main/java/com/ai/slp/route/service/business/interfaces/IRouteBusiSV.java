@@ -7,6 +7,8 @@ import com.ai.slp.route.api.routemanage.param.RouteListRequest;
 import com.ai.slp.route.api.routemanage.param.RouteListResponse;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaRequest;
+import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaResponse;
 import com.ai.slp.route.api.routemanage.param.RouteResponse;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamRequest;
 import com.ai.slp.route.api.routemanage.param.RouteUpdateParamResponse;
@@ -20,4 +22,5 @@ public interface IRouteBusiSV {
 	public RouteUpdateStateResponse updateRouteState(RouteUpdateStateRequest request);
 	public RouteResponse findRouteInfo(RouteIdParamRequest request);
 	public RouteListResponse queryRouteList(RouteListRequest request);
+	public RouteQueryByGroupIdAndAreaResponse queryRouteInfoByGroupIdAndArea(RouteQueryByGroupIdAndAreaRequest request);
 }
