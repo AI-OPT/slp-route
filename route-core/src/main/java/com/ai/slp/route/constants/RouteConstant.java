@@ -1,6 +1,9 @@
 package com.ai.slp.route.constants;
 
 public final class RouteConstant {
+	private RouteConstant(){
+		
+	}
     /**
      * 新增
      */
@@ -22,9 +25,14 @@ public final class RouteConstant {
     public static final String S = "S";
 
     public static final class Route {
+    	private Route(){
+    		
+    	}
 
         public static final class State {
-
+        	private State(){
+        		
+        	}
             // 1新增
             public static final String NEW = "1";
 
@@ -48,7 +56,9 @@ public final class RouteConstant {
 
         }
         public static final class RouteType{
-        	
+        	private RouteType(){
+        		
+        	}
 //        	O自有类、
         	public static final String SELF = "O";
 //        	S采购类、

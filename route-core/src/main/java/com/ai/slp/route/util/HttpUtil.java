@@ -17,7 +17,10 @@ import java.io.IOException;
 
 public class HttpUtil {
 
-    private static final Logger logger = LogManager.getLogger(HttpUtil.class);
+    public HttpUtil() {
+	}
+
+	private static final Logger logger = LogManager.getLogger(HttpUtil.class);
 
     public static String doPostRequest(String requestUrl, String requestValue) throws IOException {
         CloseableHttpClient httpclient = HttpClients.createDefault();

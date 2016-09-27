@@ -1,6 +1,9 @@
 package com.ai.slp.route.constants;
 
 public class ExceptCodeConstant {
+	private ExceptCodeConstant(){
+		
+	}
     /**
      * 成功
      */

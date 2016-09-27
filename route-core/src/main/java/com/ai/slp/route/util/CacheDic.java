@@ -7,7 +7,9 @@ import com.ai.platform.common.api.cache.param.SysParamSingleCond;
 
 public class CacheDic {
 
-
+	private CacheDic(){
+		
+	}
     public static String getAppKey(String tenantId, String typeCode, String paramCode) {
         ICacheSV iCacheSV = DubboConsumerFactory.getService("iCacheSV");
         SysParam sysParam = iCacheSV.getSysParamSingle(
