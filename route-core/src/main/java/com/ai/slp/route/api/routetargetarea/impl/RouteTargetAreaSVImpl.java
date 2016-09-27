@@ -85,7 +85,6 @@ public class RouteTargetAreaSVImpl implements IRouteTargetAreaSV {
 			response.setResponseHeader(responseHeader);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
 			response.setResponseHeader(responseHeader);
@@ -109,7 +108,6 @@ public class RouteTargetAreaSVImpl implements IRouteTargetAreaSV {
 			response.setResponseHeader(responseHeader);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
 			response.setResponseHeader(responseHeader);
