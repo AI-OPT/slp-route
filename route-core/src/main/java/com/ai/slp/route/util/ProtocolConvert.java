@@ -17,9 +17,9 @@ public class ProtocolConvert {
 
         for (Map.Entry<String, JsonElement> entry : templateJson.entrySet()) {
             JsonElement temp = dataJson.get(entry.getKey());
-            if (temp == null)
+            if (temp == null){
                 throw new RuntimeException("Cannot find the value of key[" + entry.getKey() + "]");
-
+            }
             result.add(entry.getKey(), temp);
         }
 
