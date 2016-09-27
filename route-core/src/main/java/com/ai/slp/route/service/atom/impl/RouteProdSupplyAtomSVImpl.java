@@ -63,8 +63,7 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 
 	@Override
 	public RouteProdSupply getRouteProdSupplyByPrimaryKey(String supplyId) {
-		RouteProdSupply routeProdSupply = MapperFactory.getRouteProdSupplyMapper().selectByPrimaryKey(supplyId);
-		return routeProdSupply;
+		return MapperFactory.getRouteProdSupplyMapper().selectByPrimaryKey(supplyId);
 	}
 
 	@Override
