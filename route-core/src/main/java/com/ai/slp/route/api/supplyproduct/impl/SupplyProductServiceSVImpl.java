@@ -23,8 +23,8 @@ public class SupplyProductServiceSVImpl implements ISupplyProductServiceSV {
     public SupplyProduct updateSupplyProductSaleCount(SupplyProductQueryVo supplyProductQueryVo) {
         ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstant.SUCCESS, "成功");
         //检查入参完整
-        if (StringUtil.isBlank(supplyProductQueryVo.getTenantId()) |
-                StringUtil.isBlank(supplyProductQueryVo.getRouteId()) |
+        if (StringUtil.isBlank(supplyProductQueryVo.getTenantId()) ||
+                StringUtil.isBlank(supplyProductQueryVo.getRouteId()) ||
                 StringUtil.isBlank(supplyProductQueryVo.getStandardProductId())) {
             SupplyProduct supplyProduct = new SupplyProduct();
             responseHeader = new ResponseHeader(false, ExceptCodeConstant.PARAM_IS_NULL, "失败");
