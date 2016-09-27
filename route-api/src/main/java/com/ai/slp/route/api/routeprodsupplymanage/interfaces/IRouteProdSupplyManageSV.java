@@ -65,14 +65,13 @@ public interface IRouteProdSupplyManageSV {
 	@Path("/updateUsableNum")
 	public RouteProdSupplyUpdateUsableNumResponse updateUsableNum(RouteProdSupplyUpdateUsableNumRequest request)throws BusinessException,SystemException;
 	/**
-	 * 
+	 * 批量给仓库配置商品信息
 	 * @param request
 	 * @return
 	 * @throws BusinessException
 	 * @throws SystemException
 	 * @author zhangzd
 	 * @ApiDocMethod
-	 * @ApiCode
 	 * @ApiCode RouteProdSupplyManage-003
      * @RestRelativeURL RouteProdSupplyManage/addRouteProdSupplyList
      */
