@@ -93,7 +93,6 @@ public interface IRouteManageSV {
 	 * @throws SystemException
 	 * @author zhangzd
 	 * @ApiDocMethod
-	 * @ApiCode
 	 * @ApiCode RouteManage-005
      * @RestRelativeURL RouteManage/findRouteInfo
      */
