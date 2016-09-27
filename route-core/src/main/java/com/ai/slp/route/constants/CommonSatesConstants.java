@@ -5,6 +5,9 @@ package com.ai.slp.route.constants;
  * Created by jackieliu on 16/5/1.
  */
 public final class CommonSatesConstants {
+	private CommonSatesConstants(){
+		
+	}
     /**
      * 有效
      */
