@@ -18,7 +18,7 @@ import java.util.Date;
  */
 public class O2PCallServerAction implements ICallServerAction {
 
-    private Logger logger = LogManager.getLogger(O2PCallServerAction.class);
+    private static final Logger logger = LogManager.getLogger(O2PCallServerAction.class);
 
     private String requestUrl;
     private String requestTemplate;

@@ -21,7 +21,7 @@ import java.sql.SQLException;
 @Service
 public class RouteServerManagerImpl implements IRouteServerManager {
 
-    private static Logger logger = LoggerFactory.getLogger(RouteServerManagerImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(RouteServerManagerImpl.class);
     @Autowired
     private RouteServInfoMapper routeServInfoMapper;
 

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RouteServerImpl implements IRouteServer {
 
-    private Logger logger = LogManager.getLogger(RouteServerImpl.class);
+    private static final Logger logger = LogManager.getLogger(RouteServerImpl.class);
 
     @Autowired
     private IRouteServerManager routeServerManager;
