@@ -70,7 +70,6 @@ public class RouteGroupAtomSVImpl implements IRouteGroupAtomSV {
 		RouteGroup routeGroup = null;
 		//
 		if(!CollectionUtil.isEmpty(list)){
-			routeGroup = new RouteGroup();
 			routeGroup = list.get(0);
 		}
 		//
