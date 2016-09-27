@@ -137,7 +137,7 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 			routeItem.setRouteItemId(routeItemId);
 			//
 			boolean flag = this.routeIdInList(routeProdSupply.getRouteId(), routeItemList);
-			if (flag == false) {
+			if (!flag) {
 				//
 				this.routeItemAtomSV.insert(routeItem);
 			}
