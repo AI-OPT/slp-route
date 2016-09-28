@@ -36,7 +36,6 @@ public class RouteItemManageSVImpl implements IRouteItemManageSV {
 			responseHeader.setResultMessage("成功");
 			
 		}catch(Exception e){
-			e.printStackTrace();
 			responseHeader.setIsSuccess(false);
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("失败");
