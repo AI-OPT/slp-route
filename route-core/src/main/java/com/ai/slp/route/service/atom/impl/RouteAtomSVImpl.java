@@ -77,6 +77,7 @@ public class RouteAtomSVImpl implements IRouteAtomSV {
 		//
 		RouteCriteria.Criteria criteria = example.createCriteria();
 		criteria.andTenantIdEqualTo(tenantId);
+		criteria.andStateNotEqualTo(RouteConstant.Route.State.ABANDONED);
 		example.setOrderByClause(" create_time desc ");
 		//
 		return MapperFactory.getRouteMapper().selectByExample(example);
