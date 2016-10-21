@@ -198,7 +198,7 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		route.setState(request.getState());
 		//
 		this.routeAtomSV.update(route);
-		if(request.getState() == "6"){
+		if(request.getState() == "6" || "6".equals(request.getState())){
 			this.routeProdSupplyAtomSV.updateState(request.getRouteId(), request.getTenantId(), "0");
 		}
 		//
