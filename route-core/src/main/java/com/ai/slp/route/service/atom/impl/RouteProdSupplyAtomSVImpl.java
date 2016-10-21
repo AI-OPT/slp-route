@@ -127,6 +127,7 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		//
 		criteria.andTenantIdEqualTo(tenantId);
 		criteria.andStandedProdIdEqualTo(standedProdId);
+		criteria.andStateNotEqualTo("0");
 		if(null != pageNo && null != pageSize){
 			 example.setLimitStart((pageNo - 1) * pageSize);
 	         example.setLimitEnd(pageSize);
@@ -154,6 +155,22 @@ public class RouteProdSupplyAtomSVImpl implements IRouteProdSupplyAtomSV {
 		example.isDistinct();
 		//
 		return MapperFactory.getRouteProdSupplyMapper().selectByExample(example);
+	}
+
+	@Override
+	public void updateState(String routeId, String tenantId,String state) {
+		
+		//
+		RouteProdSupply record = new RouteProdSupply();
+		record.setState(state);
+		//
+		RouteProdSupplyCriteria example = new RouteProdSupplyCriteria();
+		RouteProdSupplyCriteria.Criteria criteria = example.createCriteria();
+		criteria.andTenantIdEqualTo(tenantId);
+		criteria.andRouteIdEqualTo(routeId);
+		//
+		MapperFactory.getRouteProdSupplyMapper().updateByExampleSelective(record, example);
+	
 	}
 
 

@@ -41,6 +41,7 @@ import com.ai.slp.route.dao.mapper.bo.RouteItem;
 import com.ai.slp.route.dao.mapper.bo.RouteTargetArea;
 import com.ai.slp.route.service.atom.interfaces.IRouteAtomSV;
 import com.ai.slp.route.service.atom.interfaces.IRouteItemAtomSV;
+import com.ai.slp.route.service.atom.interfaces.IRouteProdSupplyAtomSV;
 import com.ai.slp.route.service.atom.interfaces.IRouteTargetAreaAtomSV;
 import com.ai.slp.route.service.business.interfaces.IRouteBusiSV;
 import com.ai.slp.route.util.SequenceUtil;
@@ -52,6 +53,8 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 	private IRouteItemAtomSV routeItemAtomSV;
 	@Autowired
 	private IRouteTargetAreaAtomSV routeTargetAreaAtomSV;
+	@Autowired
+	private IRouteProdSupplyAtomSV routeProdSupplyAtomSV;
 	
 	
 	
@@ -195,6 +198,9 @@ public class RouteBusiSVImpl implements IRouteBusiSV {
 		route.setState(request.getState());
 		//
 		this.routeAtomSV.update(route);
+		if(request.getState() == "6"){
+			this.routeProdSupplyAtomSV.updateState(request.getRouteId(), request.getTenantId(), "0");
+		}
 		//
 		responseHeader.setIsSuccess(true);
 		responseHeader.setResultCode("000000");
