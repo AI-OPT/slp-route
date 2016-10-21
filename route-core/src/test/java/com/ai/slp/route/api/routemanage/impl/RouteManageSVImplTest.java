@@ -17,6 +17,8 @@ import com.ai.slp.route.api.routemanage.param.RoutePageSearchRequest;
 import com.ai.slp.route.api.routemanage.param.RoutePageSearchResponse;
 import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaRequest;
 import com.ai.slp.route.api.routemanage.param.RouteQueryByGroupIdAndAreaResponse;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateStateRequest;
+import com.ai.slp.route.api.routemanage.param.RouteUpdateStateResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -74,6 +76,18 @@ public class RouteManageSVImplTest {
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		RouteQueryByGroupIdAndAreaResponse response = this.routeManageSV.queryRouteInfoByGroupIdAndArea(request);
+		//
+		log.info("response:"+JSON.toJSONString(response));
+	}
+	@Test
+	public void updateRouteState(){
+		RouteUpdateStateRequest request = new RouteUpdateStateRequest();
+		request.setRouteId("0000000000000408");
+		request.setTenantId("changhong");
+		request.setState("6");
+		//
+		log.info("request:"+JSON.toJSONString(request));
+		RouteUpdateStateResponse response = this.routeManageSV.updateRouteState(request);
 		//
 		log.info("response:"+JSON.toJSONString(response));
 	}
