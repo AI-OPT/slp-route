@@ -150,7 +150,7 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		//添加仓库量
 		RouteSupplyAddsLog routeSupplyAddsLog = new RouteSupplyAddsLog();
 		routeSupplyAddsLog.setSupplyAddsLogId(SequenceUtil.createSupplyAddsLogId());
-		routeSupplyAddsLog.setOperId(Long.valueOf(1));
+		routeSupplyAddsLog.setOperId(Long.valueOf(request.getOperId()));
 		routeSupplyAddsLog.setOperTime(DateUtil.getSysDate());
 		routeSupplyAddsLog.setSource("");
 		routeSupplyAddsLog.setSupplyId(request.getSupplyId());

@@ -10,6 +10,13 @@ public class RouteProdSupplyUpdateUsableNumRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String supplyId;
 	private String supplyName;
+	private String operId;
+	public String getOperId() {
+		return operId;
+	}
+	public void setOperId(String operId) {
+		this.operId = operId;
+	}
 	public String getSupplyName() {
 		return supplyName;
 	}
