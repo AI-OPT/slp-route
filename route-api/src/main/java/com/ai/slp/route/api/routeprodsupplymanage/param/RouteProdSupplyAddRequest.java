@@ -15,6 +15,15 @@ public class RouteProdSupplyAddRequest extends BaseInfo implements Serializable 
 	private String prodName;
 	private Integer amount;
 	private String prodCatId;
+	private String operId;
+
+	public String getOperId() {
+		return operId;
+	}
+
+	public void setOperId(String operId) {
+		this.operId = operId;
+	}
 
 	public String getProdCatId() {
 		return prodCatId;
