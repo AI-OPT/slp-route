@@ -17,6 +17,7 @@ import com.ai.slp.route.api.routesupplyaddslog.param.RouteSupplyAddsLogPageSearc
 import com.ai.slp.route.dao.mapper.bo.RouteSupplyAddsLog;
 import com.ai.slp.route.service.atom.interfaces.IRouteSupplyAddsLogAtomSV;
 import com.ai.slp.route.service.business.interfaces.IRouteSupplyAddsLogBusiSV;
+import com.alibaba.fastjson.JSON;
 import com.esotericsoftware.minlog.Log;
 @Service
 public class RouteSupplyAddsLogBusiSVImpl implements IRouteSupplyAddsLogBusiSV {
@@ -65,10 +66,10 @@ public class RouteSupplyAddsLogBusiSVImpl implements IRouteSupplyAddsLogBusiSV {
 			sysUserQueryRequest = new SysUserQueryRequest();
 			//
 			sysUserQueryRequest.setTenantId(request.getTenantId());
-			sysUserQueryRequest.setNo(routeSupplyAddsLogVo.getOperId().toString());
+			sysUserQueryRequest.setId(routeSupplyAddsLogVo.getOperId().toString());
 			//
 			SysUserQueryResponse sysUserQueryResponse = DubboConsumerFactory.getService(ISysUserQuerySV.class).queryUserInfo(sysUserQueryRequest);
-			Log.info("员工姓名:"+sysUserQueryResponse.getName());
+			Log.info("员工姓名:"+JSON.toJSONString(sysUserQueryResponse.getName()));
 			vo.setEmployeeName(sysUserQueryResponse.getName());
 			//
 			voList.add(vo);

@@ -24,8 +24,9 @@ public class RouteSupplyAddsLogManageSVImplTest {
 	public void queryPageSearch(){
 		RouteSupplyAddsLogPageSearchRequest request = new RouteSupplyAddsLogPageSearchRequest();
 		//
+		request.setTenantId("changhong");
 		request.setPageNo(1);
-		request.setPageSize(1000);
+		request.setPageSize(1);
 		//
 		log.info("request:"+JSON.toJSONString(request));
 		
