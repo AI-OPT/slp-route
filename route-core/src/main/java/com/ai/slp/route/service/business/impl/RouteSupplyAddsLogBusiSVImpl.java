@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
+import com.ai.platform.common.api.sysuser.interfaces.ISysUserQuerySV;
+import com.ai.platform.common.api.sysuser.param.SysUserQueryRequest;
+import com.ai.platform.common.api.sysuser.param.SysUserQueryResponse;
 import com.ai.slp.route.api.routesupplyaddslog.param.RouteSupplyAddsLogPageSearchRequest;
 import com.ai.slp.route.api.routesupplyaddslog.param.RouteSupplyAddsLogPageSearchResponse;
 import com.ai.slp.route.api.routesupplyaddslog.param.RouteSupplyAddsLogPageSearchVo;
@@ -42,6 +46,8 @@ public class RouteSupplyAddsLogBusiSVImpl implements IRouteSupplyAddsLogBusiSV {
 		List<RouteSupplyAddsLogPageSearchVo> voList = new ArrayList<RouteSupplyAddsLogPageSearchVo>();
 		RouteSupplyAddsLogPageSearchVo vo = null;
 		//
+		SysUserQueryRequest sysUserQueryRequest = null;
+		//
 		int index = 0;
 		for(RouteSupplyAddsLog routeSupplyAddsLogVo : pageInfo.getResult()){
 			index++;
@@ -54,6 +60,14 @@ public class RouteSupplyAddsLogBusiSVImpl implements IRouteSupplyAddsLogBusiSV {
 			vo.setSupplyNum(routeSupplyAddsLogVo.getSupplyNum());
 			vo.setOperId(String.valueOf(routeSupplyAddsLogVo.getOperId()));
 			vo.setOperTime(routeSupplyAddsLogVo.getOperTime());
+			//
+			sysUserQueryRequest = new SysUserQueryRequest();
+			//
+			sysUserQueryRequest.setTenantId(request.getTenantId());
+			sysUserQueryRequest.setNo(routeSupplyAddsLogVo.getOperId().toString());
+			//
+			SysUserQueryResponse sysUserQueryResponse = DubboConsumerFactory.getService(ISysUserQuerySV.class).queryUserInfo(sysUserQueryRequest);
+			vo.setEmployeeName(sysUserQueryResponse.getName());
 			//
 			voList.add(vo);
 		}

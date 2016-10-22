@@ -12,7 +12,15 @@ public class RouteSupplyAddsLogPageSearchRequest implements Serializable {
 	private String supplyName;
 	private Integer pageNo;
 	private Integer pageSize;
-	
+	private String tenantId;
+
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 
 	public Integer getPageNo() {
 		return pageNo;

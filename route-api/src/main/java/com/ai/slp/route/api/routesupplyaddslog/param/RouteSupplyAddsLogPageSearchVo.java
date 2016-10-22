@@ -16,6 +16,15 @@ public class RouteSupplyAddsLogPageSearchVo implements Serializable {
 	private Long supplyNum;
 	private String operId;
 	private Timestamp operTime;
+	private String employeeName;
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
 
 	public Integer getIndex() {
 		return index;

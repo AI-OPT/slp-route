@@ -20,4 +20,6 @@ dependencies {
 	compile 'com.ai.slp.product:product:1.1.0-SNAPSHOT'
 	//查询商品类目
 	compile 'com.ai.slp.product:productcat:1.0-SNAPSHOT'
+	//用户
+	compile 'com.ai.platform.common:sysuser:1.0-SNAPSHOT'
 }
