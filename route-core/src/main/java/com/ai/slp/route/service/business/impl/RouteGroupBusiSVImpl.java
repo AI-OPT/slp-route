@@ -155,9 +155,9 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		response.setRouteGroupId(routeGroupId);
 		
 		//如果routeItem表数据不为空，那么就将路由组状态修改为2
-		if(!CollectionUtil.isEmpty(routeItemList)){
+		//if(!CollectionUtil.isEmpty(routeItemList)){
 			this.routeGroupAtomSV.updateState("2", routeGroupId);
-		}
+		//}
 		//
 		return response;
 	}
