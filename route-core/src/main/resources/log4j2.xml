@@ -25,6 +25,10 @@
          <AppenderRef ref="RollingFile" />
          <AppenderRef ref="STDOUT" />
     </logger>
+    <logger name="com.ai.slp.route.dao.mapper" level="debug" additivity="false"> 
+		<AppenderRef ref="RollingFile"/> 
+		<AppenderRef ref="STDOUT"/> 
+	</logger>
 	<logger name="com.mybatis" additivity="true">
 		<level value="DEBUG" />
 	</logger>
