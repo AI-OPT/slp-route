@@ -108,7 +108,7 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 			routeGroup.setOperTime(DateUtil.getSysDate());
 			routeGroup.setRouteGroupType("C");
 			routeGroup.setState("1");
-			routeGroup.setSupplierId("-1");
+			routeGroup.setSupplierId("2000");
 			//
 			this.routeGroupAtomSV.insert(routeGroup);
 		}
@@ -147,7 +147,7 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		routeGroupSet.setOperId(operId);
 		routeGroupSet.setProdId(request.getProductId());
 		routeGroupSet.setRouteGroupId(routeGroupId);
-		routeGroupSet.setSupplierId("-1");
+		routeGroupSet.setSupplierId("2000");
 		routeGroupSet.setTenantId(request.getTenantId());
 		//
 		DubboConsumerFactory.getService(IProductServerSV.class).changeRouteGroup(routeGroupSet);
