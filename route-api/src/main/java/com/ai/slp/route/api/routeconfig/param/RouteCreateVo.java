@@ -1,6 +1,6 @@
 package com.ai.slp.route.api.routeconfig.param;
 
-import org.hibernate.validator.constraints.NotBlank;
+//import org.hibernate.validator.constraints.NotBlank;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.validator.constraints.StringEnum;
