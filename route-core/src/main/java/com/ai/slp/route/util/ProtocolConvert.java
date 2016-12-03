@@ -6,6 +6,11 @@ import com.google.gson.JsonParser;
 
 import java.util.Map;
 
+/**
+ * 协议转换工具类
+ * @author Gavin
+ *
+ */
 public class ProtocolConvert {
 	private ProtocolConvert(){
 		

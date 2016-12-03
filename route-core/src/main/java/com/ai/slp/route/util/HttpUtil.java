@@ -15,6 +15,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+/**
+ * http请求工具类
+ *
+ */
 public class HttpUtil {
 
     public HttpUtil() {

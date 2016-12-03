@@ -2,10 +2,14 @@ package com.ai.slp.route.util;
 
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 
+
 public final class SequenceUtil {
 	private SequenceUtil(){
 		
 	}
+	/**
+	 * 属性定义标识序列
+	 */
     private static final String ROUTE$ROUTE_ID$SEQ = "ROUTE$ROUTE_ID$SEQ";
     private static final String ROUTE_SUPPLY_ADDS_LOG$SUPPLY_ADDS_LOG_ID$SEQ = "ROUTE_SUPPLY_ADDS_LOG$SUPPLY_ADDS_LOG_ID$SEQ";
     private static final String ROUTE_PROD_SUPPLY$SUPPLY_ID$SEQ = "ROUTE_PROD_SUPPLY$SUPPLY_ID$SEQ";

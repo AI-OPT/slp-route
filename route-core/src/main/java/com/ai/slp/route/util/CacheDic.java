@@ -5,6 +5,10 @@ import com.ai.platform.common.api.cache.interfaces.ICacheSV;
 import com.ai.platform.common.api.cache.param.SysParam;
 import com.ai.platform.common.api.cache.param.SysParamSingleCond;
 
+/**
+ *缓冲工具类 
+ *
+ */
 public class CacheDic {
 
 	private CacheDic(){
