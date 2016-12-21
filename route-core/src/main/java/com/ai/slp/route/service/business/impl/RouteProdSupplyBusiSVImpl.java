@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -127,8 +128,17 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		
 		//
 		RouteProdSupply vo = this.routeProdSupplyAtomSV.getRouteProdSupplyByPrimaryKey(request.getSupplyId());
-		Long unsableNum = null == vo.getUsableNum()?0:vo.getUsableNum();
-		Long totalNum = null == vo.getTotalNum()?0:vo.getTotalNum();
+		
+		//Long unsableNum = null == vo.getUsableNum()?0:vo.getUsableNum();
+		//Long totalNum = null == vo.getTotalNum()?0:vo.getTotalNum();
+		
+		Long unsableNum = null;
+		Long totalNum = null;
+		if (vo != null) {
+			unsableNum = null == vo.getUsableNum()?0:vo.getUsableNum();
+			totalNum = null == vo.getTotalNum()?0:vo.getTotalNum();
+			
+		}
 		
 		Integer dbTotalNum = 0;
 		if(null != vo){
