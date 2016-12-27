@@ -10,9 +10,21 @@ public class RouteGroupPageSearchRequest extends BaseInfo implements Serializabl
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
+	/**
+	 * 路由组名称
+	 */
 	private String routeGroupName;
+	/**
+	 * 分页
+	 */
 	private Integer pageNo;
+	/**
+	 * 分页 每页数据条数
+	 */
 	private Integer pageSize;
 
 	public Integer getPageNo() {

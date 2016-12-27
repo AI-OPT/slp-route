@@ -8,7 +8,13 @@ public class ProductCatIdVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 类目标识
+	 */
 	private String productCatId;
+	/**
+	 * 类目名称
+	 */
 	private String productCatName;
 
 	public String getProductCatId() {

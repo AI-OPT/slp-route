@@ -6,11 +6,17 @@ import com.ai.opt.base.vo.BaseInfo;
  * Created by xin on 16-5-5.
  */
 public class RouteServerResponse  extends BaseInfo {
-
+	/**
+	 * 返回编码
+	 */
     private String responseCode;
-
+    /**
+	 * 放回信息
+	 */
     private String responseMessage;
-
+    /**
+	 * 返回数据
+	 */
     private String responseData;
 
     public RouteServerResponse(String responseCode) {

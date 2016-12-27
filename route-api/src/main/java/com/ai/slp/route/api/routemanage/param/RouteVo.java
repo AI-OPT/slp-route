@@ -8,7 +8,13 @@ public class RouteVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 路由名称
+	 */
 	private String routeName;
 
 	public String getRouteId() {

@@ -10,6 +10,9 @@ public class AreaQueryByRouteItemIdRequest extends BaseInfo implements Serializa
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组组成标识
+	 */
 	private String routeItemId;
 
 	public String getRouteItemId() {

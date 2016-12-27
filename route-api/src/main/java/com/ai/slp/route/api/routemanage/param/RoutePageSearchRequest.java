@@ -11,10 +11,25 @@ public class RoutePageSearchRequest extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 路由名称
+	 */
 	private String routeName;
+	/**
+	 * 状态集合
+	 */
 	private List<String> states;
+	/**
+	 * 分页
+	 */
 	private Integer pageNo;
+	/**
+	 * 分页--每页数据量
+	 */
 	private Integer pageSize;
 
 	public String getRouteId() {

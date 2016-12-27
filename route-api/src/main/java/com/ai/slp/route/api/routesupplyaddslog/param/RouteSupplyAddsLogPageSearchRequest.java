@@ -8,10 +8,25 @@ public class RouteSupplyAddsLogPageSearchRequest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 * 供应品名称
+	 */
 	private String supplyName;
+	/**
+	 * 分页
+	 */
 	private Integer pageNo;
+	/**
+	 * 分页--每页数据量
+	 */
 	private Integer pageSize;
+	/**
+	 * 租户标识 
+	 */
 	private String tenantId;
 
 	public String getTenantId() {

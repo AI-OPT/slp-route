@@ -8,12 +8,33 @@ public class StandedProdRouteVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 租户标识
+	 */
 	private String tenantId;
+	/**
+	 * 标准品标识
+	 */
 	private String standedProdId;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 路由名称
+	 */
 	private String routeName;
+	/**
+	 * 供应品名称
+	 */
 	private String supplyName;
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 *  成本价
+	 */
 	private Long costPrice;
 	
 	public Long getCostPrice() {

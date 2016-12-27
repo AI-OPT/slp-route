@@ -8,8 +8,17 @@ public class RouteProdSupplyUpdateUsableNumRequest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 * 供应品名称
+	 */
 	private String supplyName;
+	/**
+	 * 操作人
+	 */
 	private String operId;
 	public String getOperId() {
 		return operId;

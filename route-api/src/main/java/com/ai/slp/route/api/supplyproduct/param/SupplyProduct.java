@@ -7,15 +7,15 @@ import com.ai.opt.base.vo.BaseResponse;
  */
 public class SupplyProduct extends BaseResponse {
     /**
-     *
+     *供应商标识
      */
     private String sellerId;
     /**
-     *
+     *供应品标识
      */
     private String supplyId;
     /**
-     *
+     *成本价
      */
     private long costPrice;
 

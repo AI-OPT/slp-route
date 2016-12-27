@@ -10,9 +10,21 @@ public class AreaAddVo extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组组成标识
+	 */
 	private String routeItemId;
+	/**
+	 * 省编码
+	 */
 	private String provCode;
+	/**
+	 * 状态
+	 */
 	private String state;
+	/**
+	 * 操作人
+	 */
 	private String operId;
 
 	public String getRouteItemId() {

@@ -10,7 +10,13 @@ public class RouteQueryByGroupIdAndAreaRequest extends BaseInfo implements Seria
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
+	/**
+	 * 省编码
+	 */
 	private String provinceCode;
 
 	public String getRouteGroupId() {

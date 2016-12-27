@@ -10,12 +10,33 @@ public class RouteProdSupplyPageSearchRequest extends BaseInfo implements Serial
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标志
+	 */
 	private String routeId;
+	/**
+	 * 标准品标识
+	 */
 	private String standedProdId;
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 * 供应品名称
+	 */
 	private String supplyName;
+	/**
+	 * 类目标识
+	 */
 	private String productCatId;
+	/**
+	 * 分页
+	 */
 	private Integer pageNo;
+	/**
+	 * 分页--每页数据量
+	 */
 	private Integer pageSize;
 	public String getSupplyId() {
 		return supplyId;

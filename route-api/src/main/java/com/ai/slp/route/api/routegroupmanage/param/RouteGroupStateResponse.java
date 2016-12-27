@@ -10,6 +10,9 @@ public class RouteGroupStateResponse extends BaseResponse implements Serializabl
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 状态
+	 */
 	private String state;
 
 	public String getState() {

@@ -8,9 +8,19 @@ public class AreaVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 地域标识
+	 */
 	private String routeAreaId;
+	/**
+	 * 地域编码
+	 */
 	private String provinceCode;
+	/**
+	 * 地域名称
+	 */
 	private String provinceName;
+	
 	public String getRouteAreaId() {
 		return routeAreaId;
 	}

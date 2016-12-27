@@ -10,13 +10,37 @@ public class RouteProdSupplyPageSearchVo extends BaseInfo implements Serializabl
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 编号
+	 */
 	private Integer index;
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 * 供应品名称
+	 */
 	private String supplyName;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 总量
+	 */
 	private Long totalNum;
+	/**
+	 * 可用量
+	 */
 	private Long usableNum;
+	/**
+	 * 使用数量
+	 */
 	private Long usedNum;
+	/**
+	 * 标准品标识
+	 */
 	private String standedProdId;
 
 	public String getStandedProdId() {

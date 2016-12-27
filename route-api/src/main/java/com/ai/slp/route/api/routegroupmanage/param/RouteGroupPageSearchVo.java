@@ -11,10 +11,25 @@ public class RouteGroupPageSearchVo extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
+	/**
+	 * 路由组名称
+	 */
 	private String routeGroupName;
+	/**
+	 * 操作人
+	 */
 	private String operId;
+	/**
+	 *操作时间 
+	 */
 	private Timestamp operTime;
+	/**
+	 * 状态
+	 */
 	private String state;
 
 	public String getRouteGroupId() {

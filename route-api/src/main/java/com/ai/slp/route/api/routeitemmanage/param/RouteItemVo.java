@@ -8,8 +8,17 @@ public class RouteItemVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
+	/**
+	 * 路由组组成标识
+	 */
 	private String routeItemId;
 
 	public String getRouteId() {

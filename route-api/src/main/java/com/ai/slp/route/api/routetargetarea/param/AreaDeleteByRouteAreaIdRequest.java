@@ -10,6 +10,9 @@ public class AreaDeleteByRouteAreaIdRequest extends BaseInfo implements Serializ
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由地域标识
+	 */
 	private String routeAreaId;
 
 	public String getRouteAreaId() {

@@ -11,10 +11,25 @@ public class RouteItemResponse implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 路由名称
+	 */
 	private String routeName;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
+	/**
+	 * 路由组成标识
+	 */
 	private String routeItemId;
+	/**
+	 * 地域集合
+	 */
 	private List<AreaVo> area = new ArrayList<AreaVo>();
 
 	public String getRouteId() {

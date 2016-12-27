@@ -8,7 +8,13 @@ public class AreaQueryByRouteItemIdVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 地域编码
+	 */
 	private String areaCode;
+	/**
+	 * 地域名称
+	 */
 	private String areaName;
 
 	public String getAreaName() {

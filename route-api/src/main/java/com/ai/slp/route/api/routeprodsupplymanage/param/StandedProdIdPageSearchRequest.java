@@ -8,6 +8,9 @@ public class StandedProdIdPageSearchRequest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 租户标识
+	 */
 	private String tenantId;
 	public String getTenantId() {
 		return tenantId;

@@ -10,8 +10,15 @@ public class RouteUpdateStateRequest extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 *状态 
+	 */
 	private String state;
+	
 	public String getRouteId() {
 		return routeId;
 	}

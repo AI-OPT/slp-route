@@ -10,6 +10,9 @@ public class RouteGroupIdQueryRequest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
 
 	public String getRouteGroupId() {

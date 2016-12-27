@@ -2,7 +2,11 @@ package com.ai.slp.route.util;
 
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 
-
+/**
+ * 
+ * 定義属性标识序列工具類
+ *
+ */
 public final class SequenceUtil {
 	private SequenceUtil(){
 		

@@ -10,6 +10,9 @@ public class RouteGroupStateRequest extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由组id
+	 */
 	private String routeGroupId;
 
 	public String getRouteGroupId() {

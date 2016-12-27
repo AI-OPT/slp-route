@@ -10,10 +10,23 @@ public class CostPriceUpdateVo extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 * 标准品标识
+	 */
 	private String standedProdId;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 成本价
+	 */
 	private Long costPrice;
+	
 	public String getSupplyId() {
 		return supplyId;
 	}

@@ -10,6 +10,9 @@ public class RouteIdParamRequest extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
 
 	public String getRouteId() {

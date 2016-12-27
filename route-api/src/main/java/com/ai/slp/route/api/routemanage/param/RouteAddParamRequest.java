@@ -10,10 +10,25 @@ public class RouteAddParamRequest extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由名称
+	 */
 	private String routeName;
+	/**
+	 * 省编码
+	 */
 	private Long provCode;
+	/**
+	 * 市编码
+	 */
 	private Long cityCode;
+	/**
+	 * 县编码
+	 */
 	private Long countyCode;
+	/**
+	 * 地址
+	 */
 	private String address;
 
 	public String getAddress() {

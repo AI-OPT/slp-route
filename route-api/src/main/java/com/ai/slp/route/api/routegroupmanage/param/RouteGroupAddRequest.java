@@ -10,10 +10,25 @@ public class RouteGroupAddRequest extends BaseInfo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 标准品id
+	 */
 	private String standedProdId;
+	/**
+	 * 标准品名称
+	 */
 	private String standedProdName;
+	/**
+	 * 路由组标识
+	 */
 	private String routeGroupId;
-	private Long operId; 
+	/**
+	 * 操作人
+	 */
+	private Long operId;
+	/**
+	 * 商品标识
+	 */
 	private String productId;
 	
 	public String getProductId() {

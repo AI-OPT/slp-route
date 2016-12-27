@@ -10,15 +10,45 @@ public class RouteResponse extends BaseResponse implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由标识
+	 */
 	private String routeId;
+	/**
+	 * 路由名称
+	 */
 	private String routeName;
+	/**
+	 * 状态
+	 */
 	private String state;
+	/**
+	 * 省骗吗
+	 */
 	private Long provCode;
+	/**
+	 * 市编码
+	 */
 	private Long cityCode;
+	/**
+	 * 县编码
+	 */
 	private Long countyCode;
+	/**
+	 * 省名称
+	 */
 	private String provName;
+	/**
+	 * 市名称
+	 */
 	private String cityName;
+	/**
+	 * 县名称
+	 */
 	private String countyName;
+	/**
+	 * 地址
+	 */
 	private String address;
 
 	public String getRouteId() {

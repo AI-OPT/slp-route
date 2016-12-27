@@ -10,11 +10,29 @@ public class RouteProdSupplyAddRequest extends BaseInfo implements Serializable 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 路由id
+	 */
 	private String routeId;
+	/**
+	 * 商品标识
+	 */
 	private String prodId;
+	/**
+	 * 商品名称
+	 */
 	private String prodName;
+	/**
+	 * 数量=
+	 */
 	private Integer amount;
+	/**
+	 * 类目标书
+	 */
 	private String prodCatId;
+	/**
+	 * 操作人
+	 */
 	private String operId;
 
 	public String getOperId() {

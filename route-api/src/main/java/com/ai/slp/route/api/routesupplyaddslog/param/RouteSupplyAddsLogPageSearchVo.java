@@ -8,15 +8,39 @@ public class RouteSupplyAddsLogPageSearchVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 编码
+	 */
 	private Integer index;
-	
+	/**
+	 * 供应品标识
+	 */
 	private String supplyId;
+	/**
+	 * 供应品名称
+	 */
 	private String supplyName;
+	/**
+	 * 增前可用量
+	 */
 	private Long beforeUsableNum;
+	/**
+	 * 供应数量
+	 */
 	private Long supplyNum;
+	/**
+	 * 操作人
+	 */
 	private String operId;
+	/**
+	 * 操作时间
+	 */
 	private Timestamp operTime;
+	/**
+	 * 员工名称
+	 */
 	private String employeeName;
+	
 
 	public String getEmployeeName() {
 		return employeeName;
