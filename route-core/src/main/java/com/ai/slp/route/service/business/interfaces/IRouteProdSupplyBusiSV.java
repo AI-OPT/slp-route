@@ -18,13 +18,40 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRouteListResp
 import com.ai.slp.route.api.routeprodsupplymanage.param.StandedProdRoutePageSearchResponse;
 
 public interface IRouteProdSupplyBusiSV {
+	/**
+	 * 查询供应商品
+	 */
 	public RouteProdSupplyPageSearchResponse queryPageSearch(RouteProdSupplyPageSearchRequest request);
+	/**
+	 * 更新可用数量
+	 */
 	public RouteProdSupplyUpdateUsableNumResponse updateUsableNum(RouteProdSupplyUpdateUsableNumRequest request);
+	/**
+	 * 添加供应商品
+	 */
 	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request);
+	/**
+	 * 查询标准品
+	 */
 	public StandedProdIdListResponse queryStandedProdIdList(RouteProdSupplyRouteIdRequest request);
+	/**
+	 * 查询路由数量
+	 */
 	public RouteAmountResponse queryRouteAmount(StandedProdIdRequest request);
+	/**
+	 * 查询标准品标准品路由 
+	 */
 	public StandedProdRouteListResponse queryStandedProdRouteList(StandedProdIdRequest request);
+	/**
+	 * 更新成本价
+	 */
 	public CostPriceUpdateResponse updateCostPrice(CostPriceUpdateListRequest request);
+	/**
+	 * 分页查询
+	 */
 	public StandedProdRoutePageSearchResponse queryStandedProdRoutePageSearch(StandedProdIdPageSearchRequest request);
+	/**
+	 * 查询商品类目
+	 */
 	public ProductCatIdListResponse queryProductCatList(RouteProdSupplyRouteIdRequest request);
 }

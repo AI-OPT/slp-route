@@ -8,7 +8,9 @@ import com.ai.slp.route.api.routeconfig.param.RouteModifyVo;
 import com.ai.slp.route.api.routeconfig.param.RouteProSupplyAddVo;
 import com.ai.slp.route.api.routeconfig.param.RouteRuleMaintainVo;
 import com.ai.slp.route.api.routeconfig.param.RouteStateChgVo;
-
+/**
+ * 对route的操作
+ */
 public interface IRouteConfigBusiSV {
 
     void routeCreate(RouteCreateVo vo);

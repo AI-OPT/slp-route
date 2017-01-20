@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 /**
  * Created by xin on 16-5-5.
+ * 
+ * 路由服务管理
  */
 public interface IRouteServerManager {
     ResponseHeader callServerByServerId(IRouteServerRequest request);

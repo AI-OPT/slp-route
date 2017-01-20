@@ -4,5 +4,8 @@ import com.ai.slp.route.api.routesupplyaddslog.param.RouteSupplyAddsLogPageSearc
 import com.ai.slp.route.api.routesupplyaddslog.param.RouteSupplyAddsLogPageSearchResponse;
 
 public interface IRouteSupplyAddsLogBusiSV {
+	/**
+	 * 分页查询
+	 */
 	public RouteSupplyAddsLogPageSearchResponse queryPageSearch(RouteSupplyAddsLogPageSearchRequest request);
 }
