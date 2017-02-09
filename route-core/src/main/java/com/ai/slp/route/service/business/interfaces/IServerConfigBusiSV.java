@@ -20,7 +20,7 @@ public interface IServerConfigBusiSV {
 	 */
     PageInfo<ServerQueryResult> serverQuery(ServerQueryVo vo);
     /**
-	 * 
+	 * 暂未使用
 	 */
     ServerQueryResult serverDetailQuery(ServerQueryVo vo);
 

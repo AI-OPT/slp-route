@@ -11,8 +11,9 @@ import java.sql.SQLException;
  * 路由服务管理
  */
 public interface IRouteServerManager {
+	//根据服务id请求路由服务管理
     ResponseHeader callServerByServerId(IRouteServerRequest request);
-
+    //根据路由id请求路由服务管理
     ResponseHeader callServerByRouteId(IRouteServerRequest request) throws SQLException;
 
 }
