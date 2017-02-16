@@ -14,6 +14,8 @@ public class CacheDic {
 	private CacheDic(){
 		
 	}
+	
+	//获取appkey
     public static String getAppKey(String tenantId, String typeCode, String paramCode) {
         ICacheSV iCacheSV = DubboConsumerFactory.getService("iCacheSV");
         SysParam sysParam = iCacheSV.getSysParamSingle(
