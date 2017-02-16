@@ -15,6 +15,8 @@ public class ProtocolConvert {
 	private ProtocolConvert(){
 		
 	}
+	
+	//参数转换
     public static String convert(String template, String requestData) {
         JsonObject dataJson = (JsonObject) new JsonParser().parse(requestData);
         JsonObject templateJson = (JsonObject) new JsonParser().parse(template);
