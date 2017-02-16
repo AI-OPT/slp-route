@@ -25,7 +25,8 @@ public class HttpUtil {
 	}
 
 	private static final Logger logger = LogManager.getLogger(HttpUtil.class);
-
+	
+	//HttpPost方式远程调用
     public static String doPostRequest(String requestUrl, String requestValue) throws IOException {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
