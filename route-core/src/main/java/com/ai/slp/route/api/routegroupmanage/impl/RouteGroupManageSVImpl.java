@@ -1,5 +1,7 @@
 package com.ai.slp.route.api.routegroupmanage.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +19,12 @@ import com.ai.slp.route.api.routegroupmanage.param.RouteGroupStateResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteGroupBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
 @Service
 @Component
 public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
+	
+	private static final Logger logger = LoggerFactory.getLogger(RouteGroupManageSVImpl.class);
 	@Autowired
 	private IRouteGroupBusiSV routeGroupBusiSV;
 
@@ -86,16 +91,15 @@ public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
 			responseHeader.setResultMessage("成功");
 			//
 			response.setResponseHeader(responseHeader);
-		}catch(BusinessException e){
-			//e.printStackTrace();
-			responseHeader.setResultCode(e.getErrorCode());
-			responseHeader.setResultMessage(e.getErrorMessage());
-			//
-			response.setResponseHeader(responseHeader);
 		}catch(Exception e){
-			//e.printStackTrace();
-			responseHeader.setResultCode("999999");
-			responseHeader.setResultMessage("失败");
+			logger.error("操作失败"+JSON.toJSONString(e));
+			if(e instanceof BusinessException){
+				responseHeader.setResultCode(((BusinessException) e).getErrorCode());
+				responseHeader.setResultMessage(((BusinessException) e).getErrorMessage());
+			}else{
+				responseHeader.setResultCode("999999");
+				responseHeader.setResultMessage("操作失败");
+			}
 			//
 			response.setResponseHeader(responseHeader);
 		}
