@@ -19,8 +19,8 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListReque
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
-import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchResponse;
@@ -78,6 +78,22 @@ public interface IRouteProdSupplyManageSV {
 	@POST
 	@Path("/addRouteProdSupplyList")
 	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request)throws BusinessException,SystemException;
+	
+	/**
+	 * 批量给仓库配置商品信息
+	 * @param request
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangzd
+	 * @ApiDocMethod
+	 * @ApiCode RouteProdSupplyManage-003
+	 * @RestRelativeURL RouteProdSupplyManage/addRouteProdSupply
+	 */
+	@POST
+	@Path("/addRouteProdSupplyList")
+	public RouteProdResponse addRouteProdSupply(RouteProdSupplyAddListRequest request)throws BusinessException,SystemException;
+	
 	/**
 	 * 根据仓库编号和租户编号查询当前仓库下的标准品编号列表
 	 * @param request

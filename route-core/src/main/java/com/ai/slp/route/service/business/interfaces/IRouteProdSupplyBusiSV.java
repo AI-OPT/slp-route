@@ -4,6 +4,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListReque
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
@@ -30,6 +31,11 @@ public interface IRouteProdSupplyBusiSV {
 	 * 添加供应商品
 	 */
 	public RouteProdSupplyAddResponse addRouteProdSupplyList(RouteProdSupplyAddListRequest request);
+	
+	/**
+	 * 添加供应商品
+	 */
+	public RouteProdResponse addRouteProdSupply(RouteProdSupplyAddListRequest request);
 	/**
 	 * 查询标准品
 	 */

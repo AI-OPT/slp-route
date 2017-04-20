@@ -13,6 +13,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateListReque
 import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyPageSearchRequest;
@@ -326,6 +327,30 @@ public class RouteProdSupplyManageSVImpl implements IRouteProdSupplyManageSV {
 		}
 		//
 		return response;	
+	}
+
+	@Override
+	public RouteProdResponse addRouteProdSupply(RouteProdSupplyAddListRequest request)
+			throws BusinessException, SystemException {
+		//
+		RouteProdResponse response = new RouteProdResponse();
+		ResponseHeader responseHeader = new ResponseHeader();
+		//
+		try {
+			response = this.routeProdSupplyBusiSV.addRouteProdSupply(request);
+			responseHeader.setIsSuccess(true);
+			responseHeader.setResultCode("000000");
+			responseHeader.setResultMessage("成功");
+			//
+			response.setResponseHeader(responseHeader);
+		} catch (Exception e) {
+			responseHeader.setResultCode("999999");
+			responseHeader.setResultMessage("失败");
+			//
+			response.setResponseHeader(responseHeader);
+		}
+		//
+		return response;
 	}
 
 }

@@ -6,14 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
@@ -27,6 +25,7 @@ import com.ai.slp.route.api.routeprodsupplymanage.param.CostPriceUpdateVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdListResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.ProductCatIdVo;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteAmountResponse;
+import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdResponse;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddListRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddRequest;
 import com.ai.slp.route.api.routeprodsupplymanage.param.RouteProdSupplyAddResponse;
@@ -400,5 +399,59 @@ public class RouteProdSupplyBusiSVImpl implements IRouteProdSupplyBusiSV {
 		//
 		return response;
 		
+	}
+	@Override
+	public RouteProdResponse addRouteProdSupply(RouteProdSupplyAddListRequest request) {
+		RouteProdResponse response = new RouteProdResponse();
+		//
+		RouteProdSupply routeProdSupply = null;
+		RouteSupplyAddsLog routeSupplyAddsLog = null;
+		String routeId = null;
+		//
+		for(RouteProdSupplyAddRequest addRequest : request.getRouteProdSupplyAddRequestList()){
+			//
+			routeId = addRequest.getRouteId();
+			//
+			routeProdSupply = new RouteProdSupply();
+			//
+			String supplyId = SequenceUtil.createSupplyId();
+			//
+			routeProdSupply.setTenantId(addRequest.getTenantId());
+			routeProdSupply.setSupplyId(supplyId);
+			routeProdSupply.setSupplyName(addRequest.getProdName());
+			routeProdSupply.setStandedProdId(addRequest.getProdId());
+			routeProdSupply.setRouteId(addRequest.getRouteId());
+			routeProdSupply.setProductCatId(addRequest.getProdCatId());
+			routeProdSupply.setUsableNum(addRequest.getAmount().longValue());
+			routeProdSupply.setTotalNum(addRequest.getAmount().longValue());
+			routeProdSupply.setOperId(Long.valueOf(addRequest.getOperId()));
+			routeProdSupply.setOperTime(DateUtil.getSysDate());
+			routeProdSupply.setState("1");
+			//
+			this.routeProdSupplyAtomSV.insert(routeProdSupply);
+
+			//添加仓库量
+			routeSupplyAddsLog = new RouteSupplyAddsLog();
+			routeSupplyAddsLog.setSupplyAddsLogId(SequenceUtil.createSupplyAddsLogId());
+			routeSupplyAddsLog.setOperId(Long.valueOf(addRequest.getOperId()));
+			routeSupplyAddsLog.setOperTime(DateUtil.getSysDate());
+			routeSupplyAddsLog.setSource("");
+			routeSupplyAddsLog.setSupplyId(supplyId);
+			routeSupplyAddsLog.setSupplyName(addRequest.getProdName());
+			routeSupplyAddsLog.setSupplyNum(addRequest.getAmount().longValue());
+			routeSupplyAddsLog.setBeforeUsableNum(0l);
+			//
+			this.routeSupplyAddsLogAtomSV.insert(routeSupplyAddsLog);
+			response.setSupplyId(supplyId);
+		}
+		//
+		if(!CollectionUtil.isEmpty(request.getRouteProdSupplyAddRequestList())){
+			Route route = new Route();
+			route.setRouteId(routeId);
+			route.setState(RouteConstant.Route.State.NORMAL);
+			this.routeAtomSV.update(route);
+		}
+		//
+		return response;
 	}
 }
