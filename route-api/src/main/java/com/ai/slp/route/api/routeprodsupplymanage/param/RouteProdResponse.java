@@ -13,26 +13,6 @@ public class RouteProdResponse extends BaseResponse implements Serializable {
 
 	private String supplyId;
 
-	private String rootId;
-
-	private String rootGroupId;
-
-	public String getRootId() {
-		return rootId;
-	}
-
-	public void setRootId(String rootId) {
-		this.rootId = rootId;
-	}
-
-	public String getRootGroupId() {
-		return rootGroupId;
-	}
-
-	public void setRootGroupId(String rootGroupId) {
-		this.rootGroupId = rootGroupId;
-	}
-
 	public String getSupplyId() {
 		return supplyId;
 	}
