@@ -1,5 +1,7 @@
 package com.ai.slp.route.api.routemanage.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,10 +27,15 @@ import com.ai.slp.route.api.routemanage.param.RouteUpdateStateResponse;
 import com.ai.slp.route.constants.ExceptCodeConstant;
 import com.ai.slp.route.service.business.interfaces.IRouteBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
+
+import sun.util.logging.resources.logging;
 @Service
 @Component
 public class RouteManageSVImpl implements IRouteManageSV {
 
+	private static final Logger logger = LoggerFactory.getLogger(RouteManageSVImpl.class);
+	
 	@Autowired
 	private IRouteBusiSV routeBusiSV;
 	
@@ -216,6 +223,7 @@ public class RouteManageSVImpl implements IRouteManageSV {
 			responseHeader.setResultMessage(e.getErrorMessage());
 			response.setResponseHeader(responseHeader);
 		}catch(Exception e){
+			logger.error("查询失败了:原因:"+JSON.toJSONString(e));
 			responseHeader.setIsSuccess(false);
 			responseHeader.setResultCode("999999");
 			responseHeader.setResultMessage("查询失败");
