@@ -85,7 +85,7 @@ public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
 		}
 		//
 		try{
-			response = this.routeGroupBusiSV.insertRouteGroup(request);
+			response = this.routeGroupBusiSV.insertRouteGroup(request,request.getRouteItemId());
 			responseHeader.setIsSuccess(true);
 			responseHeader.setResultCode("000000");
 			responseHeader.setResultMessage("成功");
@@ -105,7 +105,7 @@ public class RouteGroupManageSVImpl implements IRouteGroupManageSV {
 		}
 		return response;
 	}
-
+	
 	@Override
 	public RouteGroupStateResponse findRouteGroupState(RouteGroupStateRequest request)
 			throws BusinessException, SystemException {

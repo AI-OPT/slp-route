@@ -30,9 +30,22 @@ public class RouteGroupAddRequest extends BaseInfo implements Serializable {
 	 * 商品标识
 	 */
 	private String productId;
-	
+
+	/**
+	 * 路由组成ID
+	 */
+	private String routeItemId;
+
 	public String getProductId() {
 		return productId;
+	}
+
+	public String getRouteItemId() {
+		return routeItemId;
+	}
+
+	public void setRouteItemId(String routeItemId) {
+		this.routeItemId = routeItemId;
 	}
 
 	public void setProductId(String productId) {
@@ -54,6 +67,7 @@ public class RouteGroupAddRequest extends BaseInfo implements Serializable {
 	public void setStandedProdName(String standedProdName) {
 		this.standedProdName = standedProdName;
 	}
+
 	public String getStandedProdId() {
 		return standedProdId;
 	}

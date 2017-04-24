@@ -61,5 +61,5 @@ public interface IRouteGroupManageSV {
 	@POST
 	@Path("/findRouteGroupState")
 	public RouteGroupStateResponse findRouteGroupState(RouteGroupStateRequest request) throws BusinessException,SystemException;
-
+	
 }
