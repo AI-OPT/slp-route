@@ -20,5 +20,4 @@ public interface IRouteGroupBusiSV {
 	 * 查询路有组状态
 	 */
 	public RouteGroupStateResponse findRouteGroupState(RouteGroupStateRequest request);
-	RouteGroupAddResponse insertRouteGroup(RouteGroupAddRequest request, String routeItemId);
 }
