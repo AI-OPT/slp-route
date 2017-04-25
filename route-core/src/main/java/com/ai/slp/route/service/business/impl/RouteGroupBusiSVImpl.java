@@ -120,24 +120,29 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		RouteItem routeItem = null;
 		String routeItemId = null;
 		//
+		List<String> routeItems = new ArrayList<>();
 		List<RouteItem> routeItemList = this.routeItemAtomSV.findRouteItemByRouteGroupId(routeGroupId);
 		//
 		for (RouteProdSupply routeProdSupply : routeProdSupplyList) {
-			//
-			routeItemId = SequenceUtil.createRouteItemId();
-			//
-			routeItem = new RouteItem();
-			routeItem.setOperId(operId);
-			routeItem.setOperTime(DateUtil.getSysDate());
-			routeItem.setRouteGroupId(routeGroupId);
-			routeItem.setRouteId(routeProdSupply.getRouteId());
-			routeItem.setState("1");
-			routeItem.setRouteItemId(routeItemId);
-			//
 			boolean flag = this.routeIdInList(routeProdSupply.getRouteId(), routeItemList);
 			if (!flag) {
 				//
+				routeItemId = SequenceUtil.createRouteItemId();
+				//
+				routeItem = new RouteItem();
+				routeItem.setOperId(operId);
+				routeItem.setOperTime(DateUtil.getSysDate());
+				routeItem.setRouteGroupId(routeGroupId);
+				routeItem.setRouteId(routeProdSupply.getRouteId());
+				routeItem.setState("1");
+				routeItem.setRouteItemId(routeItemId);
+				//
+				routeItems.add(routeItemId);
 				this.routeItemAtomSV.insert(routeItem);
+			}else{
+				for (RouteItem routeItem2 : routeItemList) {
+					routeItems.add(routeItem2.getRouteItemId());
+				}
 			}
 		}
 		//
@@ -151,7 +156,7 @@ public class RouteGroupBusiSVImpl implements IRouteGroupBusiSV {
 		DubboConsumerFactory.getService(IProductServerSV.class).changeRouteGroup(routeGroupSet);
 		//
 		response.setRouteGroupId(routeGroupId);
-		
+		response.setRouteItemIds(routeItems);
 		//如果routeItem表数据不为空，那么就将路由组状态修改为2
 		//if(!CollectionUtil.isEmpty(routeItemList)){
 			this.routeGroupAtomSV.updateState("2", routeGroupId);
