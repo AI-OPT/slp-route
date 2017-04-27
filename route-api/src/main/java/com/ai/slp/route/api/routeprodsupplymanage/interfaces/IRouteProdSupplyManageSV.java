@@ -91,7 +91,7 @@ public interface IRouteProdSupplyManageSV {
 	 * @RestRelativeURL RouteProdSupplyManage/addRouteProdSupply
 	 */
 	@POST
-	@Path("/addRouteProdSupplyList")
+	@Path("/addRouteProdSupply")
 	public RouteProdResponse addRouteProdSupply(RouteProdSupplyAddListRequest request)throws BusinessException,SystemException;
 	
 	/**
